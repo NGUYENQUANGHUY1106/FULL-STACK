@@ -1,0 +1,172 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.main header
+{
+    width: 100%;
+}
+.main header .layout_header
+{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main header .header
+{
+    width: 1220px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header .logo_slogan img
+{
+    width: 100px;
+}
+.main header .header .list_header
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.main header .header .list_header li
+{
+    list-style-type: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.main header .header .icon_search img
+{
+    width: 24px;
+    height: 24px;
+}
+/* hastag */
+.main .hastag
+{
+    width: 1220px;
+    margin: auto;
+    display: block;
+    margin-top: 10px;
+    
+}
+.main .hastag .hastag_left
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.main .hastag .hastag_left li
+{
+    width: 225px;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f0f0f0;
+    font-size: 14px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 20px;
+}
+.main .hastag .hastag_left li p
+{
+    color: red;
+    font-weight: 800;
+}
+.main .hastag .weather
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.main .hastag .weather img
+{
+    width: 25px;
+    height: 25px;
+}
+.main .hastag .layout_hastag
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+/* content */
+.main .content
+{
+    width: 1220px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin: auto;
+    margin-top: 15px;
+}
+.main .content .left_content
+{
+    width: 350px;
+}
+.main .content .left_content .list_content_left li
+{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 15px 0px;
+}
+.main .content .left_content .list_content_left li img
+{
+    width: 120px;
+    border-radius: 5px;
+}
+.main .content .left_content .list_content_left li p
+{
+    font-size: 16px;
+    font-weight: 600;
+}
+/* right_content */
+.main .content .right_content
+{
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+.main .content .right_content .content_main
+{
+    width: 560px;
+}
+.main .content .right_content .content_main img
+{
+    width: 100%;
+    border-radius: 5px;
+}
+.main .content .right_content .content_main h2
+{
+    font-size: 28px;
+
+}
+.main .content .right_content .content_main h4
+{
+    font-size: 14px;
+}
+.main .content .right_content .list_right_content
+{
+    width: 288px;
+}
+.main .content .right_content .list_right_content  img
+{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.main .content .right_content .list_right_content  li
+{
+    list-style-type: none;
+}
+.main .content .right_content .list_right_content  li p
+{
+    font-size:  15px;
+}
