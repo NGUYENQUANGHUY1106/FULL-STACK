@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      li {
+        background-color: yellow;
+      }
+      li span {
+        background-color: pink;
+        display: none;
+      }
+      .active {
+        background-color: red;
+        display: block;
+      }
+    </style>
+
+    <p>- click vao the Li nào thì show span con của Li đó ra</p>
+    <p>- tương tự trên nhưng hide the span cua Li khac di</p>
+    <p>- click vao Li nào đang có span hiện thi ra thi hide span do di</p>
+
+    <ul>
+      <li id="1">
+        day la the Li
+        <span id="1">day la the span1</span>
+      </li>
+      <li id="2">
+        day la the Li
+        <span id="2">day la the span2</span>
+      </li>
+      <li id="3">
+        day la the Li
+        <span id="3">day la the span3</span>
+      </li>
+      <li id="4">
+        day la the Li
+        <span id="4">day la the span4</span>
+      </li>
+    </ul>
+    <script>
+      let list_li = document.querySelectorAll("ul li");
+      let list_li_span = document.querySelectorAll("ul li span");
+
+      list_li.forEach(function(li)
+    {
+        li.addEventListener("click",function()
+    {
+        let curentSpan = li.querySelector("span");
+        let checkActive = curentSpan.classList.contains("active");
+        console.log(curentSpan);
+
+        list_li_span.forEach(function(item)
+    {
+        item.classList.remove("active");
+    })
+    if(!checkActive)
+    {
+        curentSpan.classList.add("active");
+    }
+        
+    })
+    })
+    //   //   console.log(list_li);
+    //   //   console.log(list_li_span);
+    //   list_li.forEach(function (li) {
+    //     li.addEventListener("click", function () {
+    //       let curentSpan = li.querySelector("span");
+    //       console.log(curentSpan);
+    //       let checkActive = curentSpan.classList.contains("active");
+    //       console.log(checkActive);
+
+    //       let get_id_li = li.getAttribute("id");
+    //       // console.log(get_id_li);
+
+    //       list_li_span.forEach(function (span) {
+    //         span.classList.remove("active");
+    //         let get_id_span = span.getAttribute("id");
+    //         console.log(get_id_span);
+
+    //         if (get_id_li == get_id_span) {
+    //           span.classList.add("active");
+    //         }
+    //         if (checkActive != false) {
+    //           span.classList.remove("active");
+    //         }
+    //       });
+    //     });
+    //   });
+    </script>
+  </body>
+</html>
+<!-- cách tối ưu hơn
+li.addEventListener("click", function() {
+
+    let currentSpan = li.querySelector("span");
+
+    let checkActive = currentSpan.classList.contains("active");
+
+    // ẩn tất cả span
+    list_li_span.forEach(function(span) {
+        span.classList.remove("active");
+    });
+
+    // nếu span hiện tại chưa mở thì mở nó
+    if(!checkActive) {
+        currentSpan.classList.add("active");
+    }
+
+}); -->

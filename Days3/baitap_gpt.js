@@ -85,3 +85,4 @@ for(let key in scores)
    totalScore += scores[key];
 }
 console.log(totalScore);
+

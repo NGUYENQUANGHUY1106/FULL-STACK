@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- - dung for in ra cac so tu 1-10
+- dung for in ra cac so le tu 1-10
+- dung for duyệt qua các số tư 1-10 va in ra các số < 5
+- dung for duyệt qua các số tư 1-10 va in ra số 6
+- dung for tinh tong tu 1-10
+- dung for tinh tong theo cong thuc : s = 1 + 1/n , n la số tự nhiên bất kỳ.
+- cho 3 số tự nhien, viet hàm tìm số lớn nhất : dung if else -->
+    <button onclick="log(7)">Bài 1</button>
+    <button onclick="log2(8)">Bài 2</button>
+    <button onclick="log3(10)">Bài 3</button>
+    <button onclick="log4(10)">Bài 4</button>
+    <button onclick="log5(14)">Bài 5</button>
+    <button onclick="log6(4,7,11)">Bài 6</button>
+
+
+
+
+    <script>
+      // <!-- bài 1 -->
+      function log(n) {
+        for (let i = 0; i <= n; i++) {
+          console.log(i);
+        }
+      }
+      function log2 (n)
+      {
+        for (let i = 0 ;i < n ;i++)
+        {
+          if(i < 5)
+        {
+          console.log(i);
+          
+        }
+        }
+      }
+      function log3(n)
+      {
+        for(let i = 0 ; i< n ; i++)
+      {
+        if(i === 6 )
+      {
+        console.log(i);
+        
+      }
+      }
+      }
+      function log4(n)
+      {
+        let sum = 0 ;
+        for(let i =0  ; i <=n ; i++)
+      {
+        sum += i;
+      }
+      console.log(sum);
+      
+      }
+      function log5(n)
+      {
+        let total = 0 ;
+         for(let i =0 ;i < 9 ;i++)
+         {
+          total += 1 + 1/n;
+         }
+         console.log(total);
+         
+      }
+      function log6(a,b,c)
+      {
+      if(a>b && a>c)
+      {
+        console.log(a + " là số lớn nhất");
+        
+      }
+      else if (b>a  && b> c)
+      {
+        console.log(b + " là số lớn nhất");
+        
+      }
+      else
+      {
+        console.log(c + "là số lớn nhất");
+        
+      }
+      }
+    </script>
+    <script src="/Days3/BTVN_vonglap/test.js"></script>
+  </body>
+</html>

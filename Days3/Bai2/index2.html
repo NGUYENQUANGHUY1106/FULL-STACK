@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- bài 1 -->
+    <!-- <style>
+      .active {
+        color: blue;
+      }
+    </style>
+    <span id="title1" onclick="handleClick()"> Hello Everyone </span>
+    <script>
+      let title1 = document.getElementById("title1");
+      console.log(title1);
+      let checkTitle1 = title1.classList.contains("active");
+      console.log(checkTitle1);
+      function handleClick() {
+        if (checkTitle1 == false) {
+          title1.classList.toggle("active");
+        }
+        else
+        {
+            title1.classList.toggle("active")
+        }
+      }
+    </script> -->
+    <!-- bài 2 -->
+    <!-- <style>
+      .active {
+        color: red;
+      }
+    </style>
+    <span id="title2" onclick="handleActive()">Code</span>
+    <p class="text" >
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga, alias
+      quaerat ipsum excepturi mollitia veniam fugit, tenetur enim ea quisquam
+      corrupti omnis voluptates in quidem accusantium voluptatem autem itaque
+      porro.
+    </p>
+    <script>
+        let title2 = document.getElementById("title2");
+        let text = document.querySelector(".text");
+        
+        function handleActive()
+        {
+            if(title2.classList.contains("active"))
+        {
+            title2.classList.remove("active");
+             text.style.display = "block";
+           
+        }
+        else
+        {
+            title2.classList.add("active");
+             text.style.display = "none";
+
+        }
+        } -->
+        <!-- bài 3 -->
+         <!-- <style>
+            .active
+            {
+                color: green;
+            }
+         </style>
+        <ul>
+            <li class="item">hello</li>
+            <li class="item">bye</li>
+            <li class="item">hi</li>
+            <li class="item">meet</li>
+        </ul>
+        <script>
+            let items = document.querySelectorAll(".item");
+            items.forEach(function(item)
+        {
+            item.addEventListener("click",function()
+        {
+            if(item.classList.contains("active"))
+        {
+            item.classList.remove("active");
+        }
+        else
+        {
+            item.classList.add("active");
+        }
+        })
+        })
+        </script> -->
+        <!-- bài 4  -->
+         <button id="box3 " onclick="bt3()">active</button>
+         <p id="hide">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit unde numquam dignissimos eveniet dolor veritatis facilis voluptas dolorem dolores id officia molestias adipisci, aut quibusdam odit sunt quaerat corrupti. Culpa.</p>
+        <!-- <style>
+          .active
+          {
+            display: none;
+          }
+        </style> -->
+        <!-- <button onclick="handleClick()">Click</button>
+        <p id="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum sequi sunt quis quisquam voluptate quas nemo, fuga quasi, molestiae magni maiores aperiam inventore nam tenetur molestias labore, minus optio repellat.</p> -->
+        <script>
+          // let text = document.getElementById("text");
+          // function handleClick()
+          // {
+          //   if(text.classList.contains("active"))
+          //   {
+          //      text.classList.remove("active")
+          //   }
+          //   else
+          //   {
+          //     text.classList.add("active")
+          //   }
+          // }
+          let hide = document.getElementById("hide");
+          function bt3()
+          {
+             if(hide.classList.contains("active"))
+             {
+                hide.classList.remove("active");
+                hide.style.display = "block";
+             }
+             else
+             {
+              hide.classList.add("active");
+              hide.style.display = "none";
+             }
+          }
+        </script>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+funciton demo (x,y)
+{
+    let sum = x +y ;
+    alert(sum)
+}
+demo(2,3);
+muốn gọi kết quả ra ngoài thì dùng return 
+funciton demo (x,y)
+{
+    let sum = x +y ;
+    return sum ;
+}
+
+let kq = demo(2,3);
+alert (kq)

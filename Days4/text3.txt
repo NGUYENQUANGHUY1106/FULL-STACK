@@ -1,0 +1,93 @@
+Yêu cầu:  Click vào tab nào thi show hinh ảnh con của tab đó bên dưới (sử dụng html bên dưới thêm class va id tuỳ thích)
+chu ý: mỗi lần click thi chỉ 1 hình ảnh dc hien thi.
+Nghia la click vao TINTUC  thi chi có hình ảnh của tt dc hien thi.
+click vao bongda thi chi có hình ảnh cua bong da dc hien thi...
+
+chu y class hide là ẩn đi và class show la hiển thị ra
+
+<style type="text/css">
+    .hide {
+      display: none;
+    }
+    .show {
+      display: block;
+    }
+    
+    ul li {
+      display: inline-block;
+      margin: 0 10px;
+      background-color: red;
+    }
+
+  </style>
+  <div class="demo">
+    <ul>
+      <li class="tt" id="">tin tuc</li>
+      <li class=bd>bong da</li>
+      <li>thoi trang</li>
+    </ul>
+
+    <div class="content">
+      <div id="tt class="hide show">
+        <img src="bo hinh anh vao tin tuc" >
+      </div>
+      <div id=bd class="hide ">
+        <img src="bo hinh anh vao cua bong da" >
+      </div>
+      <div class="hide">
+        <img src="bo hinh anh vao cua thoi trang" >
+      </div>
+    </div>
+  </div>
+bài 2 
+  <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style>
+    li{
+      background-color: yellow;
+    }
+    li span{
+      background-color: pink;
+      display: none;
+    }
+    .active{
+      background-color: red;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+   <p>- click vao the Li nào thì show span con của Li đó ra</p>
+   <p>- tương tự trên nhưng hide the span cua Li khac di</p>
+   <p>- click vao Li nào đang có span hiện thi ra thi hide span do di </p>
+
+  <ul>
+    <li>
+      day la the Li
+      <span>day la the span</span>
+    </li>
+    <li>
+      day la the Li
+      <span>day la the span</span>
+    </li>
+    <li>
+      day la the Li
+      <span>day la the span</span>
+    </li>
+    <li>
+      day la the Li
+      <span>day la the span</span>
+    </li>
+  </ul>
+
+  
+
+
+
+
+</body>
+</html>
