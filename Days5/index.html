@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form" action="https://www.24h.com.vn/" target="_blank">
+      <label>email</label>
+      <input type="email" id="email" />
+      <small id="errEmail"></small>
+      <label>password</label>
+      <input type="text" id="password" />
+      <small id="errPassword"></small>
+      <button>Submit</button>
+    </form>
+    <form id="form2">
+      <button id="showcucbo" onclick="show(event)">Show</button>
+    </form>
+    <script>
+      let email = "";
+      let key = "";
+      let emailInput = document.getElementById("email");
+      let passwordInput = document.getElementById("password");
+      let form = document.getElementById("form");
+      let form2 = document.getElementById("form2");
+      let errEmail = document.getElementById("errEmail");
+      let errPassword = document.getElementById("errPassword");
+      console.log(email);
+      console.log(key);
+
+      form.addEventListener("submit", function (e) {
+        let valueEmail = emailInput.value;
+        let valuePassword = passwordInput.value;
+        let err = false;
+        errEmail.textContent = "";
+        errPassword.textContent = "";
+
+        if (valueEmail === "") {
+          e.preventDefault();
+          errEmail.textContent = "Vui lòng nhập Email";
+          err = true;
+        }
+        if (valuePassword === "") {
+          e.preventDefault();
+          errPassword.textContent = "Vui lòng nhập password";
+          err = true;
+        }
+        if (!err) {
+          form.submit();
+          email = valueEmail;
+          key = valuePassword;
+        }
+
+        console.log(key);
+        console.log(email);
+      });
+      function show(e) {
+        e.preventDefault();
+
+        if (email === "" || key === "") {
+          console.log("chưa có dữ liệu");
+        } else {
+          alert(email + " " + key);
+        }
+      }
+    </script>
+  </body>
+</html>

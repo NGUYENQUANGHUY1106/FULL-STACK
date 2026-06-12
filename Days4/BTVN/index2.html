@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Check</h1>
+    <form id="form_check" action="https://www.24h.com.vn/">
+      <select name="city" id="tp">
+        <option value="">Chọn Thành Phố Của Bạn</option>
+        <option value="HaNoi">HaNoi</option>
+        <option value="QuangTri">QuangTri</option>
+        <option value="TpHoChiMinh">TpHoChiMinh</option>
+      </select>
+      <input type="checkbox" name="gt" id="exp2" value="2 năm" /> 2 năm
+      <input type="checkbox" name="gt" id="exp3" value="3 năm" /> 3 năm
+      <input type="checkbox" name="gt" id="exp4" value="4 năm" />4 năm
+
+      <button>submit</button>
+    </form>
+    <script>
+      let form = document.getElementById("form_check");
+      let value_checkbox = document.querySelectorAll("input[name='gt']");
+      let tp_text = tp.options[tp.selectedIndex].text;
+            
+      console.log(value_checkbox);
+
+      console.log(tp_text);
+
+      form.addEventListener("submit", function (e) {
+        let check_exp = false;
+        value_checkbox.forEach(function (item) {
+          if (item.checked) {
+            console.log(item.checked);
+            check_exp = true;
+          
+          }
+        });
+        if(document.getElementById("tp").value == "")
+        {
+          alert("Vui lòng chọn 1 thành phố");
+          e.preventDefault();
+          return;
+        }
+        if (!check_exp) {
+          alert("vui lòng chọn 1 check box");
+          e.preventDefault();
+          return;
+        }
+      });
+    </script>
+  </body>
+</html>
