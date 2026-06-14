@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let glocal = localStorage.getItem("obj2");
+let obj2 = {}
+if(glocal)
+{
+    obj2 = JSON.parse(glocal);
+    console.log(obj2);
+}
+Object.keys(obj2).map(function(keys)
+{
+    if(keys === "phone")
+{
+   delete obj2[keys];
+}
+})
+console.log(obj2);
+localStorage.setItem("obj3", JSON.stringify(obj2));
+</script>
+</body>
+</html>

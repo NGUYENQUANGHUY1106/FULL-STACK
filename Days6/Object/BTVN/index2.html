@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let glocal = localStorage.getItem("obj1");
+    let obj1 = {};
+    if(glocal)
+{
+    obj1 = JSON.parse(glocal);
+    console.log(obj1);
+}
+Object.keys(obj1).map(function(value,keys)
+{
+    console.log(keys + ": " +value);
+    
+})
+obj1["hobby"] = {
+    name : "Football",
+    time : "2h/day"
+}
+console.log(obj1);
+
+localStorage.setItem("obj2", JSON.stringify(obj1));
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .main {
+        width: 1220px;
+        margin: auto;
+        display: flex;
+        gap: 40px;
+        justify-content: center;
+      }
+      .main .image_left {
+        width: 400px;
+        object-fit: cover;
+      }
+      .main .image_left img {
+        width: 100%;
+      }
+      .main .content_right
+      {
+        width: 600px;
+      }
+      .main .content_right .price {
+        font-size: 20px;
+      }
+      .main .content_right .list_feature {
+        font-size: 18px;
+
+        font-weight: bold;
+      }
+      .main .content_right #quantity
+      {
+        width: 89px;
+      }
+      .main .content_right .btn
+        {
+            margin-top: 20px;
+        }
+        .main .content_right .info
+        {
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+    <div class="main">
+      <div class="image_left">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzdIzdACYSVnnl7zO9yIhPU1FRztPPTKn4jw&s"
+          alt=""
+        />
+      </div>
+      <div class="content_right">
+        <h3>AVE CLASSIC SWEATSHIRT ManChester United</h3>
+        <div class="price">
+          <p><s>£107 </s>£89.99</p>
+        </div>
+        <p class="intro">
+          Donec sem lorem laoreet tempor un risus vitae, rutrum sodales nibh
+          suspendisse est congue metus nunc, id viverra elit loreti rhoncus quis
+          consecteur es. Donec pulvinar tempor lorem a pretium justo interdum.
+        </p>
+        <ul class="list_feature">
+          <li>Elasticated cuffs</li>
+          <li>Casual fit</li>
+          <li>100% Cotton</li>
+          <li>Free shipping with 4 days delivery</li>
+        </ul>
+        <div class="info">
+          <div class="box_color">
+            <p>COLOUR</p>
+            <select name="" id="color">
+              <option value="">Select color</option>
+              <option value="Red">Red</option>
+              <option value="Black">Black</option>
+              <option value="Blue">Blue</option>
+            </select>
+          </div>
+          <div class="box_size">
+            <p>SIZE</p>
+            <select name="" id="size">
+                <option value="">Select Size</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+            </select>
+          </div>
+          <div class="box_quantity">
+            <p>QUANTITY</p>
+            <select name="" id="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </div>
+        <div class="btn">
+          <button onclick="addToCart()">ADD TO CART</button>
+          <button onclick="removeToCart()">REMOVE TO CART</button>
+        </div>
+      </div>
+      <div class="cart">
+        <p>Cart</p>
+        <p id="quantity_cart">0</p>
+      </div>
+    </div>
+    <script src="/Days5/addtocart/main.js"></script>
+  </body>
+</html>

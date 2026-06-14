@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script >
+    let getobj3 = localStorage.getItem("obj3");
+    let obj3 = {};
+    if(getobj3)
+    {
+        obj3 = JSON.parse(getobj3);
+        console.log(obj3);
+    }
+</script>
+</body>
+</html>

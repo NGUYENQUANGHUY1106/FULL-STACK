@@ -1,0 +1,45 @@
+Object cũng tương tự như mảng 
+// khai báo 
+let demo1 {};
+thêm giá trị có 2 cách 
+let obb1 ={};
+obb1['xx'] = "ok";
+obb1.yy = "ok2";
+để lấy ra được length thì 
+console.log(Object.keys(obb1).length);
+kiểm tra object đó có data k ;
+value có thể chứa arr và object 
+cách lấy value ra 
+tên object[key]
+cách tạo object 2 cách 
+ let demo1 = {
+    city  : "đà nẵng ",
+    address : "dinh tiên hoàng"
+ }
+ hoặc 
+  demo2['city'] = "da nang";
+  demo2['add']=  'dinh tien hoang';
+  đưa demo2 object vào bên trong demo1 ;
+  demo1["abc"] = demo2;
+  để lấy dữ liệu trong object và trong object khác 
+   in ra demo1['abc']['city];
+
+   dùng map lấy value và key trong object
+   Object.keys(obb1).map(function(value,index) trả về key và value
+{
+    console.log(index);
+    console.log(value);
+    
+    
+})
+   Object.values(obb1).map(function(value,index) cái này trả về key là 0 ,1,2,3 và value
+{
+    console.log(index);
+    console.log(value);
+    
+    
+})
+Hàm	Kết quả
+Object.keys(obj)	Chỉ lấy key
+Object.values(obj)	Chỉ lấy value
+Object.entries(obj)	Lấy cả key và value

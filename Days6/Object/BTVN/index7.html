@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let glocal = localStorage.getItem("obj5");
+      let data = localStorage.getItem("obj1");
+      let obj1 = {};
+      let obj5 = {};
+      let obj7 = {};
+      if (data) {
+        obj1 = JSON.parse(data);
+        console.log(obj1);
+      }
+      if (glocal) {
+        obj5 = JSON.parse(glocal);
+        console.log(obj5);
+      }
+      for (let i = 11; i <= 20; i++) {
+        obj7[i] = i;
+      }
+      console.log(obj7);
+      obj1.obj5 =obj5;
+      obj1.obj7 = obj7;
+        console.log(obj1);
+        let sumObj = {
+            ...obj5,
+            ...obj7
+        }
+        console.log(sumObj);
+        let sum =  0 ;
+        Object.values(sumObj).map(function(value)
+     {
+        sum += value;
+     });
+     console.log(sum);
+     
+    </script>
+  </body>
+</html>
