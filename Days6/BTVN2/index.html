@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = [
+        { id: "jonh", name: "JonSmith", age: 20 },
+        { id: "ann", name: "Ann Smith", age: 24 },
+        { id: "pete", name: "Pete Peterson", age: 31 },
+      ];
+      // bài 1
+      //   var user = [];
+      //   arr.map(function (value) {
+      //     console.log(value);
+
+      //     Object.entries(value).map(function (item, index) {
+      //       console.log(item, index);
+
+      //       if (item[0] === "id") {
+      //         user.push(item[1]);
+      //       }
+      //     });
+      //   });
+      //   console.log(user);
+      // bài 2
+      // let obj = {};
+      // arr.map(function (value)
+      // {
+      //   console.log(value);
+      //   Object.entries(value).map(function(item)
+      // {
+      //     console.log(item[1]);
+      //     if(item[0] ==='id')
+      // {
+      //     obj = {
+      //         ...obj,
+      //         [item[1]] : {...value}
+      //     }
+      // }
+      // })
+
+      // })
+      // console.log(obj);
+      // bài 3
+      let objCha = {
+        bao1: {
+          'xx': "baovic1",
+          'yy': "baovic@gmail.com",
+        },
+        bao2: {
+          'xx': "baovic2",
+          'yy': "baovic@gmail.com2",
+        },
+        bao3: {
+          'xx': "baovic3",
+          'yy': "baovic@gmail.com3",
+        },
+        bao4: {
+          'xx': "baovic4",
+          'yy': "baovic@gmail.com4",
+        },
+      };
+      let total = {}
+      Object.entries(objCha).map(function(item,index)
+    {  
+       console.log(item[0]);
+       console.log(item[1]['xx']);
+       
+
+        total = {
+            ...total,
+            [item[0]] :item[1]['xx']
+        }
+        
+        
+        
+       
+    
+        // Object.values(item[1]).map(function(value,index)
+        // {
+        //     // console.log(value,index);
+        //     // // if(value === 'xx')
+        //     // // {
+        //     // //     console.log(item[1][value]);
+        //     // // }
+        // })        
+        
+    })
+    console.log(total);
+    
+    </script>
+  </body>
+</html>
