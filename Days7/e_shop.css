@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.container .product
+{
+    width: 400px;
+    text-align: center;
+}
+.container .product img
+{
+    width: 300px;
+    height: 300px;
+}

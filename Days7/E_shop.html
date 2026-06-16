@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/Days7/e_shop.css">
+</head>
+<body>
+ <style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.container .product
+{
+    width: 400px;
+    text-align: center;
+}
+.container .product img
+{
+    width: 300px;
+    height: 300px;
+}
+ </style>
+    <div class="container">
+         <div class="product" data-id="product1">
+            <div class="image">
+                <img src="https://league2.vn/user-content/1310f557-cd7f-453e-a866-4fabdbcc38ac.jpg" alt="">
+            </div>
+            <p class="price">
+                $100
+            </p>
+            <p class="info">Áo thi đấu Argentina</p>
+            <button onclick="addToCart(this)">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="product" data-id="product2">
+            <div class="image">
+                <img src="https://cdn.hstatic.net/products/200000293662/26_262f9115b79e4368a763bce9e05fae4f.png" alt="">
+            </div>
+            <p class="price">
+                $150
+            </p>
+            <p class="info">Áo thi đấu Brazil</p>
+            <button onclick="addToCart(this)">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="product" data-id="product3">
+            <div class="image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQELy4ncVMVrpgsWu6WrVQhiVHkAkKVI1Mbmg&s" alt="">
+            </div>
+            <p class="price">
+                $200
+            </p>
+            <p class="info">Áo thi đấu France</p>
+            <button onclick="addToCart(this)">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="product" data-id="product4">
+            <div class="image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaVuzDbVcufLeKEYUnXxjZOuellJuMFe2kSQ&s" alt="">
+            </div>
+            <p class="price">
+                $250
+            </p>
+            <p class="info">Áo thi đấu Germany</p>
+            <button onclick="addToCart(this)">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="product" data-id="product5">
+            <div class="image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAZinBKiS1rU5K6hJ28Ddy-_LK_Aan3akl0Q&s" alt="">
+                </div>
+            <p class="price">
+                $300
+            </p>
+            <p class="info">Áo thi đấu Spain</p>
+            <button onclick="addToCart(this)">Thêm vào giỏ hàng</button>
+        </div>
+        <div class="product" data-id="product6">
+            <div class="image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTGpLKJ1Da2WdkMPqyXFMbWK74UhJYf8oa8A&s" alt="">
+            </div>
+            <p class="price">
+                $300
+            </p>
+            <p class="info">Áo thi đấu Portugal</p>
+            <button onclick="addToCart(this)">Thêm vào giỏ hàng</button>
+        </div>
+
+    </div>
+<script src="/Days7/e_shop.js"></script>
+</body>
+</html>

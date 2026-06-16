@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form" action="">
+      <label for="">User Name</label>
+      <input type="text" id="userName" />
+      <small id="errUserName"></small>
+      <label for="">Email</label>
+      <input type="email" id="email" />
+      <small id="errEmail"></small>
+      <button>Submit</button>
+    </form>
+    <script>
+      let InputuserName = document.getElementById("userName");
+      let InputEmail = document.getElementById("email");
+      let form = document.getElementById("form");
+      let errUserName = document.getElementById("errUserName");
+      let errEmail = document.getElementById("errEmail");
+
+      form.addEventListener("submit", function (e) {
+        let valueuserName = InputuserName.value;
+        let valueEmail = InputEmail.value;
+        let err = false;
+        errUserName.textContent = "";
+        errEmail.textContent = "";
+        let objCon = {};
+        
+
+        if (valueuserName === "") {
+        e.preventDefault();
+          errUserName.textContent = "Vui lòng nhập user name";
+          err = true;
+        }
+        if (valueEmail === "") {
+            e.preventDefault();
+          errEmail.textContent = "Vui lòng nhập email";
+          err = true;
+        }
+        if(!err)
+        {
+            let objCha = JSON.parse(localStorage.getItem("objCha")) || {};
+            alert("ok");
+            objCon = {
+                'xx' :valueuserName,
+                'yy' : valueEmail
+            }
+            objCha[valueuserName] = {
+                ...objCon
+            }            
+            localStorage.setItem("objCha", JSON.stringify(objCha));
+        }
+      });
+      
+    </script>
+  </body>
+</html>

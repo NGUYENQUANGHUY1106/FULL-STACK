@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.ancestors * { 
+  display: block;
+  border: 2px solid blue;
+  color: black;
+  padding: 5px;
+  margin: 15px;
+}
+.active{
+  background-color: red;
+}
+.ancestors * span,
+.ancestors * input{
+  color: red;
+}
+</style>
+
+</head>
+
+
+<!-- router- > controller (truyen data ) -> view (truyen nguoc lại) -->
+
+<body class="ancestors">
+    <!-- body (great-great-grandparent) -->
+  
+    <ul class="xx">
+        <!-- ul xx (second ancestor - second grandparent) -->
+      
+      <ul><!-- ul (first ancestor - first grandparent) -->
+        
+        <li>
+            <!-- li (direct parent) -->
+          <span>bạn đã lấy được đoạn text bên trong span</span>
+          <input type="text" name="" value="0763688368">
+          <img src="xxx.png">
+        </li>
+
+        
+      </ul>
+    </ul>   
+  
+<script>
+
+
+
+   // querySelector: tim kiem the html/id/class con
+
+   // closest: nguoc lai querySelector, quay trở ra the cha/id/class cha
+
+   // textContent: gấn và lay doan text ben trong html 
+
+   // value: lay giá và set giá trị vào  input
+  
+
+   // this: dai dien cho the đang click vao
+
+   // setAttribute, getAttribute: lay gia tri thuoc tinh cua the html
+
+  let element = document.querySelector("li")
+      element.addEventListener("click", () => {
+    
+       
+    //   element.querySelector("span").classList.add("active");
+
+    //   element.closest("ul.xx").classList.add("active");
+
+
+    //   let xx = element.querySelector("span").textContent;
+    //   alert(xx)
+
+    //   element.querySelector("span").textContent = "đã thay thế đoạn text trong the span";
+
+
+    //   let xx = element.closest("ul.xx").querySelector("span").textContent;
+    //   alert(xx);
+       
+    //   element.closest("ul.xx").querySelector("span").textContent = "đã thay thế đoạn text trong the span";
+
+
+    //    let xx = element.closest("ul.xx").querySelector("input").value; 
+    // //    => "1" => 1
+    //    alert(xx)
+
+        // a = "1" + 1; => 11
+
+    //    element.closest("ul.xx").querySelector("input").value = 9999;
+
+    //    let xx = element.closest("ul.xx").querySelector("img").getAttribute("src")
+    //    alert(xx)
+
+
+    
+
+      
+   })
+
+   
+  
+ 
+
+</script>
+
+</body>
+
+</html>

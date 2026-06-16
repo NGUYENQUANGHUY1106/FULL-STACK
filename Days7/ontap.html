@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ôn tập DOM</title>
+
+<style>
+.ancestors *{
+    display:block;
+    border:2px solid blue;
+    margin:15px;
+    padding:5px;
+}
+
+.active{
+    background:red;
+    color:white;
+}
+
+span,
+input{
+    color:red;
+}
+</style>
+
+</head>
+<body class="ancestors">
+
+<ul class="xx">
+    <ul>
+        <li id="item">
+            <span>bạn đã lấy được đoạn text bên trong span</span>
+
+            <input
+                type="text"
+                value="0763688368"
+            >
+
+            <img
+                src="https://picsum.photos/200/100"
+                alt=""
+            >
+        </li>
+    </ul>
+</ul>
+
+<script>
+
+const element = document.querySelector("#item");
+
+element.addEventListener("click",function(){
+
+    // ===============================
+    // querySelector
+    // ===============================
+
+    // element.querySelector("span").classList.add("active");
+
+
+
+    // ===============================
+    // textContent lấy nội dung
+    // ===============================
+
+    // let text = element.querySelector("span").textContent;
+    // alert(text);
+
+
+
+    // ===============================
+    // thay đổi text
+    // ===============================
+
+    // element.querySelector("span").textContent =
+    // "Đã thay đổi nội dung";
+
+
+
+    // ===============================
+    // value input
+    // ===============================
+
+    // let phone = element.querySelector("input").value;
+    // alert(phone);
+
+
+
+    // ===============================
+    // đổi value
+    // ===============================
+
+    // element.querySelector("input").value = "0999999999";
+
+
+
+    // ===============================
+    // getAttribute
+    // ===============================
+
+    // let src = element.querySelector("img").getAttribute("src");
+    // alert(src);
+
+
+
+    // ===============================
+    // setAttribute
+    // ===============================
+
+    // element.querySelector("img").setAttribute(
+    //     "src",
+    //     "https://picsum.photos/300/150"
+    // );
+
+
+
+    // ===============================
+    // closest
+    // ===============================
+
+    // element.closest(".xx").classList.add("active");
+
+});
+
+</script>
+
+</body>
+</html>
