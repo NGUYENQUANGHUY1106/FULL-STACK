@@ -1,0 +1,44 @@
+table {
+    width: 100%;
+    border-collapse: collapse; 
+    border: 1px solid #ddd;
+    background: #fff;
+}
+
+thead {
+    background-color: #FE980F;
+    color: white;
+}
+
+thead th {
+    padding: 15px;
+    text-align: center;
+}
+
+tbody td {
+    padding: 20px 10px;
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5; 
+    vertical-align: middle;
+}
+
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.total {
+    color: #FE980F;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+tbody img {
+    width: 100px;
+    height: auto;
+}
+.inputQty
+{
+    width: 40px;
+    text-align: center;
+}

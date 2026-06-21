@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        table
+        {
+            width:  60%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            font-size: 18px;
+        }
+        th, td
+        {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th
+        {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+    <h2 style="text-align: center;">Danh sách sinh viên</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Họ và Tên</th>
+                <th>Email</th>
+                <th>Tuổi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in newStudent %}
+            <tr>
+                <td>{{student.name}}</td>
+                <td>{{student.email}}</td>
+                <td>{{student.age}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
