@@ -1,0 +1,39 @@
+session nơi lưu trử dữ liệu 
+khai báo sercret_key
+lưu dữ liệu vaofd session
+session['username] = "QuangHUy"
+lấy dữ liệu
+username = session.get('username)
+xóa session
+session.pop('username',None)
+đặt thời gian lưu trử trong session
+
+app.permanet_session_lifetime = timedelta(minutes = 30)
+
+# app.permanent_session_lifetime = timedelta(minutes=30)
+
+# @app.route('set_session')
+# def set_session():
+#     session.permanent = True
+#     #  quy định thời gian sống của session
+#     session['username'] = 'Quanghuy@gmail.com'
+
+#     return 'Sesion đã lưu với thời gian  30 phút'
+
+# # lưu mảng vao session
+# session['my_list'] = [1, 2, 3, 4, 5]
+# my_list = session.get('my_list', [])
+# print(my_list)
+
+# #  lưu và lấy obuject (dictionary) vào session
+# session['user_info'] = {
+#     'usename': 'Quanghuy',
+#     'email': 'mom@gmail.com'  
+# }
+
+# # lấy dictionary từ session
+# user_info = session.get('user_info', {})
+# print(user_info)
+nếu ko khai báo endpint thi endpint = tên hàm như def abc => endpint = abc phải thay đổi url for
+nếu khai báo endpoint riêng vd như endpoint = "Quang uhy" def abcx  thì khi thay đổi def thành fde thì 
+ở url_for("Quang uhy")
