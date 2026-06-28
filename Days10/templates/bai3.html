@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Check Điểm</h2>
+    <form action="/bai3" method="POST">
+      <label> Điểm Toán</label>
+      <input type="text" name="toan" value="{{toan}}" />
+      {% if errors.get('toan') %}
+      <span class="error">{{errors['toan']}}</span>
+      {% endif %}
+
+      <label>Điểm Lý</label>
+      <input type="text" name="ly" value="{{ly}}" />
+      {% if errors.get('ly') %}
+      <span class="error">{{errors['ly']}}</span>
+      {% endif %}
+
+      <label> Điểm Hóa</label>
+      <input type="text" name="hoa" value="{{hoa}}" />
+      {% if errors.get('hoa') %}
+      <span class="error">{{errors['hoa']}}</span>
+      {% endif %}
+
+       <label> Điểm Tiếng anh</label>
+      <input type="text" name="tienganh" value="{{tienganh}}" />
+      {% if errors.get('tienganh') %}
+      <span class="error">{{errors['tienganh']}}</span>
+      {% endif %}
+
+      <label>Điểm văn</label>
+      <input type="text" name="van" value="{{van}}" />
+      {% if errors.get('van') %}
+      <span class="error">{{errors['van']}}</span>
+      {% endif %}
+
+      <label> Điểm Lịch Sử</label>
+      <input type="text" name="lichsu" value="{{lichsu}}" />
+      {% if errors.get('lichsu') %}
+      <span class="error">{{errors['lichsu']}}</span>
+      {% endif %}
+      <button type="submit">Kiểm tra</button>
+    </form>
+  </body>
+</html>

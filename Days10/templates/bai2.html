@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Kiểm tra điểm tốt nghiệp</h2>
+    <form action="/bai2" method="post">
+      <label > Điểm Toán</label>
+      <input type="text" name="toan" value="{{toan}}" />
+      {% if errors.get('toan') %}
+      <span class="error">{{errors['toan']}}</span>
+      {% endif %}
+
+
+      <label>Điểm Lý</label>
+      <input type="text" name="ly" value="{{ly}}" />
+      {% if errors.get('ly') %}
+      <span class="error">{{errors['ly']}}</span>
+      {% endif %}
+
+
+      <label > Điểm Hóa</label>
+      <input type="text" name="hoa" value="{{hoa}}" />
+      {% if errors.get('hoa') %}
+      <span class="error">{{errors['hoa']}}</span>
+      {% endif %}
+      <button type="submit">Kiểm tra</button>
+    </form>
+  </body>
+</html>
+ 

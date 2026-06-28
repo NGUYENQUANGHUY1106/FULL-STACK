@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <style>
+        .error
+        {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+     <h2>Form đăng nhập</h2>
+     <form action="/login" method="POST">
+        <label for="">Email:</label>
+        <input type="text" name="email" value="{{email}}">
+        <br>
+        {% if errors.get('email') %}
+          <span class="error">{{errors['email']}}</span>
+        {% endif %}
+        
+        <label for="">Mật Khẩu</label>
+        <input type="password" name="password">
+        <br>
+        {% if errors.get('password') %}
+         <span class="error">{{errors['password']}}</span>
+         {% endif %}
+         <br>
+         <button type="submit">Đăng Nhập</button>
+     </form>
+</body>
+</html>

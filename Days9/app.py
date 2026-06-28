@@ -5,8 +5,30 @@ app = Flask(__name__)
 
 
 
+@app.route('/login',methods=['GET','POST'])
+def login():
+    errors = {} 
+    email = ""
+    password = ""
+    if request.method == 'POST':  
+        # get hoặc post dữ liệu
+        email = request.form.get('email','').strip()
+        # dữ liệu form
+        password = request.form.get('password','').strip()
+        
+        if not email:
+            errors['email'] = "Vui Lòng Nhập Email"
+        if not password:
+            errors['password'] = "Vui lòng nhập Password"
+        if not errors:
+             return "Đăng nhập thành công"
+        
+    return render_template('login.html',errors=errors,email=email,password=password)
 
+
+    
 def create_newStudent(count=10):
+
     students = []
     for i in range(1, count+1):
         student = {
@@ -29,12 +51,6 @@ def home():
 def newStudent():
     # gọi hàm đê tẠO Danh sachgs thAY VÌ TẠO THU CÔNG
     students_list = create_newStudent()
-    # {'name': 'Nguyễn Văn Cường 1', 'email': 'thehalfheart1@gmail.com', 'age': 29},
-    # {'name': 'Nguyễn Văn Cường 2', 'email': 'thehalfheart2@gmail.com', 'age': 29},
-    # {'name': 'Nguyễn Văn Cường 3', 'email': 'thehalfheart3@gmail.com', 'age': 29},
-    # {'name': 'Nguyễn Văn Cường 4', 'email': 'thehalfheart4@gmail.com', 'age': 29},
-    # {'name': 'Nguyễn Văn Cường 5', 'email': 'thehalfheart5@gmail.com', 'age': 29},
-    # {'name': 'Nguyễn Văn Cường 6', 'email': 'thehalfheart6@gmail.com', 'age': 29}
 
     return render_template('table.html', newStudent=students_list)
 

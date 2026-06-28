@@ -1,0 +1,15 @@
+    return '.' in filename and filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSIONS
+     lấy đuôi file như png jpg vv sau và dùng rsplit để bỏ dấu chấm sau đó chuyển về dạng chữ 
+     Blueprint là chi nhỏ ứng dụng thành nhiều moduel
+     file.filename laà  tên của file mà người dùng upload
+     re.match (pattrean,mail) kiểm tra xem mail nhập vào có đúng với mẩu kiểm thử k 
+     current app là app đang chạy vd như app.py hay authpy
+     root_path đường dẩn tới thư mục chứa curentapp
+     @app.route('/uploads/<filename>')
+def  uploaded_file(filename):
+    return send_from_directory(os.path.join(app.root_path,'uploads'),filename)
+    uploaded_file  gọi đến ảnh vừa được upload lên
+    file name = abc.jpg
+    gộp đường dẩn lại app.root_path,uploads là đường dẩn đến folder chưa ảnh , filename là chỉ đên cái ảnh được upload lên đó  
+            <img src="{{url_for('uploaded_file',filename=filename)}}" alt="" width="100">
+  render ra ảnh khi người dùng upload lên

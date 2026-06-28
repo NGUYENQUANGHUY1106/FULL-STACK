@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error
+        {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form action="/login" method="post" enctype="multipart/form-data">
+        <label >Email</label>
+        <input type="text"  name="email" value="{{email}}">
+        {% if errors.get('email') %}
+        <span class="error">{{errors['email']}}</span>
+        {% endif %}
+
+        <br>
+        <label >password</label>
+        <input type="password" name="password" value="{{password}}">
+        {% if errors.get('password') %}
+        <span class="error">{{errors['password']}}</span>
+        {% endif %}
+        <br>
+        <label >Chọn avatar</label>
+        <input type="file" name="avatar" multiple>
+        {% if errors.get('file') %}
+        <span class="error">{{errors['file']}}</span>
+        {% endif %}
+        {% if filename %}
+        <img src="{{url_for('uploaded_file',filename=filename)}}" alt="" width="100">
+        {% endif %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+        {% if hashed_password %}
+        <hr>
+        <h3>Mật khẩu sau khi được mả hóa là </h3>
+        <p>{{hashed_password}}</p>
+        {% endif %}
+        <button type="submit">Đăng Nhập</button>
+    </form>
+</body>
+</html>

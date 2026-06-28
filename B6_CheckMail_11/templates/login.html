@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đăng nhập</title>
+  </head>
+  <body>
+    <form method="POST">
+      <label>Email:</label><br />
+      <input type="text" name="email" value="{{ email }}" />
+      <br />
+      {% if errors.get('email') %}
+      <span style="color: red">{{ errors.get('email') }}</span>
+      {% endif %}
+      <br /><br />
+
+      <label>Mật khẩu:</label><br />
+      <input type="password" name="password" value="{{ password }}" />
+      <br />
+      {% if errors.get('password') %}
+      <span style="color: red">{{ errors.get('password') }}</span>
+      {% endif %}
+
+      <br /><br />
+
+      <button type="submit">Đăng nhập</button>
+    </form>
+
+    {% if hashed_password %}
+    <hr />
+    <h3>Mật khẩu đã được mã hóa:</h3>
+
+    <p>{{ hashed_password }}</p>
+    {% endif %}
+  </body>
+</html>
