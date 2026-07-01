@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+   <link rel="stylesheet"
+      href="{{ url_for('static', filename='style/header.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+           <ul class="left_header">
+            <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_5r-XpfKEdD7sSpCS5IOlId0KO7bsM7ZIGYG8lb0rOg&s=10" alt=""></li>
+            <li>USA</li>
+            <li>DOLLAR</li>
+           </ul>
+          
+             <ul class="right_header">
+                <li>
+                    <img src="https://cdn-icons-png.flaticon.com/128/456/456212.png" alt="">
+                    <a href="{{url_for ('account')}}">Account</a>
+                </li>
+                <li>
+                    <img src="https://cdn-icons-png.flaticon.com/128/2893/2893811.png" alt="">
+                    <a href="">Wishlish</a>
+                </li>
+                <li>
+                    <img src="https://cdn-icons-png.flaticon.com/128/481/481943.png" alt="">
+                    <a href="">Checkout</a>
+                </li>
+                <li>
+                    <img src="https://cdn-icons-png.flaticon.com/128/3144/3144456.png" alt="">
+                    <a href="{{url_for('cart')}}">Cart</a>
+                </li>
+                <li>
+                    <img src="https://cdn-icons-png.flaticon.com/128/1828/1828395.png" alt="">
+                    <a href="{{url_for('login')}}">Login</a>
+                </li>
+             </ul>
+         
+        </header>
+    </div>
+</body>
+</html>

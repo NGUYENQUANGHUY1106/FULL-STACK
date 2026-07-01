@@ -1,0 +1,91 @@
+
+    {% extends 'main.html' %} 
+    {% block css %}
+<link rel="stylesheet" href="{{url_for('static',filename='style/cart.css')}}">
+{% endblock %}
+    {% block content %}
+    <div class="cart">
+      <div class="cart-header">
+        <div>Item</div>
+        <div>Price</div>
+        <div>Quantity</div>
+        <div>Total</div>
+        <div></div>
+      </div>
+
+      <div class="cart-item">
+        <div class="product">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShB_WCn7A2tRXajUqYsBf4lC3l1GXm4GOwN65RWm6aBg&s=10"
+            alt=""
+          />
+          <div>
+            <h3>Korea</h3>
+            <p>Web ID: 1089772</p>
+          </div>
+        </div>
+
+        <div class="price">$59</div>
+
+        <div class="quantity">
+          <button>-</button>
+          <input type="text" value="1" />
+          <button>+</button>
+        </div>
+
+        <div class="total">$59</div>
+
+        <button class="delete">×</button>
+      </div>
+
+      <div class="cart-item">
+        <div class="product">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPQ6jZ2lYj6RiO1GNK3IcI0wXQ9nOAAUaMjTEmSM43Vg&s=10"
+            alt=""
+          />
+          <div>
+            <h3>Beligan</h3>
+            <p>Web ID: 1089772</p>
+          </div>
+        </div>
+
+        <div class="price">$59</div>
+
+        <div class="quantity">
+          <button>-</button>
+          <input type="text" value="1" />
+          <button>+</button>
+        </div>
+
+        <div class="total">$59</div>
+
+        <button class="delete">×</button>
+      </div>
+
+      <div class="cart-item">
+        <div class="product">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLIJ6cWBj4EmZzopjx7ylHmY6n7C3cCJWikvwn5uVoMg&s"
+            alt=""
+          />
+          <div>
+            <h3>Argentina</h3>
+            <p>Web ID: 1089772</p>
+          </div>
+        </div>
+
+        <div class="price">$59</div>
+
+        <div class="quantity">
+          <button>-</button>
+          <input type="text" value="1" />
+          <button>+</button>
+        </div>
+
+        <div class="total">$59</div>
+
+        <button class="delete">×</button>
+      </div>
+    </div>
+    {% endblock %}

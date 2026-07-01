@@ -1,0 +1,11 @@
+css trong flask phải được bỏ trong block css khi extents giao diện ở main thì k được ghi lại html5 và để exten treen cùng 
+và thẻ a để url_for('cart')
+chú ý dấu % ' ...
+ở file main thì phải có css của hai file mình tái sử dụng thường là header fotter
+và tiếp đó là css đối với những file tương ứng
+  {% include 'layout/header.html' %}
+
+    <main>{% block content %} {% endblock %}</main>
+
+    {% include 'layout/footer.html' %}
+    trong main là nội dung của các file khác thay thế vào 

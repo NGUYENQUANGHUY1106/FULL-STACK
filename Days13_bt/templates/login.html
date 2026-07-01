@@ -1,0 +1,53 @@
+
+{% extends 'main.html' %}
+
+
+ {% block css %}
+<link rel="stylesheet" href="{{url_for('static',filename='style/login.css')}}">
+{% endblock %}
+ {% block content %}
+<div class="container_main">
+
+    <!-- Login -->
+    <div class="login">
+
+        <h2>Login to your account</h2>
+
+        <form>
+
+            <input type="text" placeholder="Name">
+
+            <input type="email" placeholder="Email Address">
+
+
+
+            <button>Login</button>
+
+        </form>
+
+    </div>
+
+    <!-- OR -->
+
+
+    <!-- Signup -->
+    <div class="signup">
+
+        <h2>New User Signup!</h2>
+
+        <form>
+
+            <input type="text" placeholder="Name">
+
+            <input type="email" placeholder="Email Address">
+
+            <input type="password" placeholder="Password">
+
+            <button>Signup</button>
+
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}
