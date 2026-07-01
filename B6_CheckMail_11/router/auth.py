@@ -13,6 +13,8 @@ def login():
     errors = {}
     email = ""
     password = ""
+    
+
 
     if request.method == 'POST':
         email = request.form.get('email', '').strip()

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error
+        {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Đăng kí</h2>
+    <form action="/register" method="POST" enctype="multipart/form-data">
+        <label>Email</label>
+        <input type="text" name="email" value="{{email}}">
+        {% if errors.get('email') %}
+        <span class="error">{{errors['email']}}</span>
+        {% endif %}
+        <label >Password</label>
+        <input type="password" name="password" value="{{password}}">
+        {% if errors.get('password') %}
+        <span class="error">{{errors['password']}}</span>
+        {% endif %}
+        <label >Chọn hình ảnh upload</label>
+        <input type="file"  multiple name="avatar">
+        {% if errors.get('file') %}
+        <span class="error">{{errors['file']}}</span>
+        {% endif %}
+
+
+
+
+        <button type="submit">Đăng Kí</button>
+    </form>
+</body>
+</html>

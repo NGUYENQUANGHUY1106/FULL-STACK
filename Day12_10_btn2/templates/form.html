@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Đăng kí thông tin</h2>
+    <form action="/form" method="post" enctype="multipart/form-data">
+      <label for="">Email</label>
+      <input type="text" name="email" value="{{email}}" />
+      {% if errors.get('email') %}
+      <span class="error">{{errors['email']}}</span>
+      {% endif %}
+
+      <label for="">Password</label>
+      <input type="text" name="password"  value="{{password}}"/>
+      {% if errors.get('password') %}
+      <span class="error">{{errors['password']}}</span>
+      {% endif %}
+
+      <label for="">City</label>
+      <input type="text" name="city" value="{{city}}" />
+      {% if errors.get('city') %}
+      <span class="error">{{errors['city']}}</span>
+      {% endif %}
+
+      <button type="submit">Đăng kí</button>
+    </form>
+    <a href="/table">Xem bảng</a>
+  </body>
+</html>

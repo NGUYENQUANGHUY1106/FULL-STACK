@@ -2,5 +2,6 @@
     "python.analysis.extraPaths": [
         "./Days11_pythonFlask/B7_Router",
         "./Days12_9"
-    ]
+    ],
+    "python-envs.defaultEnvManager": "ms-python.python:system"
 }
