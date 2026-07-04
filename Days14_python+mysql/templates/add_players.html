@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Đăng kí cầu thủ </h2>
+    <p>
+      <a href="/list_players">Xem cầu thủ</a>
+    </p>
+    <form action="/add_players" method="post">
+      <label>Tên cầu thủ</label>
+      <input type="text" name="name" value="{{name}}" />
+      {% if errors.get('name')%}
+      <span class="error">{{errors['name']}}</span>
+      {% endif %}
+      <label for="">Vị trí thi đấu</label>
+      <input type="text" name="position" value="{{position}}" />
+      {% if errors.get('position')%}
+      <span class="error">{{errors['position']}}</span>
+      {% endif %}
+      <label for="">Lương</label>
+      <input type="text" name="salary" value="{{salary}}" />
+      {% if errors.get('salary')%}
+      <span class="error">{{errors['salary']}}</span>
+      {% endif %}
+      <label for="">Quốc tịch</label>
+      <input type="text" name="nationality" value="{{nationality}}" />
+      {% if errors.get('nationality')%}
+      <span class="error">{{errors['nationality']}}</span>
+      {% endif %}
+      <label for="">Số năm thi đấu</label>
+      <input type="text" name="exp" value="{{exp}}" />
+      {% if errors.get('exp')%}
+      <span class="error">{{errors['exp']}}</span>
+      {% endif %}
+
+      <button type="submit">Đăng Kí</button>
+    </form>
+
+  </body>
+</html>

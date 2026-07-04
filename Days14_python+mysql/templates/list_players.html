@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1" cellpadding = "10">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Salary</th>
+                <th>Nationality</th>
+                <th>Exp</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td>{{ player['id'] }}</td>
+                <td>{{ player['name'] }}</td>
+                <td>{{ player['position'] }}</td>
+                <td>{{ player['salary'] }}</td>
+                <td>{{ player['nationality'] }}</td>
+                <td>{{ player['exp'] }}</td>
+               
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/add_players">Thêm cầu thu</a>
+</body>
+</html>
