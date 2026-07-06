@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Danh sách sản phẩm</h2>
+
+    
+    <table border="1" cellpadding ="5">
+    <th>ID</th>
+        <th>Tên cầu thủ</th>
+        <th>Tuổi</th>
+        <th>Quốc Tịch</th>
+        <th>Vị Trí</th>
+        <th>Lương</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+
+      {% for player in players %}
+      <tr>
+        <td>{{player['id']}}</td>
+        <td>{{player['name']}}</td>
+        <td>{{player['age']}}</td>
+        <td>{{player['country']}}</td>
+        <td>{{player['position']}}</td>
+        <td>{{player['salary']}}</td>
+        <td>
+            <a href="/edit_product/{{player['id']}}">Edit</a>
+        </td>
+        <td>            <a href="/delete-product/{{player['id']}}" onclick="return confirm('Bạn có muốn xóa k')">Xóa</a>
+</td>
+
+      </tr>
+      {% endfor %}
+      <tr>
+        <td style="text-align: right;" colspan="8"><button>
+            <a href="/add_product">Thêm sản phẩm</a>
+        </button></td>
+      </tr>
+
+    </table>
+</body>
+</html>

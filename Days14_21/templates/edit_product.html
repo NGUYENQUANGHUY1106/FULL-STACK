@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Sửa sản phẩm</h2>
+    <form action="" method="post">
+      <p>Tên cầu thủ</p>
+      <input type="text" name="name" value="{{product_ed['name']}}" required />
+      <p>Tuổi</p>
+      <input type="number" name="age" value="{{product_ed['age']}}" required />
+      <p>Quốc tịch</p>
+      <input type="text" name="country" value="{{product_ed['country']}}" required />
+      <p>Vị trí</p>
+      <input type="text" name="position" value="{{product_ed['position']}}" required />
+      <p>Lương</p>
+      <input type="text" name="salary" value="{{product_ed['salary']}}" required />
+
+      <button type="submit">Cập nhật</button>
+    </form>
+
+    <p>
+        <a href="/list_product">Quay lại trang danh sách</a>
+    </p>
+  </body>
+</html>

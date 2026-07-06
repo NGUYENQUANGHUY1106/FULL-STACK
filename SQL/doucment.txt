@@ -1,0 +1,71 @@
+-- lấy tất cả sản phẩm
+-- SELECT * FROM product,
+
+-- lấy sản phẩm theo id
+-- SELECT * FROM product WHERE id = 1
+
+-- lấy sản phẩm  với id >3
+-- SELECT * FROM product WHERE id >3
+
+-- lấy 3 sp và sx theo thứ tự giảm dần theo id
+-- ASC tăng dần
+-- DESC giảm dần
+-- SELECT * FROM product 
+-- ORDER BY id DESC
+-- Order by để sắp xếp các giá trị được trích xuất
+-- LIMIT 3
+
+-- lấy ra 4 data và sx theo thứ tự tăng dần theo name
+-- SELECT * FROM product ORDER BY name  ASC LIMIT 4
+
+-- lấy ra datae theo id và email dùng where và and
+-- SELECT * FROM product WHERE id = 1 AND email = '...'
+
+-- lấy ra các sản phẩm có name có chữ a  dùng like
+ -- SELECT * FROM product WHERE name LIKE  "%a%"
+ 
+ -- lấy ra các sảm phẩm có price từ 100-500 dùng betwen
+ -- SELECT * FROM product WHERE price BETWEEN 100 AND 500
+ 
+ -- lấy ra các sản phẩm  có price 100-500 và có a trong tên
+ -- SELECT * FROM product WHERE price BETWEEN 100 AND 500 
+ -- AND name LIKE "%a%"
+ 
+ -- update giá trị 
+ -- UPDATE product
+-- SET name = "Iphone 17 Promax",
+  -- price = 17000
+-- WHERE id  = 1
+
+-- delete 
+
+-- DELETE FROM product WHERE id = 2
+
+ALTER TABLE product
+AND COLUMN id_users INT,
+ADD CONSTRAINT fk_product_user
+FOREIGN KEY (id_users)
+REFERENCES users(id) cột id_user của product sẽ them chiếu đến cột id của bảng user
+
+tiên đề cát lấy thông tin giữa 2 bảng
+SELECT product. * FROM product
+JOIN users 
+ON product.id_users = users.id
+WHERE users.name = 'Bao Vic'
+
+SELECT product. lấy  tất cả các cột của product 
+FROM product bắt đầu từ bảng product 
+JOIN user
+ON product.id_user = users.id
+nối bảng prodcut vs bảng user bằng khóa ngaoji 
+WHERE users.name = 'Bao Vic' lấy tên bảo vic
+
+-- SELECT product. * FROM product
+-- JOIN users 
+-- ON product.id_users = users.id
+-- WHERE users.name = 'Bao Vic'
+
+SELECT * FROM product
+INNER JOIN users
+ON product.id_users = users.id
+
