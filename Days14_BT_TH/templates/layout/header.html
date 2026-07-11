@@ -1,0 +1,54 @@
+<div class="container">
+    <header>
+        <ul class="left_header">
+            <li>
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_5r-XpfKEdD7sSpCS5IOlId0KO7bsM7ZIGYG8lb0rOg&s=10"
+                    alt=""
+                >
+            </li>
+            <li>USA</li>
+            <li>DOLLAR</li>
+        </ul>
+
+        <ul class="right_header">
+            <li>
+                <img
+                    src="https://cdn-icons-png.flaticon.com/128/456/456212.png"
+                    alt=""
+                >
+                <a href="/account">Account</a>
+            </li>
+
+            <li>
+                <img
+                    src="https://cdn-icons-png.flaticon.com/128/3144/3144456.png"
+                    alt=""
+                >
+                <a href="">Cart</a>
+            </li>
+
+            {% if session.get('id') %}
+                <li>
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/128/2893/2893811.png"
+                        alt=""
+                    >
+                    <a href="/logout">Logout</a>
+                </li>
+
+                <li>
+                    <span>Xin chào {{ session.get('name') }}</span>
+                </li>
+            {% else %}
+                <li>
+                    <a href="/register">Register</a>
+                </li>
+
+                <li>
+                    <a href="/login">Login</a>
+                </li>
+            {% endif %}
+        </ul>
+    </header>
+</div>

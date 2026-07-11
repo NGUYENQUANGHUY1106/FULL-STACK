@@ -1,0 +1,12 @@
+  {% extends 'main.html' %}
+
+  {% block css %}
+   <link rel="stylesheet" href="{{url_for('static' , filename = 'style/my_products.css')}}">
+  {% endblock %}
+
+  {% block content %}
+    <div class="my_products">
+        <h1>đây là trang sản phẩm</h1>
+        <button type="submit"><a href="/add_products">Đăng kí sản phẩm</a></button>
+    </div>
+  {% endblock %}

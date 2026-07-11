@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static',filename = 'style/account.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<div class="account">
+    <div class="left_content">
+        <h2 class="title">ACCOUNT</h2>
+        <div class="nav">
+            <a href="">ACCOUNT</a>
+            <a href="/my_products">MY PRODUCT</a>
+        </div>
+    </div>
+    <div class="right_content">
+        <h2 class="title">UPDATE USER</h2>
+        <p  style="font-size: 20px;">Thông tin User</p>
+        <form style="margin-top: 10px;" action="/account" method="post" enctype="multipart/form-data">
+            <label for="">Email Đăng nhập</label>
+            <input type="text" value="{{user.email}}" name="email">
+            <label for="">Họ và Tên</label>
+            <input type="text" value="{{user.name}}" name="name">
+            <label for="">Avatar</label>
+            <img src="{{url_for( 'uploaded_file',filename = user.avatar)}}" alt="">
+            <p>Avatar: {{ user.avatar }}</p>
+            <input type="file"  name="avatar">
+            <label for="">Mật Khẩu</label>
+            <input type="password"  name="password" placeholder="Nếu không đổi mật khẩu vui lòng k nhập gì !">
+
+            <button type="submit">Cập Nhật</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

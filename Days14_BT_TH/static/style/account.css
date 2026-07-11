@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding:  0;
+    box-sizing: border-box;
+}
+.account
+{
+    width: 1220px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+.title
+{
+    color: chocolate;
+    font-size: 25px;
+    font-weight: bold;
+}
+.left_content
+{
+    width: 300px;
+}
+.left_content .nav
+{
+    border: 1px solid rgb(180, 180, 180);
+    padding: 5px;
+    border-radius: 5px;
+}
+.left_content .nav a
+{
+    margin-top: 10px;
+    display: block;
+    font-weight: bold;
+    text-decoration:  none;
+    color: rgb(93, 92, 92);
+    font-size: 18px;
+}
+.right_content
+{
+    border: 1px solid gray;
+    padding: 5px;
+    width: 900px;
+}
+.right_content form
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.right_content form input
+{
+    padding: 10px;
+}
+.right_content form label
+{
+    font-size: 18px;
+}

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Đăng kí tài khoản mua hàng</h2>
+    <form action="" enctype="multipart/form-data" method="post">
+      <!-- email -->
+      <label for="">Email</label>
+      <input type="text" name="email" value="{{email}}"/>
+      {% if errors.get('email') %}
+      <span class="error">{{errors.get('email')}}</span>
+      {% endif %}
+      <!-- name -->
+      <label for="">Name</label>
+      <input type="text" name="name"  value="{{name}}"/>
+      {% if errors.get('name') %}
+      <span class="error">{{errors.get('name')}}</span>
+      {% endif %}
+
+      <!-- password -->
+      <label for="">Password</label>
+      <input type="password" name="password" value="{{password}}" />
+      {% if errors.get('password') %}
+      <span class="error">{{errors.get('password')}}</span>
+      {% endif %}
+
+      <!-- avatar -->
+      <label for="">avatar</label>
+      <input type="file" name="avatar" multiple />
+      {% if errors.get('avatar') %}
+      <span class="error">{{errors.get('avatar')}}</span>
+      {% endif %} 
+
+      <button type="submit">Đăng Ký</button>
+    </form>
+  </body>
+</html>

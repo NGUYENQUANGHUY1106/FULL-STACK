@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        .error
+        {
+            color: red;
+        }
+     </style>
+</head>
+<body>
+    <h2>Dăng nhập tài khoản</h2>
+
+    <form action="/login" method="post" >
+        <label for="">Email</label>
+        <input type="text" name="email" value="{{email}}">
+        {% if errors.get('email') %}
+        <span class="error">{{errors.get('email')}}</span>
+        {% endif %}
+
+        <input type="password" name="password">
+        <label for="">Password</label>
+        {% if errors.get('password') %}
+        <span class="error">{{errors.get('password')}}</span>
+        {% endif %}
+
+        <button type="submit">Đăng nhập </button>
+        
+    </form>
+</body>
+</html>

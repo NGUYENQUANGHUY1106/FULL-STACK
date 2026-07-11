@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.main_footer
+{
+    background-color: #E0E0DA;
+    width: 1220px;
+    margin: auto;
+}
+.container_footer
+{
+    margin: auto;
+    padding: 20px;
+}
+.info_shopper
+{
+    display: flex;
+    gap: 53px;
+}
+.info_shopper .infomation
+{
+    font-size: 30px;
+}
+.info_shopper .infomation p
+{
+    font-size: 24px;
+}
+.info_shopper li img
+{
+    width: 120px;
+    height: 100px;
+}
+.info_shopper li
+{
+    list-style-type: none;
+}
+.info_shopper .mucbieu
+{
+    width: 200px;
+    display: block;
+}
+.intro_shopper li
+{
+    list-style-type: none;
+    margin-top: 5px;
+}
+.intro_shopper
+{
+    display: flex;
+    align-items: center;
+
+    justify-content: space-around;
+    margin-left: -40px;
+    margin-top: 50px;
+}
+.intro_shopper .title
+{
+    font-size: 20px;
+}
