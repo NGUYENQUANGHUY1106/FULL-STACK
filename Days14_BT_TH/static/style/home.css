@@ -1,0 +1,31 @@
+*{margin: 0;
+padding: 0;
+box-sizing: border-box;}
+.home
+{
+    width: 1220px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+    padding: 20px 0px;
+}
+.product
+{
+    width: 300px;
+    font-size: 18px;
+}
+.product img
+{
+    width: 295px;
+    height: 200px;
+}
+.product button
+{
+    width: 50px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: green;
+    color:  white;
+}

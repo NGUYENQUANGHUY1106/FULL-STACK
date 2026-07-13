@@ -8,5 +8,23 @@
 {% block content %}
 <div class="add_products">
     <h1>Thêm sản phẩm</h1>
+    <form action="/add_products" method="post" enctype="multipart/form-data">
+        <label for="">Tên Sản Phẩm</label>
+        <input type="text" name="title">
+        {% if errors.get('title')%}
+        <span class="error">{{errors.get('title')}}</span>
+        {% endif %}
+        <label for="">Giá</label>
+        <input type="text" name="price">
+        {% if errors.get('price')%}
+        <span class="error">{{errors.get('price')}}</span>
+        {% endif %}
+        <input type="file" multiple name="file">
+        {% if errors.get('file') %}
+        <span class="error">{{errors.get('file')}}</span>
+        {% endif %}
+
+        <button type="submit">Đăng kí sản phẩm</button>
+    </form>
 </div>
 {% endblock %}

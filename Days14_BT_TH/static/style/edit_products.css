@@ -30,8 +30,17 @@
 }
 .item
 {
-    width: 295px;
+    width: 1220px;
     padding:  15px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 18px;
+}
+.item input
+{
+    padding: 5px;
+    border-radius: 10px;
 }
 .items img
 {
@@ -49,24 +58,7 @@
     text-align: center;
     margin-top: 10px;
 }
-.btn .edit
+button
 {
-    padding: 5px;
-    margin-right: 5px;
-    font-size: 14px;
-    color: chocolate;
-    border: 1px solid black;
     cursor: pointer;
-    text-decoration: none;
-}
-.btn .delete
-{
-    padding:  5px;
-    font-size: 14px;
-    background-color: red;
-    color: white;
-    border: 1px solid black;
-  cursor: pointer;
-  text-decoration: none;
-
 }

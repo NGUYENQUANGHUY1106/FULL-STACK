@@ -1,9 +1,17 @@
 {% extends 'main.html' %}
-
+{% block css %}
+<link rel="stylesheet" href="{{url_for ('static',filename = ('style/home.css'))}}">
+{% endblock %}
 {% block content %}
 
-<h1>Trang chủ</h1>
-
-<p>Đây là nội dung main</p>
-
+<div class="home">
+    {% for product in products %}
+    <div class="product">
+        <img src="{{url_for('uploaded_file' , filename = product.image)}}" alt="">
+        <p class="name">Sản Phẩm :{{product.title}}</p>
+        <p class="price">Giá {{product.price}}</p>
+        <button>Mua</button>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

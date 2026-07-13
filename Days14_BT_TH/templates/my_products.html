@@ -1,12 +1,27 @@
-  {% extends 'main.html' %}
-
-  {% block css %}
-   <link rel="stylesheet" href="{{url_for('static' , filename = 'style/my_products.css')}}">
-  {% endblock %}
-
-  {% block content %}
-    <div class="my_products">
-        <h1>đây là trang sản phẩm</h1>
-        <button type="submit"><a href="/add_products">Đăng kí sản phẩm</a></button>
+{% extends 'main.html' %} {% block css %}
+<link
+  rel="stylesheet"
+  href="{{url_for('static' , filename = 'style/my_products.css')}}"
+/>
+{% endblock %} {% block content %}
+<div class="my_products">
+  <h1>Sản Phẩm của bạn</h1>
+  <div class="items">
+    {% for product in products %}
+    <div class="item">
+      <img
+        src="{{url_for ('uploaded_file' ,filename = product.image)}}"
+        alt=""
+      />
+      <p class="name_product">Sản Phẩm: {{product.title}}</p>
+      <p class="price_product">Giá: {{product.price}} $</p>
+      <div class="btn">
+        <a class="edit" href="/edit_products/{{product.id}}">Edit</a>
+        <a class="delete" href="/delete_products/{{product.id}}">Delete</a>
+      </div>
     </div>
-  {% endblock %}
+    {% endfor %}
+  </div>
+  <button type="submit" class="submit"><a href="/add_products">Đăng kí sản phẩm</a></button>
+</div>
+{% endblock %}

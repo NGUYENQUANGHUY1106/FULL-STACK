@@ -1,0 +1,22 @@
+{% extends 'main.html' %} {% block css %}
+<link
+  rel="stylesheet"
+  href="{{url_for('static' , filename = 'style/edit_products.css')}}"
+/>
+{% endblock %} {% block content %}
+<div class="my_products">
+  <h1>Cập Nhật sản phảm</h1>
+  <div class="items">
+    <form class="item" action="/edit_products/{{products.id}}" enctype="multipart/form-data" method="post">
+        <label for="">Sản Phẩm</label>
+        <input type="text" name="title" value="{{products.title}}">
+        <label for="">Giá</label>
+        <input type="text" name="price" value="{{products.price}}">
+        <label for="">Hình ảnh sản phẩm</label>
+        <img src="{{url_for('uploaded_file' , filename = products.image)}}" alt="">
+        <input type="file" multiple  name="image">
+        <button type="submit" class="submit">Cập Nhật  sản phẩm</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
