@@ -1,30 +1,132 @@
-{% extends 'main.html' %}
-{% block content %}
-{% block css %}
-<link rel="stylesheet" href="{{url_for('static',filename = 'style/list_products.css')}}">
+{% extends 'main.html' %} {% block content %} {% block css %}
+<link
+  rel="stylesheet"
+  href="{{url_for('static',filename = 'style/list_products.css')}}"
+/>
 {% endblock %}
 <div class="list_products">
-    <table border="1" cellpadding = "5">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Image</th>
-                <th>Qty</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in cart %}
-            <tr>
-                <td>{{item.id}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.price}}</td>
-                <td><img src="{{url_for('uploaded_file' , filename = item.image)}}" alt="" style="width: 100px; height: 100px;"></td>
-                <td>{{item.qty}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+  <table border="1" cellpadding="5">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th>Qty</th>
+        <th>Total</th>
+        <th colspan="2">Action</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart %}
+      <tr class="items">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.price}}</td>
+        <td>
+          <img
+            src="{{url_for('uploaded_file' , filename = item.image)}}"
+            alt=""
+            style="width: 100px; height: 100px"
+          />
+        </td>
+        <td class="qty">{{item.qty}}</td>
+        <td class="total">{{item.total}} $</td>
+        <td>
+          <button style="padding: 5px" class="plus" data-id="{{item.id}}">
+            +
+          </button>
+        </td>
+        <td>
+          <button style="padding: 5px" class="minus" data-id="{{item.id}}">
+            -
+          </button>
+        </td>
+        <td>
+          <button style="padding: 5px" class="delete" data-id="{{item.id}}">
+            Delete
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
+{% endblock %} {% block js %}
+<script>
+  // cộng
+  document.querySelectorAll(".plus").forEach((btn) => {
+    btn.addEventListener("click", async function (e) {
+      e.preventDefault();
+
+      const items = this.closest(".items");
+      const id = this.dataset.id;
+      console.log(id);
+
+      // tạo fetch
+      const response = await fetch("/plus_products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      items.querySelector(".qty").textContent = data.qty;
+      items.querySelector(".total").textContent = data.total + "$";
+    });
+  });
+  //   trừ
+  document.querySelectorAll(".minus").forEach((btn) => {
+    btn.addEventListener("click", async function (e) {
+      e.preventDefault();
+
+      const items = this.closest(".items");
+      const id = this.dataset.id;
+      console.log(id);
+
+      // tạo fetch
+      const response = await fetch("/minus_products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      items.querySelector(".qty").textContent = data.qty;
+      items.querySelector(".total").textContent = data.total + "$";
+    });
+  });
+  // xóa
+  document.querySelectorAll(".delete").forEach((btn) => {
+    btn.addEventListener("click", async function (e) {
+        e.preventDefault();
+
+        const items = this.closest(".items");
+        const id = this.dataset.id;
+
+        const response = await fetch('/delete_products',{
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : JSON.stringify ({
+                id : id
+            })
+        })
+        const data = await response.json();
+        console.log(data);
+        if (data.status == "ok")
+           items.remove();
+    });
+  });
+</script>
 {% endblock %}
