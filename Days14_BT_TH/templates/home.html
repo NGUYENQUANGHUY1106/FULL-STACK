@@ -1,17 +1,60 @@
-{% extends 'main.html' %}
-{% block css %}
-<link rel="stylesheet" href="{{url_for ('static',filename = ('style/home.css'))}}">
-{% endblock %}
-{% block content %}
+{% extends 'main.html' %} {% block css %}
+<link
+  rel="stylesheet"
+  href="{{url_for ('static',filename = ('style/home.css'))}}"
+/>
+{% endblock %} {% block content %}
 
 <div class="home">
-    {% for product in products %}
-    <div class="product">
-        <img src="{{url_for('uploaded_file' , filename = product.image)}}" alt="">
-        <p class="name">Sản Phẩm :{{product.title}}</p>
-        <p class="price">Giá {{product.price}}</p>
-        <button>Mua</button>
-    </div>
-    {% endfor %}
+  {% for product in products %}
+  <div class="product">
+    <img
+      src="{{url_for('uploaded_file' , filename = product.image)}}"
+      alt=""
+      class="image"
+    />
+    <p class="title">Sản Phẩm :{{product.title}}</p>
+    <p class="price">Giá {{product.price}}</p>
+    <button class="btn" type="submit" data-id="{{product.id}}">Mua</button>
+  </div>
+  {% endfor %}
 </div>
+{% endblock %}
+
+{% block js %}
+<script>
+    document.querySelectorAll(".btn").forEach(btn => {
+
+    btn.addEventListener("click", async function(e){
+
+        e.preventDefault();
+
+        const product = this.closest(".product");
+        // gọi đến thk cha gần nhất
+
+        const id = this.dataset.id;
+        const name = product.querySelector(".title").textContent;
+        const price = product.querySelector(".price").textContent;
+        const image = product.querySelector(".image").src;
+
+        console.log(id);
+
+        const response = await fetch("/add_to_cart", {
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                id : id,
+               
+            })
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+    });
+
+});
+</script>
 {% endblock %}

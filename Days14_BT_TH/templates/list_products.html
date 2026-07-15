@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+{% block content %}
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static',filename = 'style/list_products.css')}}">
+{% endblock %}
+<div class="list_products">
+    <table border="1" cellpadding = "5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Qty</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+            <tr>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td><img src="{{url_for('uploaded_file' , filename = item.image)}}" alt="" style="width: 100px; height: 100px;"></td>
+                <td>{{item.qty}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

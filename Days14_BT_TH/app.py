@@ -9,6 +9,8 @@ from router.my_products import my_products
 from router.add_products import add_products
 from router.edit_products import edit_product_bp
 from router.delete_products import delete_products_bp
+from router.add_to_cart import add_to_cart_bp
+from router.list_proucts import list_products_bp
 app = Flask(__name__)
 app.secret_key = 'login'
 @app.route('/')
@@ -30,5 +32,7 @@ app.register_blueprint(my_products)
 app.register_blueprint(add_products)
 app.register_blueprint(edit_product_bp)
 app.register_blueprint(delete_products_bp)
+app.register_blueprint(add_to_cart_bp)
+app.register_blueprint(list_products_bp)
 if __name__ == '__main__':
     app.run(debug=True,host='127.0.0.1',port=5000)

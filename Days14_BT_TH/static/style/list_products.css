@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.list_products
+{
+    width: 1220px;
+    margin: auto;
+
+}
+.list_products table
+{
+    width: 1220px;
+    text-align: center;
+    margin: auto;
+}
