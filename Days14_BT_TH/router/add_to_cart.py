@@ -38,15 +38,17 @@ def add_to_cart():
             'image': products['image'],
             'qty': 1
         }
+
         cart.append(products_data)
     session['cart'] = cart
-
+    return jsonify({
+        "status":"success",
+        "total_cart":sum(
+            item["qty"] for item in cart
+        )
+    })
+    
     # return jsonify({
     #     'status': 'success',
     #     'product': session['cart']
     # })
-    print(cart)
-    return redirect('/list_products')
-    
-   
-   

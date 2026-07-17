@@ -15,7 +15,7 @@
     />
     <p class="title">Sản Phẩm :{{product.title}}</p>
     <p class="price">Giá {{product.price}} $</p>
-    <button class="btn" type="submit" data-id="{{product.id}}">Mua</button>
+    <button class="btn"  data-id="{{product.id}}">Mua</button>
   </div>
   {% endfor %}
 </div>
@@ -36,6 +36,7 @@
         const name = product.querySelector(".title").textContent;
         const price = product.querySelector(".price").textContent.replace("$", "");
         const image = product.querySelector(".image").src;
+        const qty = document.querySelector('.qty')
 
         console.log(id);
 
@@ -47,7 +48,7 @@
             },
             // báo cáo cho flask đã gửi dữ liệu kiểu JSON
             body: JSON.stringify({
-                id : id,
+                id : id,  
                
             })
             // chuyển object thành json
@@ -56,6 +57,8 @@
 //      chỉ chạy khi phía flask gửi response về client
         const data = await response.json();
         console.log(data);
+        if (data.status == "success")
+          qty.textContent = data.total_cart
         // đợi server chạy xong r mới xử lý tiếp 
 
     });

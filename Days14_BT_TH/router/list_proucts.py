@@ -73,11 +73,16 @@ def cart_action():
         item["qty"] * int(item["price"])
         for item in cart
     )
+    # tính giỏ hàng
+    total_cart = sum(
+        item['qty']  for item in cart
+    )
 
     return jsonify({
         "status": "success",
         "action": action,
         "qty": product["qty"],
         "total": product["qty"] * int(product["price"]),
-        "total_products": total_products
+        "total_products": total_products,
+        "total_cart" : total_cart
     })

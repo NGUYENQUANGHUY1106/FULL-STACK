@@ -34,17 +34,32 @@
         <td class="qty">{{item.qty}}</td>
         <td class="total">{{item.total}} $</td>
         <td>
-          <button style="padding: 5px" class="action" data-id="{{item.id}}" data-action="plus">
+          <button
+            style="padding: 5px"
+            class="action"
+            data-id="{{item.id}}"
+            data-action="plus"
+          >
             +
           </button>
         </td>
         <td>
-          <button style="padding: 5px" class="action" data-id="{{item.id}}" data-action="minus" >
+          <button
+            style="padding: 5px"
+            class="action"
+            data-id="{{item.id}}"
+            data-action="minus"
+          >
             -
           </button>
         </td>
         <td>
-          <button style="padding: 5px" class="action" data-id="{{item.id}}" data-action="delete">
+          <button
+            style="padding: 5px"
+            class="action"
+            data-id="{{item.id}}"
+            data-action="delete"
+          >
             Delete
           </button>
         </td>
@@ -52,75 +67,71 @@
       {% endfor %}
     </tbody>
   </table>
-    <ul class="total_products">
-      <li>
-        <p>Cart Sub Total</p>
-        <p class="cart_sub_total">{{total_products}} $</p>
-      </li>
-      <li>
-        <p>Eco Tax</p>
-        <p class="eco_tax">2$</p>
-      </li>
-      <li>
-        <p>Shipping Cost</p>
-        <p>Free</p>
-      </li>
-      <li>
-        <p>Total</p>
-        <p class="total_product">{{total_products +2}}</p>
-      </li>
-    </ul>
-  </div>
+  <ul class="total_products">
+    <li>
+      <p>Cart Sub Total</p>
+      <p class="cart_sub_total">{{total_products}} $</p>
+    </li>
+    <li>
+      <p>Eco Tax</p>
+      <p class="eco_tax">2$</p>
+    </li>
+    <li>
+      <p>Shipping Cost</p>
+      <p>Free</p>
+    </li>
+    <li>
+      <p>Total</p>
+      <p class="total_product">{{total_products +2}}</p>
+    </li>
+  </ul>
+</div>
 {% endblock %} {% block js %}
 <script>
   // cộng
   document.querySelectorAll(".action").forEach((btn) => {
-
     btn.addEventListener("click", async function (e) {
+      e.preventDefault();
 
-        e.preventDefault();
+      const row = this.closest(".items");
 
-        const row = this.closest(".items");
+      const id = this.dataset.id;
+      const action = this.dataset.action;
 
-        const id = this.dataset.id;
-        const action = this.dataset.action;
+      const response = await fetch("/cart_action", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          action,
+        }),
+      });
 
-        const response = await fetch("/cart_action", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                id : id,
-                action
-            })
-        });
+      const data = await response.json();
 
-        const data = await response.json();
+      if (data.status !== "success") {
+        alert(data.message);
+        return;
+      }
 
-        if (data.status !== "success") {
-            alert(data.message);
-            return;
-        }
+      // Xóa
+      if (action === "delete") {
+        row.remove();
+      } else {
+        row.querySelector(".qty").textContent = data.qty;
 
-        // Xóa
-        if (action === "delete") {
-            row.remove();
-        } else {
+        row.querySelector(".total").textContent = data.total + " $";
+      }
+      // tổng tiền
+      document.querySelector(".cart_sub_total").textContent =
+        data.total_products + " $";
 
-            row.querySelector(".qty").textContent = data.qty;
-
-            row.querySelector(".total").textContent =
-                data.total + " $";
-        }
-        // tổng tiền 
-        document.querySelector(".cart_sub_total").textContent =
-            data.total_products + " $";
-
-        document.querySelector(".total_product").textContent =
-            (data.total_products + 2) + " $";
+      document.querySelector(".total_product").textContent =
+        data.total_products + 2 + " $";
+        document.querySelector(".qty").textContent = data.total_cart
     });
-
-});
+  });
 </script>
 {% endblock %}

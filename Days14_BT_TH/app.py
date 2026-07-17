@@ -1,4 +1,4 @@
-from flask import Flask , Blueprint,render_template,send_from_directory
+from flask import Flask , Blueprint,render_template,send_from_directory,session
 from datetime import timedelta
 from db import fetch_all
 from router.register import auth_register
@@ -34,5 +34,15 @@ app.register_blueprint(edit_product_bp)
 app.register_blueprint(delete_products_bp)
 app.register_blueprint(add_to_cart_bp)
 app.register_blueprint(list_products_bp)
+@app.context_processor
+# truyền biến trả về cho tất cả các templates
+def total_cart():
+    cart = session.get('cart',[])
+    total_cart = 0;
+    for item in cart :
+        total_cart += item['qty']
+    return  {
+        "total_cart" :total_cart
+    }
 if __name__ == '__main__':
     app.run(debug=True,host='127.0.0.1',port=5000)
