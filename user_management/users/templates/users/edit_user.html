@@ -1,0 +1,13 @@
+{% extends 'users/base.html' %}
+{% block content %}
+<h2> Sửa người dùng</h2>
+<form action="" method="post">
+    {% csrf_token %}
+    <label for="">Tên người dùng</label> <br>
+    <input type="text" name="username" value="{{user.username}}" required>
+    <label for="">Email</label>
+    <input type="email" name="email" value="{{user.email}}" required>
+    <br> 
+    <input type="submit" value="cập nhậtr">
+</form>
+{% endblock %}
