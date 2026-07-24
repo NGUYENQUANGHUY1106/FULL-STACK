@@ -23,6 +23,7 @@ def add_user(request):
 
 def  edit_user(request,user_id):
     user = get_object_or_404(User, id = user_id)
+    # nó sẽ lấy ra database đó và id    
     # chưa hiểu
     if request.method == 'POST':
         user.username = request.POST['username']

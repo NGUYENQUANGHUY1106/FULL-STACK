@@ -3,6 +3,7 @@
 <h2> Sửa người dùng</h2>
 <form action="" method="post">
     {% csrf_token %}
+    <!-- khóa bảo mật bắt buộc phải có -->
     <label for="">Tên người dùng</label> <br>
     <input type="text" name="username" value="{{user.username}}" required>
     <label for="">Email</label>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Danh sách người dùng</h2>
+<table border="1" cellpadding = "5">
+    <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Username</th>
+    </tr>
+    {% for item in product %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.username}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

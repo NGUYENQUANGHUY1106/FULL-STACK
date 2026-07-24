@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Thêm người  product mới</h2>
+<form action="" method="post">
+    {% csrf_token %}    
+    <label for="">Tên người dùng:</label> <br>
+    <input type="text" name="username" value="{{ form.username.value|default_if_none:'' }}">
+    <br>
+    {% if form.username.errors %}
+    <div style="color: red;">
+        {{form.username.errors.0}}
+    </div>
+    {% endif %}
+
+    <label for="">Email người dùng:</label> <br>
+    <input type="text" name="email" value="{{ form.email.value|default_if_none:'' }}">
+    <br>
+    {% if form.email.errors %}
+    <div style="color: red;">
+        {{form.email.errors.0}}
+    </div>
+    {% endif %}
+    <button type="submit" value="Thêm">Thêm</button>
+</form>
+{% endblock %}
