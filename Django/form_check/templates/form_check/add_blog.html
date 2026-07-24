@@ -1,0 +1,10 @@
+
+   {% extends 'form_check/base.html' %}
+   {% block content %}
+   <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <!-- tự sinh ra input label  lỗi  -->
+         <button type="submit">Đăng bài</button>
+    </form>
+{% endblock %}
