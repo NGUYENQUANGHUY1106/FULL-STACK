@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Thêm người  product mới</h2>
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}    
     <label for="">Tên người dùng:</label> <br>
     <input type="text" name="username" value="{{ form.username.value|default_if_none:'' }}">
@@ -18,6 +18,40 @@
     {% if form.email.errors %}
     <div style="color: red;">
         {{form.email.errors.0}}
+    </div>
+    {% endif %}
+    <label for="">Avatar</label>
+    <input type="file" multiple name="avatar">
+    <br>
+    {% if form.avatar.errors %}
+    <div style="color: red;">
+        {{form.avatar.errors.0}}
+    </div>
+    {% endif %}
+
+
+    <label for="">Phone</label>
+    <input type="text"  name="phone">
+    <br>
+    {% if form.phone.errors %}
+    <div style="color: red;">
+        {{form.phone.errors.0}}
+    </div>
+    {% endif %}
+    <label for="">password</label>
+    <input type="text"  name="password">
+    <br>
+    {% if form.password.errors %}
+    <div style="color: red;">
+        {{form.password.errors.0}}
+    </div>
+    {% endif %}
+    <label for="">confirm_password</label>
+    <input type="text"  name="confirm_password">
+    <br>
+    {% if form.confirm_password.errors %}
+    <div style="color: red;">
+        {{form.confirm_password.errors.0}}
     </div>
     {% endif %}
     <button type="submit" value="Thêm">Thêm</button>

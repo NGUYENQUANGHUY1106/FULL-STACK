@@ -6,15 +6,24 @@ from .forms import RegisterFormProduct
 
 def add_product(request):
     if request.method == 'POST':
+        print(request.FILES)
         # nếu có truyền request vào thì tạo form theo request và validate
-        form = RegisterFormProduct(request.POST)
+        form = RegisterFormProduct(request.POST ,request.FILES)
+        print(form.is_valid())
+        print(form.errors)
         if form.is_valid():
-            username = request.POST['username']
-            email = request.POST['email']
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            avatar = request.FILES['avatar']
+            password = form.cleaned_data['password']
             ...
             Product.objects.create(
                 username = username ,
-                email = email
+                email = email,
+                phone  = phone,
+                avatar = avatar,
+                password = password,
             )
             return redirect('list_product')
     else:

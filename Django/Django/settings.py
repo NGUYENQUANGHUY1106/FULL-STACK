@@ -123,3 +123,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+# file tĩnh 
+MEDIA_URL = "/media/"
+# là folder chứa những file người dùng upload lên 
+MEDIA_ROOT = BASE_DIR / "media"
+# nối dữ cái dự án cha với media với đường dân ảnh d: django/media/avatar/picture.png
+# Bare_dir  là thư mục chứa dự án 
+
+# root là vị trí lưu trong dự án 
+# url  địa chỉ trình duyệt nhìn thấy 

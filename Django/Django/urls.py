@@ -15,10 +15,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls.static import static
 from django.urls import include, path
+
+from django.conf import settings
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('form_check.urls')),
     path('validate/',include('form_validate.urls'))
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+    #  kiểm tra xem trong URL có media k  nếu có bỏ media đi chỉ lấy avatars/pig.png
+    # có nghĩa nó thay media thành media_root 
+                           document_root=settings.MEDIA_ROOT)
+    # khi nhận request có chứa media đầu thì sẽ lấy trong media root sẽ lấy từ 
+    # media_root lúc này là D:django/media sau đó no ghép với 
+#    urlpatterns nó ghép dữ media_url với media_root
