@@ -30,7 +30,7 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
     #  kiểm tra xem trong URL có media k  nếu có bỏ media đi chỉ lấy avatars/pig.png
-    # có nghĩa nó thay media thành media_root 
+    # có nghĩa nó thay media thành media_root  
                            document_root=settings.MEDIA_ROOT)
     # khi nhận request có chứa media đầu thì sẽ lấy trong media root sẽ lấy từ 
     # media_root lúc này là D:django/media sau đó no ghép với 

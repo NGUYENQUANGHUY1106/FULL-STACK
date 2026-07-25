@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý người dùng</title>
-    <style>
-        body{font-family: Arial, Helvetica, sans-serif;}
-        table{border-collapse: collapse; width: 100%;}
-        th, td{border: 1px solid #ddd; padding: 8px; text-align: left;}
-        th{background-color:  #f2f2f2;}
-        a{margin-right: 10px;}
-        form{margin-top: 20px;}
-        input{width: 200px; padding: 5px; margin-bottom: 10px;}
-        input[type = "submit"] {padding: 5px 10px; background-color: #4CAF50; color: white; border: none;}
-    </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quản lý người dùng</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'user/css/base.css' %}">
+    {%block styles %}{% endblock %}
 </head>
 <body>
     <h1>Quản lý người dùng </h1>
     <a href="{% url 'add_product' %}">Thêm tài khoản  mới</a>
+    <a href="{% url 'list_product' %}">Danh sách người dùng</a>
     <hr>
 
     {% block content %}
+    {% endblock %}
+    {% block scripts %}
     {% endblock %}
 </body>
 </html>
