@@ -25,7 +25,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('form_check.urls')),
-    path('validate/',include('form_validate.urls'))
+    path('validate/',include('form_validate.urls')),
+    path('login_register/',include('login_register.urls'))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

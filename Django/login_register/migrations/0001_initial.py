@@ -12,17 +12,16 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Product',
+            name='Login_Register',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('email', models.EmailField(max_length=100)),
-                ('username', models.CharField(max_length=100, unique=True)),
+                ('name', models.CharField(max_length=100, unique=True)),
                 ('password', models.CharField(max_length=100)),
-                ('avatar', models.ImageField(upload_to='avatars/')),
-                ('phone', models.CharField(max_length=10)),
+                ('avatar', models.ImageField(upload_to='image/')),
             ],
             options={
-                'db_table': 'register',
+                'db_table': 'register_login',
             },
         ),
     ]

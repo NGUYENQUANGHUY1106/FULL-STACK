@@ -9,3 +9,5 @@ class Product(models.Model):
     # lưu ảnh vào dự án trong folder avatars
     phone = models.CharField(max_length=10)
 
+    class Meta:
+        db_table = 'register'
