@@ -27,7 +27,8 @@ urlpatterns = [
     path('blog/', include('form_check.urls')),
     path('validate/',include('form_validate.urls')),
     path('login_register/',include('login_register.urls')),
-    path('login_required/',include('login_required.urls'))
+    path('login_required/',include('login_required.urls')),
+    path('admin_interface/',include('admin_interface.urls'))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

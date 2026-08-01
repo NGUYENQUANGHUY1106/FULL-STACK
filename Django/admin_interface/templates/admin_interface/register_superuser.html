@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Đăng ký Superuser</title>
+  </head>
+  <body>
+    <h1>Đăng kí tài khoản quản trị</h1>
+    <form action="" method="post">
+      {% csrf_token %}
+
+      <label for="">User name:</label>
+      <input type="text" name="username" required />
+
+      <label for="">Email</label>
+      <input type="text" name="email" required />
+
+      <label for="">Password</label>
+      <input type="password" name="password" required />
+      <button type="submit" value="Đăng kí">Đăng ký</button>
+    </form>
+  </body>
+</html>

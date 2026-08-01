@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 
-from Django.Django.decorators import non_superuser_required
+from Django.decorators import non_superuser_required
+
+
 
 from .forms import RegisterForm
 from django.shortcuts import get_object_or_404

@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'form_check.apps.FormConfig',
     'form_validate.apps.FormValidateConfig',
     'login_register.apps.LoginRegisterConfig',
-    'login_required.apps.LoginRequiredConfig'
+    'login_required.apps.LoginRequiredConfig',
+    'admin_interface.apps.AdminInterfaceConfig',
 ]
 
 MIDDLEWARE = [
