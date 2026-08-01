@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 
+from Django.Django.decorators import non_superuser_required
+
 from .forms import RegisterForm
 from django.shortcuts import get_object_or_404
 from  django.contrib.auth.decorators import login_required
@@ -60,7 +62,7 @@ def login_view(request):
     return render(request, "login.html", {
         "form": form
     })
-@login_required
+@non_superuser_required
 def list_check(request):
 
     check = User.objects.all()
