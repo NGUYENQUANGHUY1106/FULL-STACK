@@ -1,0 +1,20 @@
+{% extends 'check_base.html' %}
+{%block content %}
+
+<h2>Danh sách</h2>
+<table border="1" cellpadding = "5">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+    {% for item in check %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.username}}</td>
+        <td>{{item.email}}</td>
+    </tr>
+    {% endfor %}
+    <a href="{% url 'user_logout' %}">Logout</a>
+</table>
+{% endblock %}

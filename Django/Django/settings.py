@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'form_check.apps.FormConfig',
     'form_validate.apps.FormValidateConfig',
-    'login_register.apps.LoginRegisterConfig'
+    'login_register.apps.LoginRegisterConfig',
+    'login_required.apps.LoginRequiredConfig'
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 # root là vị trí lưu trong dự án 
 # url  địa chỉ trình duyệt nhìn thấy 
+
+LOGIN_URL = 'user_login'
+LOGIN_REDIRECT_URL = '/login_required/list/'
+LOGOUT_REDIRECT_URL = '/login_required/add/'
