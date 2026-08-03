@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+ADMIN_SITE_HEADER = "Trang Quản Trị Website"
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'login_register.apps.LoginRegisterConfig',
     'login_required.apps.LoginRequiredConfig',
     'admin_interface.apps.AdminInterfaceConfig',
+    'Days13_model_Admin.apps.Days13ModelAdminConfig',
 ]
 
 MIDDLEWARE = [
