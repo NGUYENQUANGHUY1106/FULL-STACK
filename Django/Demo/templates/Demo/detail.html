@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách ảnh</title>
+</head>
+<body>
+
+{% for item in demos %}
+    <div>
+        <h3>{{ item.title }}</h3>
+
+        {% if item.image %}
+            <img
+                src="{{ item.image.url }}"
+                alt="{{ item.title }}"
+                style="width:200px; height:200px; object-fit:cover;">
+        {% else %}
+            <p>Không có ảnh</p>
+        {% endif %}
+    </div>
+{% endfor %}
+
+</body>
+</html>

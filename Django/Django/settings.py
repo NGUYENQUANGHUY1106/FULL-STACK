@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'login_required.apps.LoginRequiredConfig',
     'admin_interface.apps.AdminInterfaceConfig',
     'Days13_model_Admin.apps.Days13ModelAdminConfig',
+    'Demo.apps.DemoConfig',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'Django.urls'
