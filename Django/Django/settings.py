@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'login_required.apps.LoginRequiredConfig',
     'admin_interface.apps.AdminInterfaceConfig',
     'Days13_model_Admin.apps.Days13ModelAdminConfig',
-    'Demo.apps.DemoConfig',
+    # 'Demo.apps.DemoConfig',
+    'Bai17_Update_User.apps.Bai17UpdateUserConfig'
 ]
 
 MIDDLEWARE = [
@@ -111,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+AUTH_USER_MODEL = 'Bai17_Update_User.CustomUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/

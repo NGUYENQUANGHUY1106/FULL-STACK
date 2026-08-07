@@ -29,7 +29,7 @@ urlpatterns = [
     path('login_register/',include('login_register.urls')),
     path('login_required/',include('login_required.urls')),
     path('admin_interface/',include('admin_interface.urls')),
-    path('demo/', include('Demo.urls'))
+    # path('demo/', include('Demo.urls'))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
