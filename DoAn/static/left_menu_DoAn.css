@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.main_left_menu
+{
+    width: 1220px;
+    margin: auto;
+    margin-top: 15px;
+}
+.container_left_menu
+{
+    width: 300px;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.container_left_menu .title
+{
+    margin:20px 0px;
+}
+.container_left_menu li
+{
+    list-style-type: none;
+    margin: 5px 0px;
+}
