@@ -5,9 +5,9 @@
 }
 .main_left_menu
 {
-    width: 1220px;
+    width: 300px;
+    flex-shrink: 0;
     margin: auto;
-    margin-top: 15px;
 }
 .container_left_menu
 {

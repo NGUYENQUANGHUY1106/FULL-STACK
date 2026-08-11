@@ -1,0 +1,72 @@
+
+    {% extends 'base.html' %}
+    {% block content %}
+    <title>Đăng kí</title>
+    <style>
+        input{
+            padding: 5px;
+        }
+    </style>
+    <div style="padding: 20px; width: 900px;" class="container_register">
+
+        <p style="font-size: 20px;">Đăng Ký</p>
+
+        <form
+            action=""
+            method="post"
+            enctype="multipart/form-data"
+            style="display: flex; flex-direction: column; gap: 10px;"
+        >
+
+            {% csrf_token %}
+
+            {{ form.non_field_errors }}
+
+            <label>Username</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+
+
+            <label>Email Address</label>
+            {{ form.email }}
+            {{ form.email.errors }}
+
+
+            <label>Password</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+
+
+            <label>Confirm password</label>
+            {{ form.confirm_password }}
+            {{ form.confirm_password.errors }}
+
+
+            <label>Avatar</label>
+            {{ form.avatar }}
+            {{ form.avatar.errors }}
+
+
+            <label>First name</label>
+            {{ form.first_name }}
+            {{ form.first_name.errors }}
+
+
+            <label>Last name</label>
+            {{ form.last_name }}
+            {{ form.last_name.errors }}
+
+
+            <label>Id Country</label>
+            {{ form.id_country }}
+            {{ form.id_country.errors }}
+
+
+            <button style="background-color: orange; padding: 5px; border: 1px rgb(221, 218, 218); color: white; cursor: pointer;" type="submit">
+                Đăng kí
+            </button>
+
+        </form>
+
+    </div>
+    {% endblock %}
