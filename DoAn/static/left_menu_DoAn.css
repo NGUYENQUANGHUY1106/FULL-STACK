@@ -11,6 +11,7 @@
 }
 .container_left_menu
 {
+    margin: 10px 0px;
     width: 300px;
     padding: 20px;
     border: 1px solid black;

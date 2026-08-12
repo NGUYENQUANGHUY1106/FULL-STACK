@@ -1,22 +1,24 @@
 <div class="container_header">
-
-    <div class="left_header">
-
-        <div class="image_logo">
-            <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNuGV9A3rtoHvKx8-r2lIqlHJtXr5XQssU2Kt88LmQzg&s=10"
-                alt=""
-            >
-        </div>
-
-        <p>QH-SHOPPER</p>
-
+  <div class="left_header">
+    <div class="image_logo">
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNuGV9A3rtoHvKx8-r2lIqlHJtXr5XQssU2Kt88LmQzg&s=10"
+        alt=""
+      />
     </div>
 
-    <ul class="right_header">
-        <li><a href="">Account</a></li>
-        <li><a href="">Cart</a></li>
-        <li><a href="">Login</a></li>
-    </ul>
+    <p>QH-SHOPPER</p>
+  </div>
 
+  <ul class="right_header">
+    {% if current_user %}
+    <a href="">Account</a>
+    <a href="">Cart</a>
+    <a href="{% url 'blog_list' %}">Blog</a>
+    <a href="{% url 'custom_logout' %}">Logout</a>
+    <span style="font-size: 18px;">Xin chào, {{ current_user.username }}</span>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+  </ul>
 </div>

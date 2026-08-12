@@ -42,3 +42,17 @@ class RegisterForm(forms.ModelForm):
         else:
             raise forms.ValidationError("Mật khẩu hoặc mật khẩu xác nhận không được bỏ trống")
         return cleaned_data
+
+class LoginForm(forms.Form):
+        email = forms.EmailField(widget=forms.EmailInput(attrs={'class' : 'form-control'}),
+                            error_messages= {
+                                'required' : 'Eamil không được để trống'
+                            }
+                                 )
+        password = forms.CharField(
+            widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+            error_messages={
+                'required' :  'password không được để trống'
+            }
+        )
+        # dùng form.ModelForm khi muốn tạo một user mối 

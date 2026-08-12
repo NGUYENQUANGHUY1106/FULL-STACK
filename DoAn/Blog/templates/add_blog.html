@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+<title>Đăng bài viết</title>
+<style>
+  input {
+    padding: 5px;
+  }
+</style>
+
+{% block content %}
+<div class="container_addBlog" style="width: 900px; margin: 10px">
+  <form
+    style="display: flex; flex-direction: column; gap: 10px"
+    action=""
+    method="post"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %} {{ form.non_field_errors }}
+    <label for="">Title</label>
+    {{ blog.title }} {{ blog.title.errors}}
+
+    <label for="">Description</label>
+    {{ blog.description }} {{ blog.description.errors }}
+
+    <label for="">Content</label>
+    {{ blog.content }} {{ blog.content.errors }}
+
+    <label for="">Image</label>
+    {{ blog.image }} {{ blog.image.errors }}
+
+    <label for="">Author</label>
+    {{ blog.author }}
+    {{ blog.author.errors }}
+
+    <button type="submit">Đăng bài</button>
+  </form>
+</div>
+
+{% endblock %}
