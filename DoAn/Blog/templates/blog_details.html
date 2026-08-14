@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+<title>Blog</title>
+{% block content %}
+<div class="container_details" style="margin: 10px 0px;">
+  <div style="width: 850px; height: 400px" class="image">
+    <img style="width: 100%; height: 100%; margin-top: 10px;" src="{{ blog_details.image.url }}" alt="" />
+    <h1>{{blog_details.title}}</h1>
+    <p>{{blog_details.description}}</p>
+    <p>{{blog_details.content}}</p>
+    <p>{{blog_details.created_at}}</p>
+    <p>{{blog_details.author}}</p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
+      laboriosam, asperiores architecto ratione quo repellendus ipsam veritatis
+      est delectus iusto excepturi praesentium porro, consequatur rem eos
+      quibusdam ab cumque at.
+    </p>
+    <div class="panigation">
+       {% if prev %}
+       <a href="{% url 'blog_details' prev.id %}">Prev</a>
+       <!-- prev đã được tạo khi mà người dùng click vào blog list để vào trang chi tiết rồi 
+        ví dụ như bấm vào xem blog id = 6 thì next = 7 prev = 5  và khi mình 
+        click và nút prev sẽ gọi đến blog_details5 -->
+       {% endif %}
+       
+       {% if next %}
+       <a href="{% url 'blog_details' next.id %}">Next</a>
+       {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

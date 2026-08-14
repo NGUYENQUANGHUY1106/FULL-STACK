@@ -1,24 +1,65 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
-
-<div class="container_blogList" style="display: flex; margin-top: 20px; gap: 20px; width: 900px;">
-    {% for item in blogs %}
-    <div class="item_blog_list">
-        <p>{{item.title}}</p>
-        <p>{{item.description}}</p>
-        <p>{{item.content}}</p>
-        {% if item.image %}
-            <img src="{{ item.image.url }}"
-                 alt="{{ item.title }}"
-                 width="200"
-                 height="170">
-        {% endif %}
-        <p>{{item.create_at}}</p>
+<div class="container_blogList" style="margin-top: 20px; gap: 20px">
+  {% for blog in page_obj %}
+  <div
+    style="display: flex; flex-direction: column; gap: 20px; margin-top: 10px"
+    class="item_blog_list"
+  >
+    {% if blog.image %}
+    <div class="imgae" style="width: 850px; height: 400px;">
+      <img style="width: 100%; height: 100%;" src="{{ blog.image.url }}" alt="{{ blog.title }}" />
     </div>
-    {% endfor %}
-    <a href="{% url 'add_blog' %}">Đăng Bài</a>
-</div>
+    {% endif %}
+    <div style="text-align: left;">
+      <p>{{blog.title}}</p>
+      <p>{{blog.description}}</p>
+      <p>{{blog.content}}</p>
+      <p>{{blog.create_at}}</p>
+      <div class="btn" style="margin-top: 10px;">
+              <a  href="{% url 'blog_details' blog.id  %}" style="padding: 10px; color:  white; font-weight: 600; background-color: orange ;  text-decoration: none;" class="read_more">Read_More</a>
+                <!--  truyền id vào thẻ a khi nhấn vào 1 blog muốn xem chi tiết -->
+      </div>
+    </div>
+  </div>
+  {% endfor %}
 
+<div style="display: flex; justify-content: center; margin: 10px 0px;"> <a style="text-align: center" href="{% url 'add_blog' %}">Đăng Bài</a></div>
+
+<div class="pagination" style="margin-top: 10px; display: flex; align-items:  center; gap: 10px; justify-content: center;">
+
+    {% if page_obj.has_previous %}
+    <!-- kiêm tra xem trang phía trước có k -->
+        <a style="padding: 10px; color: white; background-color: orange; font-size: 15px; text-decoration: none; border-radius: 100%;" href="?page={{ page_obj.previous_page_number }}">
+            <!-- href="?page={{ page_obj.previous_page_number }} lấy số trang phía trước của trang hiện tại 1<-2 -->
+            ← 
+        </a>
+    {% endif %}
+
+
+    {% for num in page_obj.paginator.page_range %}
+    <!-- page_range đếm số trang có trong page -->
+     <!-- giúp tạo ra số trang tương ứng  -->
+
+        {% if num == page_obj.number %}
+        <!-- kiêm tra xem num có bằng với số trang hiện tại k tạo ra 1  -->
+            <strong style="font-size: 18px;">{{ num }}</strong>
+            <!-- dùng strong để làm nỗi bật trang hiện tại  -->
+        {% else %}
+        <!-- khi kiểm tra được num = obj.number thì sẽ bôi đen vì đây là vị trí page hiện tại  -->
+            <a style="text-decoration: none; font-size: 18px; color: black;" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+
+    {% endfor %}
+
+
+    {% if page_obj.has_next %}
+        <a style="padding: 10px; color: white; background-color: orange; font-size: 15px; text-decoration: none; border-radius: 100%;" href="?page={{ page_obj.next_page_number }}">
+             →
+        </a>
+    {% endif %}
+
+</div>
+</div>
 
 {% endblock %}
