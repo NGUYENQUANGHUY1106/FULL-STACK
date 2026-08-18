@@ -46,6 +46,10 @@ def blog_details(request,id):
 
     rating = Rate.objects.filter(
         id_blog = blog_details
+        #  là lấy những thk có id_blog ở bảng rate = thk blog đang được hiển thị á 
+        #  tìm Blog có id = với id_blog
+        #  là nó sẽ lấy cái đánh giá dựa theo id_blog ví dụ như Blog đang có id =4 thì nó sẽ lấy ở bảng 
+        # Rate những id_blog =4 ra 
 
     ).aggregate(
         average = Avg('rate')

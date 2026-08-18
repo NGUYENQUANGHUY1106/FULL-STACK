@@ -1,7 +1,7 @@
 const stars = document.querySelectorAll('.star');
 // lấy tất cả các ngôi sao
 const rating = document.querySelector('.rating')
-const rateUrl = rating.dataset.rateUrl
+const rateUrl = rating.dataset.rateUrl;
 const csrfToken = rating.dataset.csrfToken;
 
 console.log("Số lượng sao:", stars.length);
@@ -21,7 +21,7 @@ stars.forEach(star => {
         stars.forEach(item => {
 
             const itemRate = Number(item.dataset.rate);
-            // lấy số sao vừa chọn lưu và vòng lặp 
+            // lấy số sao có ở data-rate 1-> i
             const icon = item.querySelector('i');
             // tìm thẻ i nằm bên trong item
 

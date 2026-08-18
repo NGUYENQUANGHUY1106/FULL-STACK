@@ -53,31 +53,45 @@
   </div>
   <div class="rate">
     <p>RATE THIS ITEM</p>
-    <div class="rating" data-rate-url="{% url 'rate_blog' blog_details.id %}"
+   <div
+    class="rating"
+    data-rate-url="{% url 'rate_blog' blog_details.id %}"
     data-csrf-token="{{ csrf_token }}"
-    >
+>
 
-    <span class="star" data-rate="1">
-        <i  style="color: #ccc;" class="fa-solid fa-star"></i>
-    </span>
+    {% for i in "12345" %}
+    <!-- lặp qua 5 lần -->
 
-    <span class="star" data-rate="2">
-        <i style="color: #ccc;" class="fa-solid fa-star"></i>
-    </span>
+        <span
+            class="star"
+            data-rate="{{ forloop.counter }}"
+            
+            style="cursor: pointer;"
+        >
+        <!-- forloop.counter : tự cấp số thứ tự bắt đầu ở 1  -->
+         <!-- qua mỗi vòng lặp sẽ thay đổi và tăng lên  -->
 
-    <span class="star" data-rate="3">
-        <i style="color: #ccc;" class="fa-solid fa-star"></i>
-    </span>
+            {% if forloop.counter <= rating %}
 
-    <span class="star" data-rate="4">
-        <i style="color: #ccc;" class="fa-solid fa-star"></i>
-    </span>
+                <i
+                    class="fa-solid fa-star"
+                    style="color: gold;"
+                ></i>
 
-    <span class="star" data-rate="5">
-        <i style="color: #ccc;" class="fa-solid fa-star"></i>
-    </span>
+            {% else %}
 
-    <span>({{rating}})</span>
+                <i
+                    class="fa-solid fa-star"
+                    style="color: #ccc;"
+                ></i>
+
+            {% endif %}
+
+        </span>
+
+    {% endfor %}
+
+    <span>({{ rating }}/5)</span>
 
 </div>
   </div>
