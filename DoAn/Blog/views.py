@@ -1,7 +1,11 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import Blog
+from .models import Blog,Rate
 from .forms import add_Blog
+from Users.models  import User
 from django.core.paginator import Paginator
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.db.models import Avg
 # phân trang
 # Create your views here.
 def add_blog(request):
@@ -38,13 +42,95 @@ def blog_details(request,id):
     next_blog = Blog.objects.filter(id__gt = id).order_by("id").first()
     #  gt = greater than
     
+    # tính điểm trung bình
+
+    rating = Rate.objects.filter(
+        id_blog = blog_details
+
+    ).aggregate(
+        average = Avg('rate')
+    )['average']
+    if rating is not None:
+        rating = round(rating)
+    else:
+        rating = 0;
     return render(
     request,
     'blog_details.html',
     {
         'blog_details': blog_details,
         'prev': prev_blog,
-        'next': next_blog
+        'next': next_blog,
+        'rating' : rating
     }
 )
 #  trả về object html
+
+def rate_blog(request, id):
+
+# kiểm tra người dùng đã dăng nhập chưa
+
+    user_id = request.session.get('user_id')
+
+    if not user_id:
+        return JsonResponse({
+            'success': False,
+            'message': 'Vui lòng đăng nhập để đánh giá'
+        })
+
+
+# lấy blog theo id ở blog_details
+
+    blog = get_object_or_404(Blog, id=id)
+
+# lấy số sao
+
+    rate_value = request.POST.get('rate')
+    # lấy số sao ỏ js gửi lên 
+
+
+
+    rate_value = int(rate_value)
+
+
+# kiểm tra số sao có hợp lệ hay k 
+
+    if rate_value < 1 or rate_value > 5:
+        return JsonResponse({
+            'success': False,
+            'message': 'Số sao không hợp lệ'
+        })
+
+
+# lấy user theo id
+
+    user = get_object_or_404(User, id=user_id)
+
+
+# kiểm tra xem đã đánh giá chưa 
+
+    user_rate = Rate.objects.filter(
+        id_blog=blog,
+        id_user=user
+    ).first()
+
+
+    if user_rate:
+        return JsonResponse({
+            'success': False,
+            'message': 'Bạn đã đánh giá bài viết rồi'
+        })
+
+
+# đánh giá 
+
+    Rate.objects.create(
+        rate=rate_value,
+        id_blog=blog,
+        id_user=user
+    )
+
+    return JsonResponse({
+        'success': True,
+        'message': 'Đánh giá thành công'
+    })

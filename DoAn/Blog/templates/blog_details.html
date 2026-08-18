@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 <title>Blog</title>
+
 {% block content %}
-<div class="container_details" style="margin: 10px 0px;">
+<div class="container_details" style="margin: 10px 0px">
   <div style="width: 850px; height: 400px" class="image">
-    <img style="width: 100%; height: 100%; margin-top: 10px;" src="{{ blog_details.image.url }}" alt="" />
+    <img
+      style="width: 100%; height: 100%; margin-top: 10px"
+      src="{{ blog_details.image.url }}"
+      alt=""
+    />
+  </div>
+  <div style="margin-top: 10px;" class="info">
     <h1>{{blog_details.title}}</h1>
     <p>{{blog_details.description}}</p>
     <p>{{blog_details.content}}</p>
@@ -15,18 +22,64 @@
       est delectus iusto excepturi praesentium porro, consequatur rem eos
       quibusdam ab cumque at.
     </p>
-    <div class="panigation">
-       {% if prev %}
-       <a href="{% url 'blog_details' prev.id %}">Prev</a>
-       <!-- prev đã được tạo khi mà người dùng click vào blog list để vào trang chi tiết rồi 
-        ví dụ như bấm vào xem blog id = 6 thì next = 7 prev = 5  và khi mình 
-        click và nút prev sẽ gọi đến blog_details5 -->
-       {% endif %}
-       
-       {% if next %}
-       <a href="{% url 'blog_details' next.id %}">Next</a>
-       {% endif %}
-    </div>
+  </div>
+  <div class="panigation" style="margin-top: 10px; display: flex; justify-content: right; gap: 10px;">
+    {% if prev %}
+    <a
+      style="
+        text-decoration: none;
+        padding: 5px;
+        background-color: orange;
+        color: white;
+        font-weight: 400;
+      "
+      href="{% url 'blog_details' prev.id %}"
+      >Prev</a
+    >
+    <!-- prev đã được tạo khi mà người dùng click vào blog list để vào trang chi tiết rồi 
+      ví dụ như bấm vào xem blog id = 6 thì next = 7 prev = 5  và khi mình 
+      click và nút prev sẽ gọi đến blog_details5 -->
+    {% endif %} {% if next %}
+    <a
+    style="
+        text-decoration: none;
+        padding: 5px;
+        background-color: whitesmoke;
+        color: orange;
+        font-weight: 400;
+      "
+    href="{% url 'blog_details' next.id %}">Next</a>
+    {% endif %}
+  </div>
+  <div class="rate">
+    <p>RATE THIS ITEM</p>
+    <div class="rating" data-rate-url="{% url 'rate_blog' blog_details.id %}"
+    data-csrf-token="{{ csrf_token }}"
+    >
+
+    <span class="star" data-rate="1">
+        <i  style="color: #ccc;" class="fa-solid fa-star"></i>
+    </span>
+
+    <span class="star" data-rate="2">
+        <i style="color: #ccc;" class="fa-solid fa-star"></i>
+    </span>
+
+    <span class="star" data-rate="3">
+        <i style="color: #ccc;" class="fa-solid fa-star"></i>
+    </span>
+
+    <span class="star" data-rate="4">
+        <i style="color: #ccc;" class="fa-solid fa-star"></i>
+    </span>
+
+    <span class="star" data-rate="5">
+        <i style="color: #ccc;" class="fa-solid fa-star"></i>
+    </span>
+
+    <span>({{rating}})</span>
+
+</div>
   </div>
 </div>
 {% endblock %}
