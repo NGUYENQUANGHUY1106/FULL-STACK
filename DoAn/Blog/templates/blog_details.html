@@ -10,7 +10,7 @@
       alt=""
     />
   </div>
-  <div style="margin-top: 10px;" class="info">
+  <div style="margin-top: 10px" class="info">
     <h1>{{blog_details.title}}</h1>
     <p>{{blog_details.description}}</p>
     <p>{{blog_details.content}}</p>
@@ -23,7 +23,10 @@
       quibusdam ab cumque at.
     </p>
   </div>
-  <div class="panigation" style="margin-top: 10px; display: flex; justify-content: right; gap: 10px;">
+  <div
+    class="panigation"
+    style="margin-top: 10px; display: flex; justify-content: right; gap: 10px"
+  >
     {% if prev %}
     <a
       style="
@@ -41,59 +44,164 @@
       click và nút prev sẽ gọi đến blog_details5 -->
     {% endif %} {% if next %}
     <a
-    style="
+      style="
         text-decoration: none;
         padding: 5px;
         background-color: whitesmoke;
         color: orange;
         font-weight: 400;
       "
-    href="{% url 'blog_details' next.id %}">Next</a>
+      href="{% url 'blog_details' next.id %}"
+      >Next</a
+    >
     {% endif %}
   </div>
   <div class="rate">
     <p>RATE THIS ITEM</p>
-   <div
-    class="rating"
-    data-rate-url="{% url 'rate_blog' blog_details.id %}"
-    data-csrf-token="{{ csrf_token }}"
->
+    <div
+      class="rating"
+      data-rate-url="{% url 'rate_blog' blog_details.id %}"
+      data-csrf-token="{{ csrf_token }}"
+    >
+      {% for i in "12345" %}
+      <!-- lặp qua 5 lần -->
 
-    {% for i in "12345" %}
-    <!-- lặp qua 5 lần -->
-
-        <span
-            class="star"
-            data-rate="{{ forloop.counter }}"
-            
-            style="cursor: pointer;"
-        >
+      <span
+        class="star"
+        data-rate="{{ forloop.counter }}"
+        style="cursor: pointer"
+      >
         <!-- forloop.counter : tự cấp số thứ tự bắt đầu ở 1  -->
-         <!-- qua mỗi vòng lặp sẽ thay đổi và tăng lên  -->
+        <!-- qua mỗi vòng lặp sẽ thay đổi và tăng lên  -->
 
-            {% if forloop.counter <= rating %}
+        {% if forloop.counter <= rating %}
 
-                <i
-                    class="fa-solid fa-star"
-                    style="color: gold;"
-                ></i>
+        <i class="fa-solid fa-star" style="color: gold"></i>
 
-            {% else %}
+        {% else %}
 
-                <i
-                    class="fa-solid fa-star"
-                    style="color: #ccc;"
-                ></i>
+        <i class="fa-solid fa-star" style="color: #ccc"></i>
+
+        {% endif %}
+      </span>
+
+      {% endfor %}
+
+      <span>({{ rating }}/5)</span>
+    </div>
+  </div>
+  <div class="comment">
+ <!-- comment  -->
+
+    <form
+      id="comment-form"
+      action="{% url 'comment_blog' blog_details.id %}"
+      method="POST"
+    >
+      {% csrf_token %}
+
+      <input type="hidden" name="parent_id" value="" />
+
+      <input type="text" name="cmt" placeholder="Nhập bình luận..." required />
+
+      <button type="submit">Bình luận</button>
+    </form>
+<!-- danh sách comment -->
+
+    <div class="comment-list">
+  {% for cmt in comment %} 
+    {% if cmt.level == 0 %}
+
+   <!-- kiểm tra xem có commnet cha k  -->
+
+      <div class="list_comment" style="margin-top: 20px; padding: 10px">
+        <div style="display: flex; align-items: center; gap: 5px">
+          {% if cmt.avatar_user %}
+          <img
+            src="{{ cmt.avatar_user.url }}"
+            style="width: 30px; height: 30px; border-radius: 50%"
+          />
+          {% endif %}
+
+          <strong> {{ cmt.name_user }} </strong>
+        </div>
+
+        <p>{{ cmt.cmt }}</p>
+
+<!-- btn phản hồi truyền vào id của cmt hiện tại -->
+
+        <button type="button" class="reply-btn" data-comment-id="{{ cmt.id }}">
+          <!-- truyền vaod datacomment id của cmt cha  -->
+          Phản hồi
+        </button>
+
+<!-- phản hồi -->
+        <div
+          id="reply-form-{{ cmt.id }}"
+          style="display: none; margin-top: 10px"
+        >
+          <form
+            class="reply-form"
+            data-parent-id="{{ cmt.id }}"
+            action="{% url 'comment_blog' blog_details.id %}"
+            method="POST"
+          >
+            {% csrf_token %}
+
+            <input
+              type="text"
+              name="cmt"
+              placeholder="Nhập phản hồi..."
+              required
+            />
+
+            <button type="submit">Gửi</button>
+          </form>
+        </div>
+
+<!-- comment con -->
+
+    {% for child in comment %} 
+        
+      {% if child.parent_id == cmt.id %}
+
+        <div
+          class="child-comment"
+          style="
+            margin-left: 40px;
+            margin-top: 15px;
+            padding-left: 10px;
+            border-left: 2px solid #ddd;
+          "
+        >
+          <div style="display: flex; align-items: center; gap: 5px">
+            {% if child.avatar_user %}
+
+            <img
+              src="{{ child.avatar_user.url }}"
+              style="width: 30px; height: 30px; border-radius: 50%"
+            />
 
             {% endif %}
 
-        </span>
+            <strong> {{ child.name_user }} </strong>
+          </div>
 
+          <p>{{ child.cmt }}</p>
+        </div>
+
+      {% endif %} 
     {% endfor %}
+      </div>
 
-    <span>({{ rating }}/5)</span>
+    {% endif %} 
 
-</div>
+      {% empty %}
+
+      <p>Chưa có bình luận nào.</p>
+
+  {% endfor %}
+    </div>
   </div>
 </div>
 {% endblock %}

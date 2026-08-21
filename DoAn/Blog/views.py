@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import Blog,Rate
+from .models import Blog,Rate,Comment
 from .forms import add_Blog
 from Users.models  import User
 from django.core.paginator import Paginator
@@ -58,6 +58,10 @@ def blog_details(request,id):
         rating = round(rating)
     else:
         rating = 0;
+
+    comment = Comment.objects.filter(
+        id_blog = blog_details
+    )
     return render(
     request,
     'blog_details.html',
@@ -65,12 +69,14 @@ def blog_details(request,id):
         'blog_details': blog_details,
         'prev': prev_blog,
         'next': next_blog,
-        'rating' : rating
+        'rating' : rating,
+        'comment' : comment
     }
 )
 #  trả về object html
 
 def rate_blog(request, id):
+
 
 # kiểm tra người dùng đã dăng nhập chưa
 
@@ -138,3 +144,95 @@ def rate_blog(request, id):
         'success': True,
         'message': 'Đánh giá thành công'
     })
+
+def comment_blog(request, blog_id):
+
+    if request.method != 'POST':
+        return JsonResponse({
+            'success': False,
+            'message': 'Phương thức không hợp lệ'
+        })
+
+    # Lấy user đang đăng nhập
+    user_id = request.session.get('user_id')
+
+    if not user_id:
+        return JsonResponse({
+            'success': False,
+            'message': 'Vui lòng đăng nhập trước khi bình luận'
+        })
+
+    # Lấy user
+    user = get_object_or_404(
+        User,
+        id=user_id
+    )
+
+    # Lấy blog
+    blog = get_object_or_404(
+        Blog,
+        id=blog_id
+    )
+
+    # Lấy nội dung comment
+    cmt = request.POST.get('cmt')
+    # lấy nội dung mà bên js gửi lên
+
+    if not cmt or not cmt.strip():
+        return JsonResponse({
+            'success': False,
+            'message': 'Vui lòng nhập nội dung bình luận'
+        })
+
+    # Lấy ID comment cha
+    parent_id = request.POST.get('parent_id')
+    # lấy id của cmt cha
+
+
+
+    if not parent_id:
+
+        Comment.objects.create(
+            cmt=cmt,
+            id_user=user,
+            id_blog=blog,
+            avatar_user=user.avatar,
+            name_user=user.username,
+            parent=None,
+            level=0
+        )
+
+
+
+    else:
+
+        parent_comment = get_object_or_404(
+            Comment,
+            id=parent_id
+            # tìm trong thk commnt có parent_id = id ở js gửi lên
+        )
+
+        # Không cho reply comment
+        # thuộc blog khác
+        if parent_comment.id_blog_id != blog.id:
+            return JsonResponse({
+                'success': False,
+                'message': 'Comment không thuộc bài viết này'
+            })
+
+        Comment.objects.create(
+            cmt=cmt,
+            id_user=user,
+            id_blog=blog,
+            avatar_user=user.avatar,
+            name_user=user.username,
+            parent=parent_comment,
+            level=1
+        )
+
+    return JsonResponse({
+        'success': True,
+        'message': 'Bình luận thành công'
+    })
+    
+    

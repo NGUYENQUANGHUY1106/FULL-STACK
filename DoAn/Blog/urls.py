@@ -10,4 +10,5 @@ urlpatterns = [
         views.rate_blog,
         name='rate_blog'
     ),
+    path('comment_blog/<int:blog_id>/',views.comment_blog,name='comment_blog')
 ]
