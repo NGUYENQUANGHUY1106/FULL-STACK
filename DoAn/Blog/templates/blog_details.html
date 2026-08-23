@@ -1,7 +1,5 @@
-{% extends 'base.html' %}
-<title>Blog</title>
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
 <div class="container_details" style="margin: 10px 0px">
   <div style="width: 850px; height: 400px" class="image">
     <img
@@ -10,24 +8,26 @@
       alt=""
     />
   </div>
+
   <div style="margin-top: 10px" class="info">
-    <h1>{{blog_details.title}}</h1>
-    <p>{{blog_details.description}}</p>
-    <p>{{blog_details.content}}</p>
-    <p>{{blog_details.created_at}}</p>
-    <p>{{blog_details.author}}</p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
-      laboriosam, asperiores architecto ratione quo repellendus ipsam veritatis
-      est delectus iusto excepturi praesentium porro, consequatur rem eos
-      quibusdam ab cumque at.
-    </p>
+    <h1>{{ blog_details.title }}</h1>
+
+    <p>{{ blog_details.description }}</p>
+
+    <p>{{ blog_details.content }}</p>
+
+    <p>{{ blog_details.created_at }}</p>
+
+    <p>{{ blog_details.author }}</p>
   </div>
+
+
   <div
     class="panigation"
     style="margin-top: 10px; display: flex; justify-content: right; gap: 10px"
   >
     {% if prev %}
+
     <a
       style="
         text-decoration: none;
@@ -37,12 +37,12 @@
         font-weight: 400;
       "
       href="{% url 'blog_details' prev.id %}"
-      >Prev</a
     >
-    <!-- prev đã được tạo khi mà người dùng click vào blog list để vào trang chi tiết rồi 
-      ví dụ như bấm vào xem blog id = 6 thì next = 7 prev = 5  và khi mình 
-      click và nút prev sẽ gọi đến blog_details5 -->
+      Prev
+    </a>
+
     {% endif %} {% if next %}
+
     <a
       style="
         text-decoration: none;
@@ -52,28 +52,29 @@
         font-weight: 400;
       "
       href="{% url 'blog_details' next.id %}"
-      >Next</a
     >
+      Next
+    </a>
+
     {% endif %}
   </div>
+
+
   <div class="rate">
     <p>RATE THIS ITEM</p>
+
     <div
       class="rating"
       data-rate-url="{% url 'rate_blog' blog_details.id %}"
       data-csrf-token="{{ csrf_token }}"
     >
       {% for i in "12345" %}
-      <!-- lặp qua 5 lần -->
 
       <span
         class="star"
         data-rate="{{ forloop.counter }}"
         style="cursor: pointer"
       >
-        <!-- forloop.counter : tự cấp số thứ tự bắt đầu ở 1  -->
-        <!-- qua mỗi vòng lặp sẽ thay đổi và tăng lên  -->
-
         {% if forloop.counter <= rating %}
 
         <i class="fa-solid fa-star" style="color: gold"></i>
@@ -87,11 +88,13 @@
 
       {% endfor %}
 
-      <span>({{ rating }}/5)</span>
+      <span> ({{ rating }}/5) </span>
     </div>
   </div>
+
+
+
   <div class="comment">
- <!-- comment  -->
 
     <form
       id="comment-form"
@@ -106,21 +109,26 @@
 
       <button type="submit">Bình luận</button>
     </form>
-<!-- danh sách comment -->
 
-    <div class="comment-list">
-  {% for cmt in comment %} 
-    {% if cmt.level == 0 %}
 
-   <!-- kiểm tra xem có commnet cha k  -->
 
-      <div class="list_comment" style="margin-top: 20px; padding: 10px">
+    <div class="comment-list" id="comment-list">
+      {% for cmt in comment %} {% if cmt.level == 0 %}
+
+
+      <div
+        class="list_comment"
+        id="comment-{{ cmt.id }}"
+        style="margin-top: 20px; padding: 10px"
+      >
         <div style="display: flex; align-items: center; gap: 5px">
           {% if cmt.avatar_user %}
+
           <img
             src="{{ cmt.avatar_user.url }}"
             style="width: 30px; height: 30px; border-radius: 50%"
           />
+
           {% endif %}
 
           <strong> {{ cmt.name_user }} </strong>
@@ -128,14 +136,12 @@
 
         <p>{{ cmt.cmt }}</p>
 
-<!-- btn phản hồi truyền vào id của cmt hiện tại -->
 
         <button type="button" class="reply-btn" data-comment-id="{{ cmt.id }}">
-          <!-- truyền vaod datacomment id của cmt cha  -->
           Phản hồi
         </button>
 
-<!-- phản hồi -->
+
         <div
           id="reply-form-{{ cmt.id }}"
           style="display: none; margin-top: 10px"
@@ -159,49 +165,48 @@
           </form>
         </div>
 
-<!-- comment con -->
 
-    {% for child in comment %} 
-        
-      {% if child.parent_id == cmt.id %}
 
-        <div
-          class="child-comment"
-          style="
-            margin-left: 40px;
-            margin-top: 15px;
-            padding-left: 10px;
-            border-left: 2px solid #ddd;
-          "
-        >
-          <div style="display: flex; align-items: center; gap: 5px">
-            {% if child.avatar_user %}
+        <div class="reply-list" id="reply-list-{{ cmt.id }}">
+          {% for child in comment %} {% if child.parent_id == cmt.id %}
 
-            <img
-              src="{{ child.avatar_user.url }}"
-              style="width: 30px; height: 30px; border-radius: 50%"
-            />
+          <div
+            class="child-comment"
+            id="comment-{{ child.id }}"
+            style="
+              margin-left: 40px;
+              margin-top: 15px;
+              padding-left: 10px;
+              border-left: 2px solid #ddd;
+            "
+          >
+            <div style="display: flex; align-items: center; gap: 5px">
+              {% if child.avatar_user %}
 
-            {% endif %}
+              <img
+                src="{{ child.avatar_user.url }}"
+                style="width: 30px; height: 30px; border-radius: 50%"
+              />
 
-            <strong> {{ child.name_user }} </strong>
+              {% endif %}
+
+              <strong> {{ child.name_user }} </strong>
+            </div>
+
+            <p>{{ child.cmt }}</p>
           </div>
 
-          <p>{{ child.cmt }}</p>
+          {% endif %} {% endfor %}
         </div>
-
-      {% endif %} 
-    {% endfor %}
       </div>
 
-    {% endif %} 
+      {% endif %} {% empty %}
 
-      {% empty %}
+      <p id="empty-comment">Chưa có bình luận nào.</p>
 
-      <p>Chưa có bình luận nào.</p>
-
-  {% endfor %}
+      {% endfor %}
     </div>
   </div>
 </div>
+
 {% endblock %}

@@ -12,5 +12,6 @@ def user_info(request):
             user = None
 
     return {
-        'current_user': user
+        'current_user': user,
+        'id' : user_id
     }

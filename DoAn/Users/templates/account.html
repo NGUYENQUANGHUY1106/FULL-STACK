@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="display: flex; width: 900px; " class="account">
+    <div style="width: 250px; margin-top: 30px; display: flex; flex-direction: column; gap: 15px;" class = "nav_bar">
+        <h3 style="font-size: 25px; color: orange;">ACCOUNT</h3>
+        <a style="text-decoration: none; color: gray; font-weight: 600; font-size: 18px;" href="{% url 'account' %}">ACCOUNT</a>
+        <a style="text-decoration: none; color: gray; font-weight: 600; font-size: 18px;" href="{% url 'list_product' %}">MY PRODUCT</a>
+    </div>
+    <form style="display: flex; flex-direction: column; gap: 10px; width: 750px; padding: 10px;" class="info_user" method="post" enctype="multipart/form-data"> 
+        {% csrf_token %}
+        <h3>User Update</h3>
+        <input style="padding: 5px;" type="text" name="username" value="{{user.username}}">
+        <input style="padding: 5px;" type="email" name="email" value="{{user.email}}">
+        {% if user.avatar %}
+        <img style="width: 300px;height: 300px; object-fit: contain;" src="{{ user.avatar.url }}" alt="Avatar">
+        {% endif %}
+        <input style="padding: 5px;" type="file" name="avatar">
+        <input style="padding: 5px;" type="text" name="first_name" value="{{user.first_name}}">
+        <input style="padding: 5px;" type="text" name="last_name" value="{{user.last_name}}">
+        <input style="padding: 5px;" type="password" name="password" value="{{user.password}}">
+        <select name="id_country">
+        {% for item in country %}
+        <option value="{{ item.id }}"
+            {% if user.id_county.id == item.id %}
+                selected
+            {% endif %}
+        >
+            {{ item.name }}
+        </option>
+        {% endfor %}
+        </select>
+        <button type="submit">Update</button>
+    </form>
+</div>
+{% endblock %}

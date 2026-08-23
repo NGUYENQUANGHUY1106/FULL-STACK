@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
+from .models import User,Country
 
-from .models import User
 from .forms import RegisterForm ,LoginForm
 from django.contrib.auth import  login,logout
 
@@ -59,3 +59,33 @@ def login(request):
 def custom_logout(request):
     request.session.flush()
     return redirect('login')
+
+
+def account(request):
+    user_id = request.session.get('user_id')
+    user = User.objects.get(
+        id = user_id
+    )
+    
+    country = Country.objects.all()
+    if request.method == 'POST':
+        user.username = request.POST.get('username')
+        user.email =  request.POST.get('email')
+        avatar = request.FILES.get('avatar')
+        user.first_name = request.POST.get('first_name')
+        user.last_name = request.POST.get('last_name')
+        password = request.POST.get('password')
+
+        if avatar:
+            user.avatar = avatar
+        country_id = request.POST.get('id_country')
+        if country_id:
+            user.id_country_id = country_id
+        
+        if password : 
+            user.password = make_password(password)
+        user.save()
+        return redirect('account')
+    return render(request,'account.html',{'user' : user,
+                                          'country' :country
+                                          })

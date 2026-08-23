@@ -12,13 +12,13 @@
 
   <ul class="right_header">
     {% if current_user %}
-    <a href="">Account</a>
+    <a href="{% url 'account' %}">Account</a>
     <a href="">Cart</a>
     <a href="{% url 'blog_list' %}">Blog</a>
     <a href="{% url 'custom_logout' %}">Logout</a>
     <span style="font-size: 18px;">Xin chào, {{ current_user.username }}</span>
     {% else %}
-    <a href="">Account</a>
+    <a href="{% url 'account'  %}">Account</a>
     <a href="">Cart</a>
     <a href="{% url 'blog_list' %}">Blog</a>
     <a href="{% url 'login' %}">Login</a>
