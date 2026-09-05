@@ -1,15 +1,35 @@
+import ast
+
 from django.shortcuts import render,redirect
 from .models import User,Country
 
 from .forms import RegisterForm ,LoginForm
 from django.contrib.auth import  login,logout
 
-
+from Product.models import Product
 from django.contrib.auth.hashers import make_password ,check_password
 
 # Create your views here.
 def home(request):
-    return render(request , 'index.html')
+    products = Product.objects.all().order_by('-create_at')[:6]
+    # lấy ra 6 sản phẩm mới nhất 
+    for product in products:
+
+        try:
+
+            if isinstance(product.image, str):
+                # isinstance kiểm tra kiểu dữ liệu 
+
+                product.images = ast.literal_eval(product.image)
+
+            else:
+
+                product.images = product.image or []
+
+        except Exception:
+
+            product.images = []
+    return render(request , 'index.html' ,{'products' : products})
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST,request.FILES)

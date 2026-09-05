@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>Trang Thêm Sản Phẩm</h2>
+
+    <form
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+        {% csrf_token %}
+
+        <div>
+            <label>Tên sản phẩm</label>
+            <input
+                type="text"
+                name="name"
+                required
+            >
+        </div>
+
+
+        <div>
+            <label>Giá sản phẩm</label>
+            <input
+                type="number"
+                name="price"
+                min="0"
+                required
+            >
+        </div>
+
+
+        <div>
+            <label>Category</label>
+
+            <select name="category" required>
+
+                <option value="">
+                    -- Chọn Category --
+                </option>
+
+                {% for item in category %}
+
+                    <option value="{{ item.id }}">
+                        {{ item.name }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+
+        <div>
+            <label>Brand</label>
+
+            <select name="brand" required>
+
+                <option value="">
+                    -- Chọn Brand --
+                </option>
+
+                {% for item in brand %}
+
+                    <option value="{{ item.id }}">
+                        {{ item.name }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+
+
+       <div>
+    <label>Trạng thái</label>
+
+    <select name="status" id="status_product" required>
+        <option value="0">New</option>
+        <option value="1">Sale</option>
+    </select>
+</div>
+
+<div id="sale-container" style="display: none;">
+    <label>Giảm giá (%)</label>
+
+    <input
+        type="number"
+        name="sale"
+        id="sale"
+        min="0"
+        max="100"
+        value="0"
+    >
+</div>
+
+            
+
+
+
+        <div>
+
+            <label>Company</label>
+
+            <input
+                type="text"
+                name="company"
+            >
+
+        </div>
+
+
+
+        <div>
+
+            <label>Hình ảnh</label>
+
+            <input
+                type="file"
+                name="image"
+                accept="image/png,image/jpeg,image/gif"
+                multiple
+            >
+
+            <p>
+                Chọn tối đa 3 ảnh, mỗi ảnh nhỏ hơn 1MB.
+            </p>
+
+            {% if errors.file %}
+
+                <p>
+                    {{ errors.file }}
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <div>
+
+            <label>Chi tiết sản phẩm</label>
+
+            <textarea
+                name="detail"
+                rows="6"
+            ></textarea>
+
+        </div>
+
+
+
+        <div>
+
+            <button type="submit">
+                Thêm sản phẩm
+            </button>
+
+            <a href="{% url 'my_product' %}">
+                Quay lại
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

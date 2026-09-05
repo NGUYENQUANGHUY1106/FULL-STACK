@@ -1,0 +1,363 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div
+  style="display: flex; gap: 10px"
+  class="my_product"
+>
+
+
+
+  <div
+    style="
+      width: 200px;
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    "
+    class="nav_bar"
+  >
+
+    <h3 style="font-size: 25px; color: orange">
+      ACCOUNT
+    </h3>
+
+    <a
+      style="
+        text-decoration: none;
+        color: gray;
+        font-weight: 600;
+        font-size: 18px;
+      "
+      href="{% url 'account' %}"
+    >
+      ACCOUNT
+    </a>
+
+    <a
+      style="
+        text-decoration: none;
+        color: gray;
+        font-weight: 600;
+        font-size: 18px;
+      "
+      href="{% url 'my_product' %}"
+    >
+      MY PRODUCT
+    </a>
+
+  </div>
+
+
+
+
+  <div
+    style="width: 700px"
+    class="edit_product"
+  >
+
+    <h2
+      style="
+        text-align: center;
+        margin-top: 10px;
+      "
+    >
+      Chỉnh sửa sản phẩm
+    </h2>
+
+
+
+
+    {% if error %}
+
+      <p
+        style="
+          color: red;
+          text-align: center;
+          font-weight: bold;
+        "
+      >
+        {{ error }}
+      </p>
+
+    {% endif %}
+
+
+
+
+    <form
+      action=""
+      method="post"
+      enctype="multipart/form-data"
+      style="
+        display: flex;
+        padding: 10px;
+        flex-direction: column;
+        gap: 10px;
+      "
+    >
+
+      {% csrf_token %}
+
+
+
+      <label>
+        Name
+      </label>
+
+      <input
+        style="padding: 5px"
+        type="text"
+        name="name"
+        value="{{ product.name }}"
+      />
+
+
+
+      <label>
+        Price
+      </label>
+
+      <input
+        style="padding: 5px"
+        type="text"
+        name="price"
+        value="{{ product.price }}"
+      />
+
+
+  
+
+      <label>
+        Status
+      </label>
+
+      <select
+        name="status"
+        style="padding: 5px"
+      >
+
+        <option
+          value="0"
+          {% if product.status == 0 %}
+            selected
+          {% endif %}
+        >
+          New
+        </option>
+
+        <option
+          value="1"
+          {% if product.status == 1 %}
+            selected
+          {% endif %}
+        >
+          Sale
+        </option>
+
+      </select>
+
+
+      <label>
+        Sale
+      </label>
+
+      <input
+        style="padding: 5px"
+        type="number"
+        name="sale"
+        value="{{ product.sale }}"
+      />
+
+
+
+
+      <label>
+        Image
+      </label>
+
+
+      <!--
+        SỬA:
+        multiple cho phép chọn nhiều ảnh mới
+      -->
+
+      <input
+        style="padding: 5px"
+        type="file"
+        name="image"
+        multiple
+        accept="image/*"
+      />
+
+
+
+
+      <label>
+        Ảnh hiện tại:
+      </label>
+
+
+      <div
+        style="
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+        "
+      >
+
+        {% for image in product.images %}
+
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 8px;
+              align-items: center;
+            "
+          >
+
+            <!-- Ảnh -->
+
+            <img
+              src="/media/{{ image }}"
+              alt="{{ product.name }}"
+              width="100"
+              height="100"
+              style="
+                object-fit: cover;
+                border: 1px solid #ddd;
+              "
+            >
+
+
+            <!-- Checkbox xóa ảnh -->
+
+            <label>
+
+              <input
+                type="checkbox"
+                name="delete_images"
+                value="{{ image }}"
+              >
+
+              Xóa
+
+            </label>
+
+          </div>
+
+        {% empty %}
+
+          <p>
+            Chưa có ảnh.
+          </p>
+
+        {% endfor %}
+
+      </div>
+
+
+
+
+      <label>
+        Category
+      </label>
+
+      <select
+        name="category"
+        style="padding: 5px"
+      >
+
+        {% for category in categories %}
+
+          <option
+            value="{{ category.id }}"
+            {% if category.id == product.id_category_id %}
+              selected
+            {% endif %}
+          >
+            {{ category.name }}
+          </option>
+
+        {% endfor %}
+
+      </select>
+
+
+
+      <label>
+        Brand
+      </label>
+
+      <select
+        name="brand"
+        style="padding: 5px"
+      >
+
+        {% for brand in brands %}
+
+          <option
+            value="{{ brand.id }}"
+            {% if brand.id == product.id_brand_id %}
+              selected
+            {% endif %}
+          >
+            {{ brand.name }}
+          </option>
+
+        {% endfor %}
+
+      </select>
+
+
+
+
+      <label>
+        Company
+      </label>
+
+      <input
+        style="padding: 5px"
+        type="text"
+        name="company"
+        value="{{ product.company }}"
+      />
+
+
+
+
+      <label>
+        Detail
+      </label>
+
+      <textarea
+        name="detail"
+        style="padding: 5px; min-height: 100px;"
+      >{{ product.detail }}</textarea>
+
+
+
+      <button
+        type="submit"
+        style="
+          padding: 10px;
+          background-color: orange;
+          color: white;
+          border: none;
+          cursor: pointer;
+          font-weight: bold;
+        "
+      >
+        Update
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+{% endblock %}

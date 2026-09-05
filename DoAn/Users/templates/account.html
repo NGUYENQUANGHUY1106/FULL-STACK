@@ -4,7 +4,7 @@
     <div style="width: 250px; margin-top: 30px; display: flex; flex-direction: column; gap: 15px;" class = "nav_bar">
         <h3 style="font-size: 25px; color: orange;">ACCOUNT</h3>
         <a style="text-decoration: none; color: gray; font-weight: 600; font-size: 18px;" href="{% url 'account' %}">ACCOUNT</a>
-        <a style="text-decoration: none; color: gray; font-weight: 600; font-size: 18px;" href="{% url 'list_product' %}">MY PRODUCT</a>
+        <a style="text-decoration: none; color: gray; font-weight: 600; font-size: 18px;" href="{% url 'my_product' %}">MY PRODUCT</a>
     </div>
     <form style="display: flex; flex-direction: column; gap: 10px; width: 750px; padding: 10px;" class="info_user" method="post" enctype="multipart/form-data"> 
         {% csrf_token %}

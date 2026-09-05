@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="product-details">
+
+    {% for item in products %}
+
+    <div class="product-left">
+
+        <div class="main-image-box">
+
+            <img
+                id="main-product-image"
+                src="/media/{{ item.images.0 }}"
+                alt="{{ item.name }}"
+                class="main-image"
+            >
+
+            <div class="zoom-button" id="zoom-button">
+                ZOOM
+            </div>
+
+        </div>
+
+        <div class="thumbnail-list">
+
+            <button class="arrow-btn">‹</button>
+
+            {% for image in item.images %}
+
+            <div class="thumbnail">
+
+                <img
+                    src="/media/{{ image }}"
+                    alt="{{ item.name }}"
+                    class="thumbnail-image"
+                >
+
+            </div>
+
+            {% endfor %}
+
+            <button class="arrow-btn">›</button>
+
+        </div>
+
+    </div>
+
+
+    <div class="product-right">
+
+        {% if item.status == 0 %}
+
+        <div class="new-label-right">
+            NEW
+        </div>
+
+        {% endif %}
+
+        <div class="product-content">
+
+            <h2>{{ item.name }}</h2>
+
+            <p class="web-id">
+                Web ID: {{ item.id }}
+            </p>
+
+            <div class="rating">
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>☆</span>
+            </div>
+
+            <div class="price">
+                ${{ item.price }}
+            </div>
+
+            <div class="quantity-box">
+
+                <label>Quantity:</label>
+
+                <input
+                    type="number"
+                    min="1"
+                    max="100"
+                    value="1"
+                >
+
+            </div>
+
+            <button class="add-cart">
+                Add to cart
+            </button>
+
+            <div class="product-info">
+
+                <p>
+                    <strong>Availability:</strong>
+                    <span>In Stock</span>
+                </p>
+
+                <p>
+                    <strong>Condition:</strong>
+                    <span>
+                        {% if item.status == 0 %}
+                            New
+                        {% else %}
+                            Sale
+                        {% endif %}
+                    </span>
+                </p>
+
+                <p>
+                    <strong>Category:</strong>
+                    <span>{{ item.id_category.name }}</span>
+                </p>
+
+                <p>
+                    <strong>Brand:</strong>
+                    <span>{{ item.id_brand.name }}</span>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}

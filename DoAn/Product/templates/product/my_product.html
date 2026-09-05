@@ -1,0 +1,71 @@
+{%extends 'base.html' %} {% block content %}
+<div style="display: flex; gap: 10px" class="my_product">
+  <div
+    style="
+      width: 200px;
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    "
+    class="nav_bar"
+  >
+    <h3 style="font-size: 25px; color: orange">ACCOUNT</h3>
+    <a
+      style="
+        text-decoration: none;
+        color: gray;
+        font-weight: 600;
+        font-size: 18px;
+      "
+      href="{% url 'account' %}"
+      >ACCOUNT</a
+    >
+    <a
+      style="
+        text-decoration: none;
+        color: gray;
+        font-weight: 600;
+        font-size: 18px;
+      "
+      href="{% url 'my_product' %}"
+      >MY PRODUCT</a
+    >
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 10px" class="items">
+    <table border="1" cellpadding="5" style="width: 600px; margin-top: 20px; text-align: center;">
+      <thead style="background-color: orange; color: white;">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th colspan="2">Action</th>
+      </thead>
+      <tbody>
+        {% for item in my_product %}
+
+        <tr>
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>
+            {% if item.image %}
+              <img
+                src="/media/{{ item.first_image }}"
+                width="80"
+                alt="{{ item.name }}"
+              >
+            {% endif %}
+          </td>
+          <td>{{item.price}} $</td>
+          <td><a style="text-decoration: none; color: black; padding: 5px; background-color: rgb(203, 45, 21); color: white;" href="{% url 'edit_product' item.id%}">Edit</a></td>
+          <td><a style="text-decoration: none; color: black; padding: 5px; background-color: rgb(53, 195, 21);" href="">Delete</a></td>
+
+          
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <button style="padding: 5px; background-color: orange; font-weight: 500; width: 80px; right: 0;"><a style="text-decoration : none; color: white;" href="{% url 'add_product' %}">Add New</a></button>
+  </div>
+</div>
+{% endblock %}
