@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+
+{% block content %}
 
 <div
   style="
@@ -10,57 +12,86 @@
   "
   class="home"
 >
+
   {% for item in products %}
 
-  <a
-    href="{% url 'product_details' item.id %}"
-    style="text-decoration: none; color: inherit"
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 1px solid rgb(230, 229, 229);
+      margin: 10px;
+      padding: 10px;
+      width: 287px;
+      text-align: center;
+    "
+    class="item"
   >
-    <div
-      style="
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        border: 1px solid rgb(230, 229, 229);
-        margin: 10px;
-        padding: 10px;
-        width: 287px;
-        text-align: center;
-      "
-      class="item"
+
+    <!-- PHẦN NÀY MỚI ĐƯỢC CLICK ĐỂ XEM CHI TIẾT -->
+    <a
+      href="{% url 'product_details' item.id %}"
+      style="text-decoration: none; color: inherit"
     >
+
       {% if item.images %}
+
       <img
         style="width: 100%; height: 150px"
         src="/media/{{ item.images.0 }}"
         alt="{{ item.name }}"
       />
+
       {% endif %}
 
-      <h3 style="color: orange; font-weight: 500; font-size: 22px">
+      <h3
+        style="
+          color: orange;
+          font-weight: 500;
+          font-size: 22px;
+        "
+      >
         {{ item.price }} $
       </h3>
 
-      <p style="font-size: 18px; color: gray">{{ item.name }}</p>
-
-      <button
+      <p
         style="
-          padding: 10px;
-          background-color: gray;
-          color: white;
-          border-radius: 10px;
+          font-size: 18px;
+          color: gray;
         "
       >
-        Add to Cart
-      </button>
-    </div>
-  </a>
+        {{ item.name }}
+      </p>
+
+    </a>
+
+
+    <button
+    
+      type="submit"
+      class="add-to-cart"
+      data-product-id="{{ item.id }}"
+      style="
+        padding: 10px;
+        background-color: gray;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+      "
+    >
+      Add to Cart
+    </button>
+
+  </div>
+
 
   {% empty %}
 
   <p>Không có sản phẩm nào</p>
 
   {% endfor %}
+
 </div>
 
 {% endblock %}

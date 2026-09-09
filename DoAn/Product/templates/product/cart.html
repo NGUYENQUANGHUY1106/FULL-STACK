@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div
+    style="
+        width: 1200px;
+        margin: 30px auto;
+    "
+>
+
+    <h1>Giỏ hàng</h1>
+
+
+    {% if cart_items %}
+
+
+    <div
+        style="
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        "
+    >
+
+        {% for item in cart_items %}
+
+        <div
+            class="cart-item"
+            data-cart-id="{{ item.id }}"
+            style="
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+            "
+        >
+
+
+            <div style="width: 150px;">
+
+                {% if item.id_product.images %}
+
+                <img
+                    src="/media/{{ item.id_product.images.0 }}"
+                    alt="{{ item.id_product.name }}"
+                    style="
+                        width: 130px;
+                        height: 130px;
+                        object-fit: cover;
+                    "
+                >
+
+                {% endif %}
+
+            </div>
+
+
+
+            <div style="flex: 1;">
+
+                <h2>
+                    {{ item.id_product.name }}
+                </h2>
+
+                <p>
+                    {{ item.id_product.detail }}
+                </p>
+
+                <p>
+                    Giá:
+                    <strong>
+                        {{ item.id_product.price }} $
+                    </strong>
+                </p>
+
+            </div>
+
+
+
+            <div
+                style="
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                "
+            >
+
+                <button
+                    type="button"
+                    class="quantity-btn minus-btn"
+                    data-cart-id="{{ item.id }}"
+                >
+                    -
+                </button>
+
+
+                <span
+                    class="quantity"
+                    style="
+                        min-width: 30px;
+                        text-align: center;
+                        font-size: 18px;
+                    "
+                >
+                    {{ item.quantity }}
+                </span>
+
+
+                <button
+                    type="button"
+                    class="quantity-btn plus-btn"
+                    data-cart-id="{{ item.id }}"
+                >
+                    +
+                </button>
+
+            </div>
+
+
+            <div
+                style="
+                    width: 150px;
+                    text-align: right;
+                "
+            >
+
+                <strong>
+                    <span class="item-total">
+                        {{ item.id_product.price|floatformat:2 }}
+                    </span>
+                    $
+                </strong>
+
+            </div>
+
+
+
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+
+    <div
+        style="
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 30px;
+            padding: 20px;
+            border-top: 2px solid #ddd;
+        "
+    >
+
+        <div
+            style="
+                font-size: 24px;
+                font-weight: bold;
+            "
+        >
+
+            TOTAL:
+
+            <span id="cart-total">
+                {{ total|floatformat:2 }}
+            </span>
+
+            $
+
+        </div>
+
+    </div>
+
+
+    {% else %}
+
+        <h2>Giỏ hàng đang trống</h2>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

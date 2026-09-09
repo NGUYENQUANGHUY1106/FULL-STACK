@@ -7,23 +7,29 @@
       />
     </div>
 
-    <p><a style="text-decoration: none; color: black;" href="{% url 'home' %}">QH-SHOPPER</a></p>
+    <p>
+      <a style="text-decoration: none; color: black" href="{% url 'home' %}"
+        >QH-SHOPPER</a
+      >
+    </p>
   </div>
 
   <ul class="right_header">
     {% if current_user %}
     <a href="{% url 'account' %}">Account</a>
-    <a href="">Cart</a>
+    <div style="display: flex; align-items: center; gap: 5px;">
+      <a href="{% url 'cart' %}">Cart </a>
+      <span id="product_count" style="margin-top: -10px; font-size: 18px; color: red; font-weight: 500;">{{cart_count}}</span>
+    </div>
     <a href="{% url 'blog_list' %}">Blog</a>
     <a href="{% url 'custom_logout' %}">Logout</a>
-    <span style="font-size: 18px;">Xin chào, {{ current_user.username }}</span>
+    <span style="font-size: 18px">Xin chào, {{ current_user.username }}</span>
     {% else %}
     <a href="{% url 'account'  %}">Account</a>
     <a href="">Cart</a>
     <a href="{% url 'blog_list' %}">Blog</a>
     <a href="{% url 'login' %}">Login</a>
     <a href="{% url 'register' %}">Register</a>
-
 
     {% endif %}
   </ul>

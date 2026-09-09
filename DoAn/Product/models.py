@@ -34,3 +34,23 @@ class Product(models.Model):
 
     class Meta:
         db_table = 'Product'
+
+
+class Cart(models.Model):
+
+    id_user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        db_column='id_user'
+    )
+
+    id_product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        db_column='id_product'
+    )
+
+    quantity = models.IntegerField(default=1)
+
+    class Meta:
+        db_table = 'Cart'

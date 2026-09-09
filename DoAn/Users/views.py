@@ -6,7 +6,7 @@ from .models import User,Country
 from .forms import RegisterForm ,LoginForm
 from django.contrib.auth import  login,logout
 
-from Product.models import Product
+from Product.models import Cart, Product
 from django.contrib.auth.hashers import make_password ,check_password
 
 # Create your views here.
@@ -29,7 +29,10 @@ def home(request):
         except Exception:
 
             product.images = []
-    return render(request , 'index.html' ,{'products' : products})
+    
+
+    return render(request , 'index.html' ,{'products' : products,
+                            })
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST,request.FILES)

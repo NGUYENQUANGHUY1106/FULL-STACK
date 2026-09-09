@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-
     zoomButton.addEventListener("click", function (event) {
 
         event.stopPropagation();
