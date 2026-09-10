@@ -39,6 +39,9 @@ def cart(request):
                     is_deleted = True
                 else:
                     cart_item.save()
+            elif action == 'delete':
+                    cart_item.delete()
+                    is_deleted = True
             else:
                 return JsonResponse({'success': False, 'message': 'Action không hợp lệ'})
 

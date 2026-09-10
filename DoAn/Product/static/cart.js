@@ -72,6 +72,77 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+
+  const deleteButtons = document.querySelectorAll(".btn-delete");
+
+  deleteButtons.forEach(function (button)
+  {
+    button.addEventListener("click", function ()
+  {
+    console.log("ok");
+    
+    //  lấy id 
+    const cartID = this.dataset.deleteId ;
+
+    //  tìm dòng sản phẩm 
+
+    const cartItem = this.closest(".cart-item");
+
+
+    // gửi dữ liệu
+
+    fetch("/Product/account/cart/", {
+      method : 'POST',
+      headers : {
+        "Content-Type": "application/json",
+        "X-CSRFToken": getCookie("csrftoken"),
+      },
+      
+      body : JSON.stringify({
+        cart_id :  cartID,
+        action : 'delete',
+      }),
+    })
+    .then (response =>
+    {
+      return response.json()
+    }
+    ).then (data =>
+      {
+            if(!data.success)
+            {
+              alert(data.message || " Xóa sản phẩm không thành công")
+            }
+            // xóa khỏi giao diện 
+            if (cartItem)
+            {
+              cartItem.remove()
+            }
+            // cập nhật lại số lượng header 
+
+            const productCount = document.getElementById("product_count")
+             if (productCount && data.cart_count !== undefined) {
+                productCount.textContent = data.cart_count;
+            }
+
+            const cartTotal =
+                document.getElementById("cart-total");
+
+            if (cartTotal && data.total !== undefined) {
+                cartTotal.textContent =
+                    Number(data.total).toFixed(2);
+            }
+      }
+    )
+    .catch(error =>
+    {
+      console.error("lỗi",error)
+    }
+    )
+
+  })
+  })
+
   function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== "") {

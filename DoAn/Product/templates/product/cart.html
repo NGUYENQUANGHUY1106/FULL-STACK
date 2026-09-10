@@ -90,6 +90,7 @@
 
                 <button
                     type="button"
+                    style="padding: 5px;"
                     class="quantity-btn minus-btn"
                     data-cart-id="{{ item.id }}"
                 >
@@ -111,6 +112,7 @@
 
                 <button
                     type="button"
+                    style="padding: 5px;"
                     class="quantity-btn plus-btn"
                     data-cart-id="{{ item.id }}"
                 >
@@ -134,6 +136,17 @@
                     $
                 </strong>
 
+            </div>
+
+            <div>
+                <button
+                class="btn-delete"
+                type="button"
+                style="padding: 5px; color: white; background-color: red;"
+                 data-delete-id="{{item.id}}"
+                >
+                    Delete
+                </button>
             </div>
 
 
