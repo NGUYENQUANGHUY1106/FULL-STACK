@@ -1,0 +1,694 @@
+{% extends 'base.html' %} {% block content %}
+
+<div style="width: 1200px; margin: 30px auto">
+
+  <div style="margin-bottom: 50px">
+    <span
+      style="
+        background-color: #ff9800;
+        color: white;
+        padding: 5px 12px;
+        font-size: 13px;
+      "
+    >
+      Home
+    </span>
+
+    <span style="margin-left: 10px; color: #999; font-size: 13px">
+      Check out
+    </span>
+  </div>
+
+
+  <div
+    style="
+      background-color: #f1f1ed;
+      padding: 15px;
+      margin-top: 35px;
+      margin-bottom: 35px;
+      color: #999;
+      font-size: 13px;
+    "
+  >
+    Please use Register And Checkout to easily get access to your order history,
+    or use Checkout as Guest
+  </div>
+
+
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px">
+
+    {% if not  user_id %}
+    <div id="quick-register" style="display: block;">
+      <h3 style="font-size: 17px; font-weight: normal; margin-bottom: 5px">
+        Register
+      </h3>
+
+      <p style="color: #999; font-size: 13px; margin-bottom: 15px">
+        Đăng ký nhanh & đặt hàng
+      </p>
+
+      <input
+        type="text"
+        name="register_username"
+        placeholder="Username"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="email"
+        name="register_email"
+        placeholder="Email"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="register_first_name"
+        placeholder="First Name"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="register_last_name"
+        placeholder="Last Name"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="register_phone"
+        placeholder="Phone number"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="password"
+        name="register_password"
+        placeholder="Password"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="password"
+        name="register_confirm_password"
+        placeholder="Confirm Password"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 15px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <button
+        type="button"
+        style="
+          background-color: #ff9800;
+          color: white;
+          border: none;
+          padding: 10px 15px;
+          cursor: pointer;
+        "
+      >
+        Register 
+      </button>
+    </div>
+    <!-- info -->
+    <div>
+      <h3 style="font-size: 17px; font-weight: normal; margin-bottom: 10px">
+        Shopper Information
+      </h3>
+
+
+      <input
+        type="text"
+        name="username"
+        placeholder="User Name"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="phone"
+        placeholder="Phone Number"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 15px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+
+      <div style="display: flex; gap: 10px">
+        <button
+          type="button"
+          style="
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+          "
+        >
+          Order
+        </button>
+
+       
+      </div>
+
+
+    </div>
+    <!-- bill to -->
+    <div>
+      <h3 style="font-size: 17px; font-weight: normal; margin-bottom: 10px">
+        Bill To
+      </h3>
+
+      <input
+        type="text"
+        name="company_name"
+        placeholder="Company Name"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Email*"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="title"
+        placeholder="Title"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="first_name"
+        placeholder="First Name*"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="middle_name"
+        placeholder="Middle Name"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="last_name"
+        placeholder="Last Name*"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="address_1"
+        placeholder="Address 1*"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="address_2"
+        placeholder="Address 2"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+    </div>
+    <!-- shipping -->
+    <div>
+      <h3 style="font-size: 17px; font-weight: normal; margin-bottom: 10px">
+        Shipping Order
+      </h3>
+
+      <textarea
+        name="order_note"
+        placeholder="Notes about your order, Special Notes for Delivery"
+        style="
+          width: 100%;
+          height: 220px;
+          box-sizing: border-box;
+          resize: none;
+          border: none;
+          background-color: #f1f1ed;
+          padding: 15px;
+        "
+      ></textarea>
+
+      <label style="display: block; margin-top: 15px; font-size: 13px">
+        <input type="checkbox" name="shipping_bill" />
+
+        Shipping to bill address
+      </label>
+    </div>
+    {% else %}
+    <!-- info -->
+    <div>
+      <h3 style="font-size: 17px; font-weight: normal; margin-bottom: 10px">
+        Shopper Information
+      </h3>
+
+
+      <input
+        type="text"
+        name="username"
+        placeholder="User Name"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="phone"
+        placeholder="Phone Number"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 15px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+
+      <div style="display: flex; gap: 10px">
+        <button
+          type="button"
+          style="
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+          "
+        >
+          Order
+        </button>
+
+       
+      </div>
+
+
+    </div>
+    <!-- bill to -->
+    <div>
+      <h3 style="font-size: 17px; font-weight: normal; margin-bottom: 10px">
+        Bill To
+      </h3>
+
+      <input
+        type="text"
+        name="company_name"
+        placeholder="Company Name"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Email*"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="title"
+        placeholder="Title"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="first_name"
+        placeholder="First Name*"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="middle_name"
+        placeholder="Middle Name"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="last_name"
+        placeholder="Last Name*"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="address_1"
+        placeholder="Address 1*"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          margin-bottom: 7px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+
+      <input
+        type="text"
+        name="address_2"
+        placeholder="Address 2"
+        style="
+          width: 100%;
+          box-sizing: border-box;
+          padding: 9px;
+          border: none;
+          background-color: #f1f1ed;
+        "
+      />
+    </div>
+    <!-- shipping -->
+    <div>
+      <h3 style="font-size: 17px; font-weight: normal; margin-bottom: 10px">
+        Shipping Order
+      </h3>
+
+      <textarea
+        name="order_note"
+        placeholder="Notes about your order, Special Notes for Delivery"
+        style="
+          width: 100%;
+          height: 220px;
+          box-sizing: border-box;
+          resize: none;
+          border: none;
+          background-color: #f1f1ed;
+          padding: 15px;
+        "
+      ></textarea>
+
+      <label style="display: block; margin-top: 15px; font-size: 13px">
+        <input type="checkbox" name="shipping_bill" />
+
+        Shipping to bill address
+      </label>
+    </div>
+    {% endif %}
+  </div>
+
+
+
+  <div style="margin-top: 45px">
+    <h3 style="font-size: 17px; font-weight: normal; margin-bottom: 15px">
+      Review & Payment
+    </h3>
+
+
+    <div
+      style="
+        background-color: #ff9800;
+        color: white;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        padding: 12px;
+        font-weight: bold;
+      "
+    >
+      <div>Item</div>
+
+      <div>Price</div>
+
+      <div>Quantity</div>
+
+      <div>Total</div>
+    </div>
+
+
+    <div
+      style="
+        border: 1px solid #eee;
+        padding: 20px;
+        color: #999;
+        text-align: center;
+      "
+    >
+      Sản phẩm trong giỏ hàng sẽ hiển thị ở đây
+    </div>
+
+    <!-- TOTAL -->
+
+    <div style="margin-top: 20px; display: flex; justify-content: flex-end">
+      <div style="width: 300px; border: 1px solid #eee; padding: 20px">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #777;
+          "
+        >
+          <span> Sub Total </span>
+
+          <span> 0 ₫ </span>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #777;
+          "
+        >
+          <span> Shipping </span>
+
+          <span> 0 ₫ </span>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid #eee; margin: 15px 0" />
+
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 16px;
+          "
+        >
+          <span> Total </span>
+
+          <span style="color: #ff9800"> 0 ₫ </span>
+        </div>
+
+        <button
+          type="button"
+          style="
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+          "
+        >
+          Place Order
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

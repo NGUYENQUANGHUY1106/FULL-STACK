@@ -54,3 +54,13 @@ class Cart(models.Model):
 
     class Meta:
         db_table = 'Cart'
+
+class history (models.Model):
+    email = models.EmailField()
+    phone = models.TextField(max_length=10)
+    name = models.TextField(max_length=100)
+    id_user = models.ForeignKey(User,on_delete=models.CASCADE,db_column='id_user')
+    price = models.TextField(max_length=100)
+
+    class Meta :
+         db_table = 'history'

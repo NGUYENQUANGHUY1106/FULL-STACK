@@ -1,13 +1,18 @@
 import ast
+import json
 
-from django.shortcuts import render,redirect
+from django.core.files.storage import default_storage
+from django.http import JsonResponse
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import User,Country
 
 from .forms import RegisterForm ,LoginForm
 from django.contrib.auth import  login,logout
+from django.views.decorators.http import require_POST
 
-from Product.models import Cart, Product
+from Product.models import Cart, Product,Brand,Category
 from django.contrib.auth.hashers import make_password ,check_password
+from Users.models import User
 
 # Create your views here.
 def home(request):
@@ -50,7 +55,6 @@ def register(request):
     else:
         form = RegisterForm()
     return render(request,'register.html',{'form' : form})
-
 def login(request): 
     if request.method == 'POST': 
         form = LoginForm(request.POST)
@@ -78,12 +82,9 @@ def login(request):
     else:
         form = LoginForm()
     return render (request,'login.html',{'form' : form})
-
 def custom_logout(request):
     request.session.flush()
     return redirect('login')
-
-
 def account(request):
     user_id = request.session.get('user_id')
     user = User.objects.get(
@@ -112,3 +113,7 @@ def account(request):
     return render(request,'account.html',{'user' : user,
                                           'country' :country
                                           })
+
+
+    user_id = request.session.get('user_id')
+    return render(request,'Product/checkout.html',{'user_id' : user_id})
