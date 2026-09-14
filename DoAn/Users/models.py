@@ -15,6 +15,11 @@ class User(models.Model):
     avatar = models.ImageField(upload_to="DoAn_image/",null=True,blank=True)
     first_name = models.CharField(max_length=50,blank=True)
     last_name = models.CharField(max_length=50,blank=True)
+    phone = models.CharField(
+    max_length=20,
+    null=True,
+    blank=True
+)    
     id_country = models.ForeignKey(
         Country,on_delete=models.CASCADE,
         related_name="users"

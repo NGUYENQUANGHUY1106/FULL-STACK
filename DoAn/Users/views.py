@@ -2,9 +2,12 @@ import ast
 import json
 
 from django.core.files.storage import default_storage
+from django.core.mail import EmailMultiAlternatives
 from django.http import JsonResponse
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import User,Country
+from django.conf import  settings
+from django.template.loader import render_to_string
 
 from .forms import RegisterForm ,LoginForm
 from django.contrib.auth import  login,logout
@@ -49,6 +52,7 @@ def register(request):
             user.is_superuser = False
             user.is_staff = False
             user.save()
+            
             print("Đăng kí thành công")
             return redirect('login')
             
@@ -115,5 +119,4 @@ def account(request):
                                           })
 
 
-    user_id = request.session.get('user_id')
-    return render(request,'Product/checkout.html',{'user_id' : user_id})
+

@@ -1,15 +1,20 @@
 import ast
 import json
+from multiprocessing import context
 
 from django.core.files.storage import default_storage
 from django.core.mail import EmailMultiAlternatives
 from django.core.files.storage import default_storage
 from django.http import JsonResponse
 from django.shortcuts import render,redirect,get_object_or_404
+from django.conf import settings
+from django.template.loader import render_to_string
 from .models import User
 from django.views.decorators.http import require_POST
+from Users.models import User,Country
+from django.contrib.auth.hashers import make_password
 
-from Product.models import Cart, Product,Brand,Category
+from Product.models import Cart, Product,Brand,Category,history
 # add product
 ALLOWED_FILE = {'png', 'jpg', 'jpeg', 'gif'}
 MAX_SIZE_FILE = 1 * 1024 * 1024  # 1MB
@@ -492,14 +497,266 @@ def edit_product(request, id):
 
 # checkout
 def checkout(request):
-    return render (request,'checkout.html')
-# def send_welcome_email(user):
-#     subject  = 'Chào mừng bạn đén với website'
-#     from_email = settings.DEFAULT_FROM_EMAIL
-#     to = [user.email]
+    user_id = request.session.get('user_id')
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            cart_id = data.get('cart_id')
+            action = data.get('action')
 
-#     text_content = f"Chào {user.username},cảm ơn bạn đã đăng kí"
+            if not cart_id:
+                return JsonResponse({'success': False, 'message': 'Không có cart_id'})
 
-#     # render HTML
+            cart_item = get_object_or_404(
+                Cart.objects.select_related('id_product'),
+                id=cart_id,
+                id_user_id=user_id
+            )
 
-#     html_content = render_to_string('emails/welcome')
+            is_deleted = False
+
+            if action == 'increase':
+                cart_item.quantity += 1
+                cart_item.save()
+            elif action == 'decrease':
+                cart_item.quantity -= 1
+                if cart_item.quantity <= 0:
+                    cart_item.delete()
+                    is_deleted = True
+                else:
+                    cart_item.save()
+            elif action == 'delete':
+                    cart_item.delete()
+                    is_deleted = True
+            else:
+                return JsonResponse({'success': False, 'message': 'Action không hợp lệ'})
+
+            # lấy lại toàn bộ giỏ hàng sau khi đã chỉnh
+            user_cart = Cart.objects.filter(id_user_id=user_id).select_related('id_product')
+            #  tổng tiền
+            total = sum(item.id_product.price * item.quantity for item in user_cart)
+            # tỏng số lượng snar phẩm 
+            cart_count = sum(item.quantity for item in user_cart)
+
+            if is_deleted:
+                return JsonResponse({
+                    'success': True,
+                    'deleted': True,
+                    'cart_id': cart_id,
+                    'cart_count': cart_count,
+                    'total': float(total)
+                })
+
+            item_total = cart_item.id_product.price * cart_item.quantity
+            return JsonResponse({
+                'success': True,
+                'deleted': False,
+                'cart_id': cart_item.id,
+                'quantity': cart_item.quantity,
+                'item_total': float(item_total),
+                'total': float(total),
+                'cart_count': cart_count
+            })
+
+        except json.JSONDecodeError:
+            return JsonResponse({'success': False, 'message': 'JSON không hợp lệ'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'message': str(e)})
+    # lúc vừa vào trang cart
+    cart_items = Cart.objects.filter(id_user_id=user_id).select_related('id_product')
+    total = 0
+    # tính tổng tiền lúc vừa mới vào trang
+    for item in cart_items:
+        try:
+            item.id_product.images = ast.literal_eval(item.id_product.image) if item.id_product.image else []
+        except (ValueError, SyntaxError):
+            item.id_product.images = []
+        total += item.id_product.price * item.quantity
+
+    return render(
+        request,
+        'product/checkout.html',
+        {
+            'cart_items': cart_items,
+            'total': total,
+            'user_id' : user_id
+        }
+    )
+
+def checkout_register(request):
+    if request.method != 'POST':
+        return redirect ('checkout')
+    username  = request.POST.get('register_username','').strip()
+    email  = request.POST.get('register_email','').strip()
+    phone  = request.POST.get('register_phone','').strip()
+    first_name  = request.POST.get('register_first_name','').strip()
+    last_name  = request.POST.get('register_last_name','').strip()
+    password  = request.POST.get('register_password','').strip()
+    confirm_password  = request.POST.get('register_confirm_password','').strip()
+    if password != confirm_password:
+        return render(request,'Product/checkout.html',{'register_error' :'Mật khẩu không khớp'})
+    if User.objects.filter(email = email):
+        return render(request,'Product/checkout.html',{'register_error' :'Email đã tồn tại '})
+
+    # tạo user 
+    user = User()
+    user.username = username
+    user.email = email
+    user.phone = phone
+    user.first_name = first_name
+    user.last_name = last_name
+    user.password = make_password(password)
+    user.is_superuser = False
+    user.is_staff = False
+
+    country = Country.objects.first()
+    if country :
+        user.id_country = country
+    user.save()
+    request.session['user_id'] = user.id
+
+    try:
+        send_welcome_email(user)
+    except Exception as e:
+        print('Lỗi gủi email', e)
+    return redirect('login')
+
+
+
+def send_welcome_email(user):
+    
+    subject  = 'Chào mừng bạn đén với website'
+    from_email = settings.DEFAULT_FROM_EMAIL
+    to = [user.email]
+
+    text_content = f"Chào {user.username},cảm ơn bạn đã đăng kí"
+
+    # render HTML
+
+    html_content = render_to_string('emails/welcome_email.html',{'user' : user})
+
+    #  gửi email
+
+    msg = EmailMultiAlternatives(subject,text_content,from_email,to)
+    msg.attach_alternative(html_content,"text/html")
+    msg.send()
+
+from decimal import Decimal
+from django.shortcuts import render, redirect
+from .models import Cart, history
+
+def send_order(request):
+
+    user_id = request.session.get('user_id')
+
+    if not user_id:
+        return redirect('login')
+
+    if request.method == 'POST':
+        username = request.POST.get('username', '')
+        email = request.POST.get('email', '')
+        phone = request.POST.get('phone', '')
+
+        company_name = request.POST.get('company_name', '')
+        bill_email = request.POST.get('bill_email', '')
+        title = request.POST.get('title', '')
+        first_name = request.POST.get('first_name', '')
+        middle_name = request.POST.get('middle_name', '')
+        last_name = request.POST.get('last_name', '')
+        address_1 = request.POST.get('address_1', '')
+        address_2 = request.POST.get('address_2', '')
+
+        order_note = request.POST.get('order_note', '')
+        shipping_bill = request.POST.get('shipping_bill', '')
+
+        cart_items = Cart.objects.filter(
+            id_user_id=user_id
+        ).select_related('id_product')
+
+        order_items = []
+        total_price = Decimal('0')
+
+        for item in cart_items:
+            price = item.id_product.price
+            quantity = item.quantity
+            item_total = price * quantity
+
+            total_price += item_total
+
+            order_items.append({
+                'name': item.id_product.name,
+                'image' : item.id_product.image,
+                'price': price,
+                'quantity': quantity,
+                'total': item_total,
+            })
+
+            history.objects.create(
+                email=email,
+                phone=phone,
+                name=item.id_product.name,
+                price=item_total,
+                id_user_id=user_id
+            )
+
+        context = {
+            'username': username,
+            'email': email,
+            'phone': phone,
+            'company_name': company_name,
+            'bill_email': bill_email,
+            'title': title,
+            'first_name': first_name,
+            'middle_name': middle_name,
+            'last_name': last_name,
+            'address_1': address_1,
+            'address_2': address_2,
+            'order_note': order_note,
+            'shipping_bill': shipping_bill,
+
+            'order_items': order_items,
+
+            'price': total_price,
+            'total_price': total_price,
+        }
+        user = get_object_or_404(User,
+                                 id = user_id)
+        try :
+            send_order_user(user,context)
+        except Exception as e :
+            print("Lỗi gửi email",e)
+        return render(
+            request,
+            'emails/send_order.html',
+            context
+        )
+
+    return redirect('cart')
+
+def send_order_user(user, context):
+    subject = 'QH Shopper - Cảm ơn bạn đã đặt hàng'
+    from_email = settings.DEFAULT_FROM_EMAIL
+    to = [user.email]
+
+    text_content = (
+        f"Chào {user.username},\n\n"
+        f"Cảm ơn bạn đã tin tưởng QH Shopper và đặt hàng."
+    )
+
+    html_content = render_to_string(
+        'emails/send_order.html',
+        context
+    )
+
+    msg = EmailMultiAlternatives(
+        subject,
+        text_content,
+        from_email,
+        to
+    )
+
+    msg.attach_alternative(html_content, "text/html")
+
+    msg.send()
+
+

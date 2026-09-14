@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+    
+        * {
+            box-sizing: border-box;
+        }
+    
+        .order-page {
+            min-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+    
+        .order-card {
+            background-color: #212529;
+            width: 100%;
+            max-width: 650px;
+            padding: 35px 25px;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+    
+        .order-title {
+            color: #b35313;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 25px;
+        }
+    
+        .customer-info {
+            color: #a0a6b2;
+            font-size: 13.5px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+    
+        .customer-info p {
+            margin-bottom: 12px;
+        }
+    
+        .customer-info .highlight {
+            color: #ffffff;
+            font-weight: 600;
+        }
+    
+        .phone-row {
+            margin-top: 15px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+    
+        .phone-row span {
+            color: #a0a6b2;
+            font-weight: normal;
+        }
+    
+        .order-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+    
+        .order-table th {
+            background-color: #92420f;
+            color: #381a04;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 9px 8px;
+        }
+    
+        .order-table th:first-child,
+        .order-table td:first-child {
+            text-align: left;
+            padding-left: 10px;
+        }
+    
+        .order-table th:nth-child(2),
+        .order-table td:nth-child(2) {
+            text-align: center;
+        }
+    
+        .order-table th:nth-child(3),
+        .order-table td:nth-child(3) {
+            text-align: center;
+        }
+    
+        .order-table th:last-child,
+        .order-table td:last-child {
+            text-align: right;
+            padding-right: 10px;
+        }
+    
+        .order-table td {
+            padding: 12px 8px;
+            color: #9ea5b0;
+            font-size: 13.5px;
+            border-bottom: 1px solid #31363e;
+            vertical-align: middle;
+        }
+    
+        .summary-section {
+            text-align: right;
+            color: #9ea5b0;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+    
+        .summary-section span {
+            color: #ffffff;
+            font-weight: 600;
+        }
+    
+        .grand-total {
+            color: #b35313 !important;
+            font-size: 16px;
+            font-weight: 700 !important;
+            margin-top: 12px;
+        }
+    
+        .divider {
+            border: none;
+            border-top: 1px solid #363b43;
+            margin-bottom: 20px;
+        }
+    
+        .order-footer {
+            text-align: center;
+            color: #727a86;
+            font-size: 13.5px;
+        }
+    
+        .empty-order {
+            text-align: center;
+            color: #9ea5b0;
+            padding: 20px;
+        }
+    
+    </style>
+<body>
+    
+
+
+
+<div class="order-page">
+
+    <div class="order-card">
+
+        <h2 class="order-title">
+            ORDER CONFIRMATION
+        </h2>
+
+
+        <div class="customer-info">
+
+            <p>
+                Xin chào
+                <span class="highlight">
+                    {{ first_name }} {{ middle_name }} {{ last_name }}
+                </span>
+            </p>
+
+            <p>
+                Cảm ơn bạn đã đặt hàng.
+                Theo dõi thông tin đặt hàng của bạn.
+            </p>
+
+            <div class="phone-row">
+
+                Phone:
+
+                <span>
+                    {{ phone }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        {% if order_items %}
+
+        <table class="order-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Product
+                    </th>
+
+                    <th>
+                        Price
+                    </th>
+
+                    <th>
+                        Quantity
+                    </th>
+
+                   <th> 
+                        Total
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for item in order_items %}
+
+                <tr>
+
+                    <td>
+                        {{ item.name }}
+                    </td>
+
+                    <td>
+                        ${{ item.price|floatformat:2 }}
+                    </td>
+
+                    <td>
+                        {{ item.quantity }}
+                    </td>
+                    <!-- <td>
+                        <img src="{}" alt="">
+                    </td> -->
+
+                    <td>
+                        ${{ item.total|floatformat:2 }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+        <div class="summary-section">
+
+            <div>
+                Cart Sub Total:
+
+                <span>
+                    ${{ total_price|floatformat:2 }}
+                </span>
+            </div>
+
+
+            <div>
+                Exo Tax:
+
+                <span>
+                    $2.00
+                </span>
+            </div>
+
+
+            <div>
+                Shipping Cost:
+
+                <span>
+                    Free
+                </span>
+            </div>
+
+
+            <div class="grand-total">
+
+                Total:
+
+                ${{ total_price|add:"2"|floatformat:2 }}
+
+            </div>
+
+        </div>
+
+
+        {% else %}
+
+        <div class="empty-order">
+
+            Không có sản phẩm trong đơn hàng.
+
+        </div>
+
+        {% endif %}
+
+
+        <hr class="divider">
+
+
+        <div class="order-footer">
+
+            Cảm ơn bạn đã đặt hàng tại QH-SHOPPER!
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
