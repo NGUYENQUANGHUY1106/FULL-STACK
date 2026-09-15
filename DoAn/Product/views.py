@@ -674,10 +674,17 @@ def send_order(request):
         ).select_related('id_product')
 
         order_items = []
+        tax = Decimal('2.00')
         total_price = Decimal('0')
 
         for item in cart_items:
             price = item.id_product.price
+            image = item.id_product.image
+            try :
+                images = json.loads(image)
+                first_image = images[0] if images else ''
+            except :
+                first_image = image
             quantity = item.quantity
             item_total = price * quantity
 
@@ -685,11 +692,13 @@ def send_order(request):
 
             order_items.append({
                 'name': item.id_product.name,
-                'image' : item.id_product.image,
+                'image' : first_image,
                 'price': price,
                 'quantity': quantity,
                 'total': item_total,
+
             })
+
 
             history.objects.create(
                 email=email,
@@ -698,7 +707,7 @@ def send_order(request):
                 price=item_total,
                 id_user_id=user_id
             )
-
+        grand_total = total_price + tax
         context = {
             'username': username,
             'email': email,
@@ -718,6 +727,7 @@ def send_order(request):
 
             'price': total_price,
             'total_price': total_price,
+            'grand_total' :  grand_total
         }
         user = get_object_or_404(User,
                                  id = user_id)
