@@ -2,117 +2,348 @@
 
 {% block content %}
 
-<div
-    style="
-        width: 1200px;
-        margin: 30px auto;
-    "
->
+<style>
 
-    <h1>Giỏ hàng</h1>
+.cart-page {
+    width: 980px;
+    margin: 30px auto 60px;
+}
+
+.cart-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 70px;
+    font-size: 13px;
+    color: #999;
+}
+
+.cart-breadcrumb-home {
+    background: #ff9800;
+    color: white;
+    padding: 5px 12px;
+    text-decoration: none;
+}
+
+.cart-breadcrumb-arrow {
+    color: #ccc;
+}
+
+.cart-table {
+    width: 100%;
+    border: 1px solid #e5e5e5;
+}
+
+.cart-header {
+    height: 45px;
+    background: #ff9800;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 100px 160px 110px 55px;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.cart-row {
+    min-height: 105px;
+    display: grid;
+    grid-template-columns: 1fr 100px 160px 110px 55px;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.cart-product {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.cart-image {
+    width: 180px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-image img {
+    width: 100px;
+    height: 95px;
+    object-fit: contain;
+}
+
+.cart-product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.cart-product-name {
+    font-size: 16px;
+    color: #444;
+    margin: 0;
+    font-weight: 400;
+}
+
+.cart-product-id {
+    font-size: 11px;
+    color: #888;
+}
+
+.cart-price {
+    color: #777;
+    font-size: 14px;
+}
+
+.cart-quantity {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-btn {
+    width: 30px;
+    height: 27px;
+    border: none;
+    background: #f1f1ec;
+    color: #777;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.quantity-btn:hover {
+    background: #ff9800;
+    color: white;
+}
+
+.quantity {
+    width: 35px;
+    height: 25px;
+    border: 1px solid #aaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    color: #666;
+    font-size: 14px;
+    background: white;
+}
+
+.item-total {
+    color: #ff9800;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.cart-delete {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-delete {
+    width: 24px;
+    height: 25px;
+    border: none;
+    background: #f1f1ec;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 0;
+}
+
+.btn-delete:hover {
+    background: #ff9800;
+}
+
+.cart-total-area {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+}
+
+.cart-total-box {
+    min-width: 250px;
+    text-align: right;
+}
+
+.cart-total-label {
+    font-size: 18px;
+    color: #555;
+}
+
+.cart-total-value {
+    color: #ff9800;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.next-title {
+    margin-top: 65px;
+}
+
+.next-title h2 {
+    font-size: 18px;
+    color: #444;
+    margin: 0 0 8px;
+}
+
+.next-title p {
+    color: #777;
+    font-size: 13px;
+    margin: 0 0 20px;
+}
+
+.next-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.next-box {
+    border: 1px solid #e5e5e5;
+    min-height: 130px;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.next-box h3 {
+    font-size: 14px;
+    color: #555;
+    font-weight: 400;
+    margin: 0 0 20px;
+}
+
+.next-box label {
+    color: #777;
+    font-size: 13px;
+}
+
+.empty-cart {
+    width: 100%;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.empty-cart h2 {
+    color: #555;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+</style>
+
+
+<div class="cart-page">
+
+    <div class="cart-breadcrumb">
+
+        <a
+            href="{% url 'home' %}"
+            class="cart-breadcrumb-home"
+        >
+            Home
+        </a>
+
+        <span class="cart-breadcrumb-arrow">
+            Shopping Cart
+        </span>
+
+    </div>
 
 
     {% if cart_items %}
 
+    <div class="cart-table">
 
-    <div
-        style="
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        "
-    >
+        <div class="cart-header">
+
+            <div>
+                Item
+            </div>
+
+            <div>
+                Price
+            </div>
+
+            <div>
+                Quantity
+            </div>
+
+            <div>
+                Total
+            </div>
+
+            <div></div>
+
+        </div>
+
 
         {% for item in cart_items %}
 
         <div
-            class="cart-item"
+            class="cart-item cart-row"
             data-cart-id="{{ item.id }}"
-            style="
-                display: flex;
-                align-items: center;
-                gap: 20px;
-                padding: 20px;
-                border: 1px solid #ddd;
-                border-radius: 10px;
-            "
         >
 
+            <div class="cart-product">
 
-            <div style="width: 150px;">
+                <div class="cart-image">
 
-                {% if item.id_product.images %}
+                    {% if item.id_product.images %}
 
-                <img
-                    src="/media/{{ item.id_product.images.0 }}"
-                    alt="{{ item.id_product.name }}"
-                    style="
-                        width: 130px;
-                        height: 130px;
-                        object-fit: cover;
-                    "
-                >
+                    <img
+                        src="/media/{{ item.id_product.images.0 }}"
+                        alt="{{ item.id_product.name }}"
+                    >
 
-                {% endif %}
+                    {% endif %}
 
-            </div>
+                </div>
 
 
+                <div class="cart-product-info">
 
-            <div style="flex: 1;">
+                    <h3 class="cart-product-name">
+                        {{ item.id_product.name }}
+                    </h3>
 
-                <h2>
-                    {{ item.id_product.name }}
-                </h2>
+                    <span class="cart-product-id">
+                        Web ID: {{ item.id_product.id }}
+                    </span>
 
-                <p>
-                    {{ item.id_product.detail }}
-                </p>
-
-                <p>
-                    Giá:
-                    <strong>
-                        {{ item.id_product.price }} $
-                    </strong>
-                </p>
+                </div>
 
             </div>
 
 
+            <div class="cart-price">
 
-            <div
-                style="
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                "
-            >
+                ${{ item.id_product.price|floatformat:0 }}
+
+            </div>
+
+
+            <div class="cart-quantity">
 
                 <button
                     type="button"
-                    style="padding: 5px;"
                     class="quantity-btn minus-btn"
                     data-cart-id="{{ item.id }}"
                 >
                     -
                 </button>
 
-
-                <span
-                    class="quantity"
-                    style="
-                        min-width: 30px;
-                        text-align: center;
-                        font-size: 18px;
-                    "
-                >
+                <span class="quantity">
                     {{ item.quantity }}
                 </span>
 
-
                 <button
                     type="button"
-                    style="padding: 5px;"
                     class="quantity-btn plus-btn"
                     data-cart-id="{{ item.id }}"
                 >
@@ -122,35 +353,30 @@
             </div>
 
 
-            <div
-                style="
-                    width: 150px;
-                    text-align: right;
-                "
-            >
-
-                <strong>
-                    <span class="item-total">
-                        {{ item.id_product.price|floatformat:2 }}
-                    </span>
-                    $
-                </strong>
-
-            </div>
-
             <div>
-                <button
-                class="btn-delete"
-                type="button"
-                style="padding: 5px; color: white; background-color: red;"
-                 data-delete-id="{{item.id}}"
-                >
-                    Delete
-                </button>
+
+                <span class="item-total">
+
+                    {{ item.id_product.price|floatformat:2 }}
+
+                </span>
+
+                $
+
             </div>
 
 
+            <div class="cart-delete">
 
+                <button
+                    class="btn-delete"
+                    type="button"
+                    data-delete-id="{{ item.id }}"
+                >
+                    ×
+                </button>
+
+            </div>
 
         </div>
 
@@ -159,40 +385,47 @@
     </div>
 
 
+    <div class="cart-total-area">
 
-    <div
-        style="
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 30px;
-            padding: 20px;
-            border-top: 2px solid #ddd;
-        "
-    >
+        <div class="cart-total-box">
 
-        <div
-            style="
-                font-size: 24px;
-                font-weight: bold;
-            "
-        >
+            <span class="cart-total-label">
+                TOTAL:
+            </span>
 
-            TOTAL:
-
-            <span id="cart-total">
+            <span
+                id="cart-total"
+                class="cart-total-value"
+            >
                 {{ total|floatformat:2 }}
             </span>
 
-            $
+            <span class="cart-total-value">
+                $
+            </span>
 
         </div>
 
     </div>
 
 
+   
+    </div>
+
+
     {% else %}
 
-        <h2>Giỏ hàng đang trống</h2>
+    <div class="cart-table">
+
+        <div class="empty-cart">
+
+            <h2>
+                Giỏ hàng đang trống
+            </h2>
+
+        </div>
+
+    </div>
 
     {% endif %}
 

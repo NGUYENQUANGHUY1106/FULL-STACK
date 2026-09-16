@@ -2,175 +2,385 @@
 
 {% block content %}
 
-<div class="container">
+<div
+    style="
+        width: 1000px;
+        margin: 30px auto;
+        display: flex;
+        align-items: flex-start;
+        gap: 40px;
+    "
+>
 
-    <h2>Trang Thêm Sản Phẩm</h2>
-
-    <form
-        method="POST"
-        enctype="multipart/form-data"
+    <div
+        style="
+            width: 200px;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-shrink: 0;
+        "
+        class="nav_bar"
     >
 
-        {% csrf_token %}
+        <h3
+            style="
+                font-size: 25px;
+                color: orange;
+                margin: 0 0 10px 0;
+            "
+        >
+            ACCOUNT
+        </h3>
 
-        <div>
-            <label>Tên sản phẩm</label>
-            <input
-                type="text"
-                name="name"
-                required
-            >
-        </div>
+        <a
+            style="
+                text-decoration: none;
+                color: gray;
+                font-weight: 600;
+                font-size: 18px;
+            "
+            href="{% url 'account' %}"
+        >
+            ACCOUNT
+        </a>
+
+        <a
+            style="
+                text-decoration: none;
+                color: gray;
+                font-weight: 600;
+                font-size: 18px;
+            "
+            href="{% url 'my_product' %}"
+        >
+            MY PRODUCT
+        </a>
+
+    </div>
 
 
-        <div>
-            <label>Giá sản phẩm</label>
-            <input
-                type="number"
-                name="price"
-                min="0"
-                required
-            >
-        </div>
+    <div
+        class="container"
+        style="
+            width: 700px;
+        "
+    >
+
+        <h2
+            style="
+                font-size: 20px;
+                font-weight: 400;
+                color: #888;
+                margin: 0 0 25px 0;
+            "
+        >
+            Create product!
+        </h2>
 
 
-        <div>
-            <label>Category</label>
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+        >
 
-            <select name="category" required>
+            {% csrf_token %}
 
-                <option value="">
-                    -- Chọn Category --
-                </option>
 
-                {% for item in category %}
+            <div style="margin-bottom: 10px;">
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    required
+                    style="
+                        width: 100%;
+                        height: 35px;
+                        padding: 0 10px;
+                        box-sizing: border-box;
+                        border: none;
+                        background-color: #f1f1ec;
+                        color: #777;
+                    "
+                >
+
+            </div>
+
+
+            <div style="margin-bottom: 10px;">
+
+                <input
+                    type="number"
+                    name="price"
+                    placeholder="Price"
+                    min="0"
+                    required
+                    style="
+                        width: 100%;
+                        height: 35px;
+                        padding: 0 10px;
+                        box-sizing: border-box;
+                        border: none;
+                        background-color: #f1f1ec;
+                        color: #777;
+                    "
+                >
+
+            </div>
+
+
+            <div style="margin-bottom: 10px;">
+
+                <select
+                    name="category"
+                    required
+                    style="
+                        width: 100%;
+                        height: 35px;
+                        padding: 0 10px;
+                        border: none;
+                        background-color: #f1f1ec;
+                        color: #888;
+                    "
+                >
+
+                    <option value="">
+                        Please choose category
+                    </option>
+
+                    {% for item in category %}
 
                     <option value="{{ item.id }}">
                         {{ item.name }}
                     </option>
 
-                {% endfor %}
+                    {% endfor %}
 
-            </select>
+                </select>
 
-        </div>
+            </div>
 
 
-        <div>
-            <label>Brand</label>
+            <div style="margin-bottom: 10px;">
 
-            <select name="brand" required>
+                <select
+                    name="brand"
+                    required
+                    style="
+                        width: 100%;
+                        height: 35px;
+                        padding: 0 10px;
+                        border: none;
+                        background-color: #f1f1ec;
+                        color: #888;
+                    "
+                >
 
-                <option value="">
-                    -- Chọn Brand --
-                </option>
+                    <option value="">
+                        Please choose brand
+                    </option>
 
-                {% for item in brand %}
+                    {% for item in brand %}
 
                     <option value="{{ item.id }}">
                         {{ item.name }}
                     </option>
 
-                {% endfor %}
+                    {% endfor %}
 
-            </select>
+                </select>
 
-        </div>
-
-
-
-       <div>
-    <label>Trạng thái</label>
-
-    <select name="status" id="status_product" required>
-        <option value="0">New</option>
-        <option value="1">Sale</option>
-    </select>
-</div>
-
-<div id="sale-container" style="display: none;">
-    <label>Giảm giá (%)</label>
-
-    <input
-        type="number"
-        name="sale"
-        id="sale"
-        min="0"
-        max="100"
-        value="0"
-    >
-</div>
-
-            
+            </div>
 
 
+            <div style="margin-bottom: 10px;">
 
-        <div>
+                <select
+                    name="status"
+                    id="status_product"
+                    required
+                    style="
+                        width: 100%;
+                        height: 35px;
+                        padding: 0 10px;
+                        border: none;
+                        background-color: #f1f1ec;
+                        color: #888;
+                    "
+                >
 
-            <label>Company</label>
+                    <option value="0">
+                        New
+                    </option>
 
-            <input
-                type="text"
-                name="company"
+                    <option value="1">
+                        Sale
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                id="sale-container"
+                style="
+                    display: none;
+                    margin-bottom: 10px;
+                "
             >
 
-        </div>
+                <input
+                    type="number"
+                    name="sale"
+                    id="sale"
+                    min="0"
+                    max="100"
+                    value="0"
+                    placeholder="Sale (%)"
+                    style="
+                        width: 140px;
+                        height: 35px;
+                        padding: 0 10px;
+                        box-sizing: border-box;
+                        border: none;
+                        background-color: #f1f1ec;
+                        color: #777;
+                    "
+                >
+
+                <span
+                    style="
+                        color: #777;
+                        margin-left: 5px;
+                    "
+                >
+                    %
+                </span>
+
+            </div>
 
 
+            <div style="margin-bottom: 10px;">
 
-        <div>
+                <input
+                    type="text"
+                    name="company"
+                    placeholder="Company profile"
+                    style="
+                        width: 100%;
+                        height: 35px;
+                        padding: 0 10px;
+                        box-sizing: border-box;
+                        border: none;
+                        background-color: #f1f1ec;
+                        color: #777;
+                    "
+                >
 
-            <label>Hình ảnh</label>
+            </div>
 
-            <input
-                type="file"
-                name="image"
-                accept="image/png,image/jpeg,image/gif"
-                multiple
-            >
 
-            <p>
-                Chọn tối đa 3 ảnh, mỗi ảnh nhỏ hơn 1MB.
-            </p>
+            <div style="margin-bottom: 10px;">
 
-            {% if errors.file %}
+                <input
+                    type="file"
+                    name="image"
+                    accept="image/png,image/jpeg,image/gif"
+                    multiple
+                    style="
+                        width: 100%;
+                        height: 35px;
+                        padding: 5px 8px;
+                        box-sizing: border-box;
+                        background-color: #f1f1ec;
+                        color: #777;
+                    "
+                >
 
-                <p>
+                {% if errors.file %}
+
+                <p
+                    style="
+                        color: red;
+                        font-size: 13px;
+                        margin: 5px 0;
+                    "
+                >
                     {{ errors.file }}
                 </p>
 
-            {% endif %}
+                {% endif %}
 
-        </div>
-
-
-        <div>
-
-            <label>Chi tiết sản phẩm</label>
-
-            <textarea
-                name="detail"
-                rows="6"
-            ></textarea>
-
-        </div>
+            </div>
 
 
+            <div style="margin-bottom: 10px;">
 
-        <div>
+                <textarea
+                    name="detail"
+                    rows="7"
+                    placeholder="Detail"
+                    style="
+                        width: 100%;
+                        padding: 10px;
+                        box-sizing: border-box;
+                        border: none;
+                        background-color: #f1f1ec;
+                        color: #777;
+                        resize: none;
+                    "
+                ></textarea>
 
-            <button type="submit">
-                Thêm sản phẩm
-            </button>
+            </div>
 
-            <a href="{% url 'my_product' %}">
-                Quay lại
-            </a>
 
-        </div>
+            <div
+                style="
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    margin-top: 10px;
+                "
+            >
 
-    </form>
+                <button
+                    type="submit"
+                    style="
+                        padding: 9px 25px;
+                        border: none;
+                        background-color: #ff9800;
+                        color: white;
+                        cursor: pointer;
+                        font-size: 13px;
+                    "
+                >
+                    AddProduct
+                </button>
+
+                <a
+                    href="{% url 'my_product' %}"
+                    style="
+                        padding: 9px 20px;
+                        background-color: #eeeeee;
+                        color: #777;
+                        text-decoration: none;
+                        font-size: 13px;
+                    "
+                >
+                    Quay lại
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
 
 </div>
+
+
 
 {% endblock %}

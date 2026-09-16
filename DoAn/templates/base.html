@@ -30,12 +30,18 @@
     {% include 'search.html' %}
 </div>
     
+{% block page_layout %}
+
 <div style="display: flex; gap: 20px; width: 1220px; margin: auto;">
+
     {% include 'left_menu.html' %}
 
     {% block content %}
     {% endblock %}
+
 </div>
+
+{% endblock %}
 
     {% include 'footer.html' %}
 
@@ -47,6 +53,8 @@
 <script src="{% static 'cart.js' %}?v=12345"></script>
 <script src="{% static 'checkout.js' %}?v=12345"></script>
 <script src="{% static 'search_suggest.js' %}?v=12345"></script>
+<script src="{% static 'search_product_home.js' %}?v=12345"></script>
+
 
 
 

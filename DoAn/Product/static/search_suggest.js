@@ -51,7 +51,7 @@ search_input.addEventListener("input", function () {
 
         item.innerHTML = `
                 <a href="/Product/account/product_details/${product.id}/"
-        style="text-decoration: none; color: inherit">
+        style="text-decoration: none; color: inherit">git
                     <div>
                     <strong>${product.name}</strong>
                 </div>

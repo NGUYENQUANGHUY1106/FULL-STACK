@@ -2,95 +2,349 @@
 
 {% block content %}
 
-<div
-  style="
-    width: 1220px;
-    margin: auto;
-    padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  "
-  class="home"
->
-
-  {% for item in products %}
+<div style="width: 900px; margin: 20px auto;">
 
   <div
     style="
+      width: 100%;
+      height: 350px;
       display: flex;
-      flex-direction: column;
-      gap: 10px;
-      border: 1px solid rgb(230, 229, 229);
-      margin: 10px;
-      padding: 10px;
-      width: 287px;
-      text-align: center;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 35px;
+      overflow: hidden;
     "
-    class="item"
   >
 
-    <!-- PHẦN NÀY MỚI ĐƯỢC CLICK ĐỂ XEM CHI TIẾT -->
-    <a
-      href="{% url 'product_details' item.id %}"
-      style="text-decoration: none; color: inherit"
-    >
+    <div style="width: 40%; ">
 
-      {% if item.images %}
-
-      <img
-        style="width: 100%; height: 150px"
-        src="/media/{{ item.images.0 }}"
-        alt="{{ item.name }}"
-      />
-
-      {% endif %}
-
-      <h3
+      <h1
         style="
-          color: orange;
+          margin: 0;
+          font-size: 32px;
           font-weight: 500;
-          font-size: 22px;
         "
       >
-        {{ item.price }} $
-      </h3>
+        <span style="color: orange;">QH-</span><span style="color: #aaa;">SHOPPER</span>
+      </h1>
+
+      <h2
+        style="
+          margin: 10px 0;
+          font-size: 24px;
+        "
+      >
+        Free E-Commerce Template
+      </h2>
 
       <p
         style="
-          font-size: 18px;
-          color: gray;
+          width: 450px;
+          line-height: 1.7;
+          color: #666;
+          font-size: 14px;
         "
       >
-        {{ item.name }}
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </p>
 
-    </a>
+      <button
+        style="
+          margin-top: 15px;
+          padding: 10px 15px;
+          border: none;
+          background-color: orange;
+          color: white;
+          cursor: pointer;
+        "
+      >
+        Get it now
+      </button>
+
+    </div>
 
 
-    <button
-    
-      type="submit"
-      class="add-to-cart"
-      data-product-id="{{ item.id }}"
+    <div
       style="
-        padding: 10px;
-        background-color: gray;
-        color: white;
-        border-radius: 10px;
-        cursor: pointer;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       "
     >
-      Add to Cart
-    </button>
+
+      <img
+        src="https://inanaz.com.vn/wp-content/uploads/2020/02/nhung-mau-poster-bong-da-5.jpg"
+        alt="Banner"
+        style="
+          width: 500px;
+          height: 400px;
+          object-fit: cover;
+        "
+      >
+
+    </div>
 
   </div>
 
 
-  {% empty %}
+  <div
+    style="
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    "
+  >
 
-  <p>Không có sản phẩm nào</p>
+    <div
+      style="
+        flex: 1;
+        border-top: 1px solid #ddd;
+      "
+    ></div>
 
-  {% endfor %}
+    <h2
+      style="
+        margin: 0 30px;
+        color: orange;
+        font-size: 18px;
+        font-weight: 600;
+      "
+    >
+      FEATURES ITEMS
+    </h2>
+
+    <div
+      style="
+        flex: 1;
+        border-top: 1px solid #ddd;
+      "
+    ></div>
+
+  </div>
+
+
+  <form
+    id="search-form"
+    method="GET"
+    action="{% url 'search_product_home' %}"
+    style="
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+    "
+  >
+
+    <input
+      type="text"
+      name="name_product"
+      placeholder="Name"
+      
+      style="
+        width: 160px;
+        height: 40px;
+        padding: 0 12px;
+        border: none;
+        background-color: #f1f1ec;
+        box-sizing: border-box;
+      "
+    >
+
+    <select
+      name="price"
+      style="
+        width: 160px;
+        height: 40px;
+        border: none;
+        padding: 0 10px;
+        background-color: #f1f1ec;
+      "
+    >
+      <option value="">Choose price</option>
+      <option value="0-100">0 - 100 $</option>
+      <option value="100-300">100 - 300 $</option>
+      <option value="300-600">300 - 600 $</option>
+    </select>
+
+
+    <select
+      name="category"
+      style="
+        width: 160px;
+        height: 40px;
+        border: none;
+        padding: 0 10px;
+        background-color: #f1f1ec;
+      "
+    >
+
+      <option value="">Category</option>
+
+      {% for item in categories %}
+
+      <option value="{{ item.id }}">
+        {{ item.name }}
+      </option>
+
+      {% endfor %}
+
+    </select>
+
+
+    <select
+      name="brand"
+      style="
+        width: 160px;
+        height: 40px;
+        border: none;
+        padding: 0 10px;
+        background-color: #f1f1ec;
+      "
+    >
+
+      <option value="">Brand</option>
+
+      {% for item in brands %}
+
+      <option value="{{ item.id }}">
+        {{ item.name }}
+      </option>
+
+      {% endfor %}
+
+    </select>
+
+
+    <select
+      name="status"
+      style="
+        width: 160px;
+        height: 40px;
+        border: none;
+        padding: 0 10px;
+        background-color: #f1f1ec;
+      "
+    >
+
+      <option value="">Status</option>
+      <option value="0">New</option>
+      <option value="1">Sale</option>
+
+    </select>
+
+  </form>
+
+
+  <button
+    type="submit"
+    form="search-form"
+    style="
+      width: 90px;
+      height: 35px;
+      border: none;
+      background-color: #ff9638;
+      color: white;
+      cursor: pointer;
+      margin-bottom: 20px;
+    "
+  >
+    Search
+  </button>
+
+
+  <div
+    id="list-products"
+    style="
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    "
+  >
+
+
+  {% for item in products %}
+
+<div
+  style="
+    border: 1px solid #e5e5e5;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+  "
+>
+
+  <a
+    href="{% url 'product_details' item.id %}"
+    style="
+      text-decoration: none;
+      color: inherit;
+    "
+  >
+
+    {% if item.images %}
+
+    <img
+      src="/media/{{ item.images.0 }}"
+      alt="{{ item.name }}"
+      style="
+        width: 100%;
+        height: 230px;
+        object-fit: cover;
+      "
+    >
+
+    {% endif %}
+
+    <h3
+      style="
+        color: orange;
+        font-size: 22px;
+        font-weight: 500;
+        margin: 10px 0 5px;
+      "
+    >
+      {{ item.price }} $
+    </h3>
+
+    <p
+      style="
+        color: #777;
+        font-size: 17px;
+        margin: 0 0 15px;
+      "
+    >
+      {{ item.name }}
+    </p>
+
+  </a>
+
+  <button
+    type="button"
+    class="add-to-cart"
+    data-product-id="{{ item.id }}"
+    style="
+      width: 100%;
+      padding: 10px;
+      background-color: #888;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    "
+  >
+    Add to Cart
+  </button>
+
+</div>
+
+{% empty %}
+
+<p>Không có sản phẩm nào</p>
+
+{% endfor %}
+  </div>
 
 </div>
 

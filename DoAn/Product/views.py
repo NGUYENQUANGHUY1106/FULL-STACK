@@ -137,7 +137,19 @@ def add_product(request):
                             }
     )
 
-# add to cart
+def delete_product(request, id):
+
+    user_id = request.session.get('user_id')
+
+    product = get_object_or_404(
+        Product,
+        id=id,
+        id_user_id=user_id
+    )
+
+    product.delete()
+
+    return redirect('my_product')
 @require_POST
 def add_to_cart(request):
 
