@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container_search" style=" width: 900px;">
+    <h1>Danh sách sản phẩm tìm kiếm </h1>
+    {% if products_search %}
+    <div class="list_search" style="display: flex; gap: 15px;">
+    {% for item in products_search %}
+
+    <div
+    style="
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 1px solid rgb(230, 229, 229);
+      margin: 10px;
+      padding: 10px;
+      width: 287px;
+      height: auto;
+      text-align: center;
+    "
+    class="item"
+  >
+    <a
+      href="{% url 'product_details' item.id %}"
+      style="text-decoration: none; color: inherit"
+    >
+      {% if item.images %}
+
+      <img
+        style="width: 100%; height: 150px"
+        src="/media/{{ item.first_image }}"
+        alt="{{ item.name }}"
+      />
+
+      {% endif %}
+
+      <h3 style="color: orange; font-weight: 500; font-size: 22px">
+        {{ item.price }} $
+      </h3>
+
+      <p style="font-size: 18px; color: gray">{{ item.name }}</p>
+    </a>
+
+    <button
+      type="submit"
+      class="add-to-cart"
+      data-product-id="{{ item.id }}"
+      style="
+        padding: 10px;
+        background-color: gray;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+      "
+    >
+      Add to Cart
+    </button>
+    </div>
+
+
+    {% endfor %}
+    </div>
+
+{% else %}
+
+    <h2>Không tìm thấy sản phẩm</h2>
+
+{% endif %}
+
+</div>
+{% endblock %}
+
+
+
+
+

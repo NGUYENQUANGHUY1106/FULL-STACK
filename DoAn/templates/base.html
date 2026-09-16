@@ -23,9 +23,12 @@
     {% endblock %}
 </head>
 
-<body>
+<body style="display: block; margin: auto;  width: 1220px;">
 
     {% include 'header.html' %}
+<div style="width:1220px; margin:10px auto; display:flex; justify-content:flex-end;">
+    {% include 'search.html' %}
+</div>
     
 <div style="display: flex; gap: 20px; width: 1220px; margin: auto;">
     {% include 'left_menu.html' %}
@@ -43,6 +46,8 @@
 <script src="{% static 'add_to_cart.js' %}?v=12345"></script>
 <script src="{% static 'cart.js' %}?v=12345"></script>
 <script src="{% static 'checkout.js' %}?v=12345"></script>
+<script src="{% static 'search_suggest.js' %}?v=12345"></script>
+
 
 
 {% load static %}

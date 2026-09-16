@@ -3,6 +3,7 @@ import json
 from multiprocessing import context
 
 from django.core.files.storage import default_storage
+from django.http import JsonResponse
 from django.core.mail import EmailMultiAlternatives
 from django.core.files.storage import default_storage
 from django.http import JsonResponse
@@ -13,6 +14,9 @@ from .models import User
 from django.views.decorators.http import require_POST
 from Users.models import User,Country
 from django.contrib.auth.hashers import make_password
+from decimal import Decimal
+from django.shortcuts import render, redirect
+from .models import Cart, history
 
 from Product.models import Cart, Product,Brand,Category,history
 # add product
@@ -24,8 +28,6 @@ def allowed_file(filename):
         '.' in filename
         and filename.rsplit('.', 1)[1].lower() in ALLOWED_FILE
     )
-
-
 def add_product(request):
 
 
@@ -136,7 +138,6 @@ def add_product(request):
     )
 
 # add to cart
-
 @require_POST
 def add_to_cart(request):
 
@@ -388,7 +389,6 @@ def my_product(request):
 
 
     return render(request,'Product/my_product.html',{'my_product' : my_product})
-
 # edit product
 def edit_product(request, id):
 
@@ -494,7 +494,6 @@ def edit_product(request, id):
             'brands': brands
         }
     )
-
 # checkout
 def checkout(request):
     user_id = request.session.get('user_id')
@@ -621,8 +620,6 @@ def checkout_register(request):
         print('Lỗi gủi email', e)
     return redirect('login')
 
-
-
 def send_welcome_email(user):
     
     subject  = 'Chào mừng bạn đén với website'
@@ -640,10 +637,6 @@ def send_welcome_email(user):
     msg = EmailMultiAlternatives(subject,text_content,from_email,to)
     msg.attach_alternative(html_content,"text/html")
     msg.send()
-
-from decimal import Decimal
-from django.shortcuts import render, redirect
-from .models import Cart, history
 
 def send_order(request):
 
@@ -769,4 +762,61 @@ def send_order_user(user, context):
 
     msg.send()
 
+def search_product(request):
 
+    name_product = request.GET.get('name_product', '').strip()
+
+    products_search = Product.objects.none()
+
+    if name_product:
+        products_search = Product.objects.filter(
+            name__icontains=name_product
+        )
+        for image_search in products_search :
+            try: 
+                list_image = json.loads(image_search.image)
+                if list_image :
+                    image_search.images = list_image
+                    image_search.first_image = list_image[0]
+                else:
+                    image_search.images = []
+                    image_search.first_image = None
+            except(json.JSONDecodeError,TypeError) :
+                image_search = None
+                
+    return render(  
+        request,
+        'product/search_product.html',
+        {
+            'name_product': name_product,
+            'products_search': products_search
+        }
+    )
+
+def search_suggest(request):
+
+    keyword = request.GET.get('name_product', '').strip()
+
+    if not keyword:
+        return JsonResponse({
+            'products': []
+        })
+
+    products = Product.objects.filter(
+        name__icontains=keyword
+        # lấy ra 10 sản phẩm đầu tiên 
+    )[:10]
+
+    data = []
+
+    for product in products:
+
+        data.append({
+            'id': product.id,
+            'name': product.name,
+            'price': str(product.price)
+        })
+
+    return JsonResponse({
+        'products': data
+    })

@@ -1,0 +1,60 @@
+<div
+    id="search-box"
+    data-search-url="{% url 'search_suggest' %}"
+    style="position: relative; width: 300px;"
+>
+
+    <form
+        method="GET"
+        action="{% url 'search_product' %}"
+        style="display:flex; width:300px;"
+    >
+
+        <input
+            type="text"
+            name="name_product"
+            id="search-input"
+            placeholder="Tìm kiếm sản phẩm..."
+            autocomplete="off"
+            style="
+                flex:1;
+                height:40px;
+                padding:0 12px;
+                border:1px solid #ddd;
+                outline:none;
+                font-size:14px;
+            "
+        >
+
+        <button
+            type="submit"
+            style="
+                width:80px;
+                height:40px;
+                border:none;
+                background:#b35313;
+                color:white;
+                cursor:pointer;
+                font-weight:bold;
+            "
+        >
+            Search
+        </button>
+
+    </form>
+
+    <div
+        id="search-suggest"
+        style="
+            display:none;
+            position:absolute;
+            top:45px;
+            left:0;
+            width:300px;
+            background:white;
+            border:1px solid #ddd;
+            z-index:9999;
+        "
+    ></div>
+
+</div>
