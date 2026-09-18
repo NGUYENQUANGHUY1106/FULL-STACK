@@ -141,6 +141,7 @@ def login(request):
 
                     request.session['user_id'] = user.id
                     request.session['username'] = user.username
+                    
 
                     print("đăng nhập thành công")
                     return redirect('home')
@@ -182,6 +183,3 @@ def account(request):
     return render(request,'account.html',{'user' : user,
                                           'country' :country
                                           })
-
-
-

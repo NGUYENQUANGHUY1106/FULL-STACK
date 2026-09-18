@@ -24,6 +24,14 @@ class User(models.Model):
         Country,on_delete=models.CASCADE,
         related_name="users"
     )
+    role = models.CharField(
+        max_length=20,
+        choices=[
+            ('user' ,'User'),
+            ('admin','Admin')
+        ],
+        default='user'
+    )
 
     class Meta:
         db_table = "user"
