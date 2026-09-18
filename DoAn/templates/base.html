@@ -9,7 +9,7 @@
     <title>QH-SHOPPER</title>
 
     <link rel="stylesheet" href="{% static 'header_DoAn.css' %}">
-    <link rel="stylesheet" href="{% static 'left_menu_DoAn.css' %}">
+<link rel="stylesheet" href="{% static 'left_menu_DoAn.css' %}?v=12345">
     <link rel="stylesheet" href="{% static 'footer_DoAn.css' %}">
     <link rel="stylesheet" href="{% static 'blog_details.css' %}">  
     <link rel="stylesheet" href="{% static 'account.css' %}">
@@ -45,6 +45,7 @@
 
     {% include 'footer.html' %}
 
+<script src="{% static 'left_menu.js' %}?v=12345"></script>
 <script src="{% static 'blog_details.js' %}?v=12345"></script>
 <script src="{% static 'blog_comment.js' %}?v=12345"></script>
 <script src="{% static 'add_product.js' %}?v=12345"></script>

@@ -832,3 +832,32 @@ def search_suggest(request):
     return JsonResponse({
         'products': data
     })
+
+def search_price(request):
+
+    min_price = request.GET.get('min_price', '0')
+    max_price = request.GET.get('max_price','2000')
+
+    products = Product.objects.filter(
+        price__gte = min_price ,
+        price__lte = max_price
+    )
+
+    data = []
+
+    for  product in products :
+        try:
+            images = json.loads(product.image)
+            first_image = images[0] if images else ''
+        except :
+            first_image = ''
+        data.append({
+            'id' : product.id,
+            'name' :  product.name,
+            'price' : str(product.price),
+            'image' : first_image
+        })
+    return JsonResponse({
+        'products' : data
+    })
+    

@@ -1,91 +1,93 @@
-<div class="main_left_menu" style="margin: 10px 0px;">
-  <div class="container_left_menu">
+<div class="main_left_menu">
 
-    <ul class="list_product_category">
+    <div class="container_left_menu">
 
-        <p class="title">CATEGORY</p>
+        <ul class="list_product_category">
 
-        <li>
-            SPORTSWEAR
+            <p class="title">CATEGORY</p>
 
-            <ul style="display: none;" class="item_hide">
-                <li>NIKE</li>
-                <li>ADIDAS</li>
-                <li>PUMAS</li>
-            </ul>
-        </li>
+            <li>
+                SPORTSWEAR
 
-        <li>
-            MENS
+                <ul class="item_hide">
+                    <li>NIKE</li>
+                    <li>ADIDAS</li>
+                    <li>PUMAS</li>
+                </ul>
+            </li>
 
-            <ul style="display: none;" class="item_hide">
-                <li>FENDI</li>
-                <li>GUESS</li>
-                <li>VALENTINO</li>
-            </ul>
-        </li>
+            <li>
+                MENS
 
-        <li>
-            WOMENS
+                <ul class="item_hide">
+                    <li>FENDI</li>
+                    <li>GUESS</li>
+                    <li>VALENTINO</li>
+                </ul>
+            </li>
 
-            <ul style="display: none;" class="item_hide">
-                <li>FENDI</li>
-                <li>GUESS</li>
-                <li>VALENTINO</li>
-            </ul>
-        </li>
+            <li>
+                WOMENS
 
-        <li>KIDS</li>
-        <li>FASHION</li>
-        <li>SHOES</li>
+                <ul class="item_hide">
+                    <li>FENDI</li>
+                    <li>GUESS</li>
+                    <li>VALENTINO</li>
+                </ul>
+            </li>
 
-    </ul>
+            <li>KIDS</li>
+            <li>FASHION</li>
+            <li>SHOES</li>
 
-
-    <ul style="margin-top: 100px;" class="brand_total">
-
-        <p class="title">BRANDS</p>
-
-        <li>
-            <span>ACNE</span>
-            <span>(50)</span>
-        </li>
-
-        <li>
-            <span>GRÜNE ERDE</span>
-            <span>(56)</span>
-        </li>
-
-        <li>
-            <span>ALBIRO</span>
-            <span>(27)</span>
-        </li>
-
-        <li>
-            <span>RONHILL</span>
-            <span>(32)</span>
-        </li>
-
-    </ul>
+        </ul>
 
 
-    <div class="price-range">
+        <ul class="brand_total">
 
-        <p class="title">PRICE RANGE</p>
+            <p class="title">BRANDS</p>
 
-        <input
-            type="range"
-            min="0"
-            max="600"
-            value="600"
-        >
+            <li>
+                <span>ACNE</span>
+                <span>(50)</span>
+            </li>
 
-        <div class="price">
-            <span>$ 0</span>
-            <span>$ 600</span>
-        </div>
+            <li>
+                <span>GRÜNE ERDE</span>
+                <span>(56)</span>
+            </li>
+
+            <li>
+                <span>ALBIRO</span>
+                <span>(27)</span>
+            </li>
+
+            <li>
+                <span>RONHILL</span>
+                <span>(32)</span>
+            </li>
+
+        </ul>
+
+
+<div class="sidebar-title">PRICE RANGE</div>
+
+  <div
+    class="price-range"
+    id="price-box"
+    data-filter-url="{% url 'search_price' %}"
+>
+    <div class="price-range__track">
+        <div class="price-range__fill" id="priceFill"></div>
+    </div>
+
+    <input type="range" id="rangeMin" min="0" max="2000" value="400" step="10">
+    <input type="range" id="rangeMax" min="0" max="2000" value="1400" step="10">
+
+    <span class="price-tag" id="priceMin">$ 400</span>
+    <span class="price-tag" id="priceMax">$ 1400</span>
+</div>
 
     </div>
 
-</div>
 </div>
