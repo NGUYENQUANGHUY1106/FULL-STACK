@@ -2,7 +2,7 @@ import ast
 import json
 
 from django.core.files.storage import default_storage
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives, send_mail
 from django.http import JsonResponse
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import User,Country
@@ -183,3 +183,38 @@ def account(request):
     return render(request,'account.html',{'user' : user,
                                           'country' :country
                                           })
+def forgot_password(request):
+    if request.method == 'POST':
+        user_email = request.POST.get('email')
+
+        subject = 'Yêu cầu quên mật khẩu từ người dùng'
+        message = f'Yêu cầu lấy lại mật khẩu cho tài khoản email: {user_email}\n\n' \
+                  f'Bạn hãy bấm vào link dưới đây để tiến hành đổi mật khẩu :\n' \
+                  f'http://127.0.0.1:8000/DoAn/account/reset_password/?email={user_email}'
+        send_mail(
+            subject,
+            message,
+            settings.EMAIL_HOST_USER,
+            [settings.EMAIL_HOST_USER],  # gửi về mail của bạn
+            fail_silently=False
+        )
+        print("Đã gửi thành công")
+        return render(request, 'forgot_password.html', {'success': 'Yêu cầu đã được gửi đi'})
+
+    return render(request, 'forgot_password.html')
+
+def reset_password(request):
+    email = request.GET.get('email')
+
+    if request.method == 'POST' :
+        new_password = request.POST.get('new_password')
+        try :
+            # tìm user theo email
+            user = User.objects.get(email=email)
+            user.password = make_password(new_password)
+            user.save()
+            return render(request, 'reset_password.html', {'success': f'Đã đổi mật khẩu thành công cho tài khoản: {email}'})
+        except User.DoesNotExist:
+            return render(request, 'reset_password.html', {'error': 'Không tìm thấy tài khoản với email này!'})
+            
+    return render(request, 'reset_password.html', {'email': email})

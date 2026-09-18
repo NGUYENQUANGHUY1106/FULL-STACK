@@ -20,6 +20,7 @@
     <label for="">Password</label>
     {{ form.password }} {{ form.password.errors }}
 
+    <a style=" color: red;" href="{% url 'forgot_password' %}">Quên mật khẩu</a>
     <button
       style="
         background-color: orange;
