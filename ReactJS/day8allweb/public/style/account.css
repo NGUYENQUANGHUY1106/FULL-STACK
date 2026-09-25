@@ -1,0 +1,18 @@
+#username,
+#email,
+#phone,
+#address {
+    padding: 5px;
+    margin: 10px;
+}
+
+label {
+    display: inline-block;
+    width: 90px;
+}
+
+button {
+    padding: 5px 15px;
+    background-color: green;
+    color: white;
+}
