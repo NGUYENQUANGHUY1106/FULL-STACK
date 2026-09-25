@@ -1,0 +1,20 @@
+h2
+{
+    transform: uppercase;
+    color:  red;
+}
+ul li  a
+{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+ul li{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.menu-left
+{
+    width: 300px;
+}

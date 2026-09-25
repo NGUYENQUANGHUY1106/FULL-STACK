@@ -1,0 +1,37 @@
+.logo
+{
+    font-size: 25px;
+    font-weight: bold;
+    color: green;
+}
+nav
+{
+    display: flex;
+    gap: 50px;
+    font-size: 18px;
+}
+.slide_bar
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.account button
+{
+    padding: 5px 10px;
+}
+.account
+{
+    display: flex;
+    gap: 10px;
+}
+.account .login:hover
+{
+    background-color: green;
+    color: white;
+}
+.account .register:hover
+{
+    background-color: red;
+    color: white;
+}

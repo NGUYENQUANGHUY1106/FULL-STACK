@@ -1,14 +1,32 @@
+
 function MenuLeft() {
     return (
         <div className="menu-left">
-            <h2>Menu</h2>
+
+            <h2>Categories</h2>
 
             <ul>
-                <li>Home</li>
-                <li>Product</li>
-                <li>About</li>
-                <li>Contact</li>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+
+                <li>
+                    <a href="/">Laptop</a>
+                </li>
+
+                <li>
+                    <a href="/">Phone</a>
+                </li>
+
+                <li>
+                    <a href="/">Tablet</a>
+                </li>
+
+                <li>
+                    <a href="/">Accessories</a>
+                </li>
             </ul>
+
         </div>
     );
 }

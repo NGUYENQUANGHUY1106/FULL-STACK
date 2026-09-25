@@ -18,8 +18,10 @@ function App(props) {
       <p>{props.data}</p>
        */}
        <Header/>
-       <MenuLeft/>
+        <div className='container'>
+        <MenuLeft/>
        <Content/>
+        </div>
        <Footer/>
        
       
