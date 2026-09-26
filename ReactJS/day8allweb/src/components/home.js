@@ -11,9 +11,10 @@ function Home() {
           <nav className="menu">
             <a href="/">Home</a>
             <Link to="/account">Account</Link>
-            <a href="/">Blog</a>
-            <a href="/">About</a>
+            <Link to="/vidu1">Ví dụ 1</Link>
+            <Link to="/vidu2">Ví dụ 2</Link>
             <Link to="/login">Login</Link>
+            
           </nav>
 
           <div className="auth">
@@ -65,6 +66,7 @@ function Home() {
               <p>
                 Laptop gaming hiệu năng cao phù hợp học tập và giải trí.
               </p>
+              <button>Buy Now</button>
             </div>
 
             <div className="product-card">
@@ -83,6 +85,7 @@ function Home() {
               <p>
                 Laptop gaming mạnh mẽ với card đồ họa RTX.
               </p>
+              <button>Buy Now</button>
             </div>
 
             <div className="product-card">
@@ -101,6 +104,7 @@ function Home() {
               <p>
                 Máy tính bảng phù hợp học tập và giải trí.
               </p>
+              <button>Buy Now</button>
             </div>
 
           </div>

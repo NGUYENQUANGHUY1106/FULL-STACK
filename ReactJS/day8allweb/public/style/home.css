@@ -64,9 +64,6 @@ body {
 
 
 
-.sidebar {
-  width: 230px;
-}
 
 .sidebar h2 {
   color: red;
@@ -74,7 +71,6 @@ body {
 
 .sidebar ul {
   list-style: none;
-  padding-left: 40px;
 }
 
 .sidebar li {
