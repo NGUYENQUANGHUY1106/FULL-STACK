@@ -1,7 +1,7 @@
 function Warning(props)
     {
     if(!props.warning)
-        // nếu khác true thì return null và không render ra gì cả
+        // nếu khác true tức là = false thì return null và không render ra gì cả
     {
         return null
     }
