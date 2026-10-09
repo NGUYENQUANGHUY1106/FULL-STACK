@@ -1,0 +1,484 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+ 
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #555;
+}
+
+.header {
+    width: 100%;
+    background: white;
+}
+
+.container {
+    width: 1180px;
+    max-width: calc(100% - 40px);
+    margin: auto;
+}
+
+
+/* =========================
+   HEADER TOP
+========================= */
+
+.header-top {
+    background: #f4f4f1;
+}
+
+.header-top-content {
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contact {
+    display: flex;
+    gap: 30px;
+
+    font-size: 14px;
+
+    color: #666;
+}
+
+.social {
+    display: flex;
+    gap: 22px;
+}
+
+.social span {
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    color: #777;
+
+    transition: 0.3s;
+}
+
+.social span:hover {
+    color: #ff9f1c;
+}
+
+
+/* =========================
+   HEADER MAIN
+========================= */
+
+.header-main {
+    background: white;
+}
+
+.header-main-content {
+    height: 105px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+/* LEFT */
+
+.header-left {
+    display: flex;
+    align-items: center;
+
+    gap: 40px;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    cursor: pointer;
+}
+
+.logo-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #ff9f1c;
+
+    color: white;
+
+    font-size: 26px;
+
+    font-weight: bold;
+
+    box-shadow: 0 5px 15px rgba(255, 159, 28, 0.25);
+}
+
+.logo-name {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    font-size: 22px;
+}
+
+.logo-name span {
+    color: #ff9f1c;
+
+    font-weight: bold;
+}
+
+.logo-name b {
+    color: #555;
+
+    font-weight: 500;
+}
+
+
+/* SELECT */
+
+.select-group {
+    display: flex;
+
+    gap: 12px;
+}
+
+.select-group select {
+    width: 110px;
+    height: 38px;
+
+    padding: 0 10px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 5px;
+
+    background: white;
+
+    color: #777;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+.select-group select:hover {
+    border-color: #ff9f1c;
+}
+
+
+/* =========================
+   USER MENU
+========================= */
+
+.user-menu {
+    display: flex;
+    align-items: center;
+
+    gap: 25px;
+}
+
+.user-item {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    font-size: 14px;
+
+    color: #666;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.user-item:hover {
+    color: #ff9f1c;
+}
+
+.icon {
+    font-size: 15px;
+}
+
+.login {
+    padding: 9px 14px;
+
+    border-radius: 7px;
+
+    background: #fff5e6;
+
+    color: #e78a00;
+}
+
+.login:hover {
+    background: #ff9f1c;
+
+    color: white;
+}
+
+
+/* =========================
+   HEADER BOTTOM
+========================= */
+
+.header-bottom {
+    background: white;
+}
+
+.header-bottom-content {
+    height: 85px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* MENU */
+
+.menu {
+    display: flex;
+    align-items: center;
+
+    gap: 42px;
+}
+
+.menu-item {
+    position: relative;
+
+    height: 85px;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 16px;
+
+    color: #555;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.menu-item:hover {
+    color: #ff9f1c;
+}
+
+.menu-item::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 20px;
+    left: 50%;
+
+    width: 0;
+    height: 2px;
+
+    background: #ff9f1c;
+
+    transform: translateX(-50%);
+
+    transition: 0.3s;
+}
+
+.menu-item:hover::after {
+    width: 100%;
+}
+
+.menu-item.active {
+    color: #ff9f1c;
+
+    font-weight: 600;
+}
+
+.menu-item.active::after {
+    width: 100%;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search {
+    width: 270px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+
+    background: #f4f4f1;
+
+    border-radius: 21px;
+
+    overflow: hidden;
+
+    border: 1px solid transparent;
+}
+
+.search:focus-within {
+    background: white;
+
+    border: 1px solid #ff9f1c;
+}
+
+.search input {
+    flex: 1;
+
+    height: 100%;
+
+    padding: 0 16px;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-size: 14px;
+}
+
+.search input::placeholder {
+    color: #aaa;
+}
+
+.search button {
+    width: 48px;
+    height: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1050px) {
+
+    .header-main-content {
+        height: auto;
+
+        padding: 25px 0;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 25px;
+    }
+
+    .user-menu {
+        flex-wrap: wrap;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .header-top-content {
+        height: auto;
+
+        padding: 12px 0;
+    }
+
+    .contact {
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+    .social {
+        display: none;
+    }
+
+    .header-left {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .header-bottom-content {
+        height: auto;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+        padding-bottom: 20px;
+    }
+
+    .menu {
+        width: 100%;
+
+        overflow-x: auto;
+
+        gap: 30px;
+    }
+
+    .menu-item {
+        height: 65px;
+
+        white-space: nowrap;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .container {
+        max-width: calc(100% - 25px);
+    }
+
+    .select-group {
+        width: 100%;
+    }
+
+    .select-group select {
+        flex: 1;
+    }
+
+    .user-menu {
+        gap: 15px;
+    }
+
+    .user-item {
+        font-size: 13px;
+    }
+
+}
