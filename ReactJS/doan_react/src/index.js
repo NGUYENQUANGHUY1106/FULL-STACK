@@ -8,6 +8,10 @@ import reportWebVitals from './reportWebVitals';
 import BlogList from './components/Blog/BlogList';
 import Home from './components/Layout/Home';
 import BlogDetails from './components/Blog/BlogDetails';
+import IndexMember from './components/members/IndexMember';
+import Login from './components/members/Login';
+import Register from './components/members/Register';
+
 
 
 
@@ -19,9 +23,13 @@ root.render(
 
 
           <Routes>
-            <Route path='/' element = {<Home/>} />
+            <Route path='/' element = {<Home/>} />  
+            <Route path='/member/login-register' element = {<IndexMember />} />
             <Route path='/bloglist' element = {<BlogList />} />
             <Route path='/blogdetails/:id' element = {<BlogDetails />} />
+            <Route path='/login' element = {<Login/>} ></Route>
+            <Route path='/register' element ={<Register/>} ></Route>
+
           </Routes>
           {/* Routers là nội dung được truyền vào app */}
         </App>

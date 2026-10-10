@@ -1,0 +1,63 @@
+
+.register-container {
+    width: 450px;
+    max-width: 100%;
+    margin: 40px 0;
+    font-family: Arial, sans-serif;
+}
+
+.register-container h2 {
+    font-size: 24px;
+    font-weight: 400;
+    color: #777;
+    margin-bottom: 36px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.register-form input,
+.register-form select {
+    width: 100%;
+    height: 50px;
+    padding: 0 13px;
+    background: #f0f0eb;
+    border: none;
+    outline: none;
+    color: #777;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.register-form input::placeholder {
+    color: #888;
+}
+
+.register-form input[type="file"] {
+    padding: 13px;
+}
+
+.register-form button {
+    width: 116px;
+    height: 40px;
+    background: #ff9800;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.register-form button:hover {
+    background: #f08c00;
+}
+
+@media (max-width: 600px) {
+    .register-container {
+        width: 100%;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+}
