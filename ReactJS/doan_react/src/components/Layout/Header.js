@@ -1,8 +1,25 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function Header() {
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const user = JSON.parse(localStorage.getItem("user") || null);
+  const navigate = useNavigate();
+  function Logout()
+{
+    localStorage.removeItem('user')
+    localStorage.removeItem("token");
+    navigate('/login')
+
+}
+function checkAccount() {
+  if (!user || !user.id) {
+    navigate("/login");
+  } else {
+    navigate("/account");
+  }
+}
+
   return (
     <div className="header">
       <div className="header-top">
@@ -51,7 +68,7 @@ function Header() {
           <div className="user-menu">
             <div className="user-item">
               <span className="icon">♙</span>
-              <span>Account</span>
+              <span onClick={checkAccount}>Account</span>
             </div>
 
             <div className="user-item">
@@ -72,7 +89,12 @@ function Header() {
             {user && user.id ? (
               <div className="user-item login">
                 <span>Xin chào, {user.name}</span>
-                {/* <button>Logout</button> */}
+                <button
+                  style={{ textDecoration: "none", color: "black" }}
+                  onClick={Logout}
+                >
+                  Logout
+                </button>
               </div>
             ) : (
               <div className="user-item login">

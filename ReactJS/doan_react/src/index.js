@@ -11,7 +11,7 @@ import BlogDetails from './components/Blog/BlogDetails';
 import IndexMember from './components/members/IndexMember';
 import Login from './components/members/Login';
 import Register from './components/members/Register';
-
+import Account from "./components/members/Account";
 
 
 
@@ -29,6 +29,7 @@ root.render(
             <Route path='/blogdetails/:id' element = {<BlogDetails />} />
             <Route path='/login' element = {<Login/>} ></Route>
             <Route path='/register' element ={<Register/>} ></Route>
+            <Route path="/account" element={<Account />} />
 
           </Routes>
           {/* Routers là nội dung được truyền vào app */}
