@@ -1,0 +1,71 @@
+.account-update {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 15px 0;
+    font-family: Arial, sans-serif;
+}
+
+.account-update-title {
+    font-size: 16px;
+    font-weight: normal;
+    color: #999;
+    margin-bottom: 22px;
+}
+
+.account-update-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.account-update-form input {
+    width: 100%;
+    height: 32px;
+    padding: 0 8px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    background-color: #f1f1ed;
+    color: #777;
+    font-size: 12px;
+}
+
+.account-update-form input::placeholder {
+    color: #999;
+}
+
+.account-update-form input[type="password"] {
+    background-color: #e8f0fe;
+}
+
+.account-update-form input[type="file"] {
+    height: 32px;
+    padding: 5px 8px;
+    background-color: #f1f1ed;
+}
+
+.account-update-btn {
+    width: 70px;
+    height: 26px;
+    background-color: #ff9000;
+    color: white;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 12px;
+    align-self: flex-start;
+}
+
+.account-update-btn:hover {
+    background-color: #e67e00;
+}
+
+@media (max-width: 768px) {
+    .account-update {
+        max-width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+}

@@ -1,0 +1,72 @@
+.account-menu {
+    width: 100%;
+    max-width: 270px;
+    font-family: Arial, sans-serif;
+}
+
+/* Tiêu đề ACCOUNT */
+.account-menu-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.account-menu-title::before,
+.account-menu-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: #eeeeee;
+}
+
+.account-menu-title span {
+    color: #ff8000;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* Khung menu */
+.account-menu-list {
+    border: 1px solid #eeeeee;
+    padding: 12px 20px;
+    background-color: #ffffff;
+}
+
+/* Từng dòng menu */
+.account-menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #777777;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 9px 0;
+    transition: 0.2s;
+}
+
+/* Dấu cộng */
+.account-menu-plus {
+    font-size: 18px;
+    font-weight: bold;
+    color: #777777;
+}
+
+/* Hiệu ứng hover */
+.account-menu-item:hover {
+    color: #ff8000;
+}
+
+.account-menu-item:hover .account-menu-plus {
+    color: #ff8000;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .account-menu {
+        max-width: 100%;
+    }
+}
