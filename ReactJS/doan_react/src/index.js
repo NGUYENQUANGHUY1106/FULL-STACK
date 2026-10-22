@@ -5,13 +5,18 @@ import './index.css';
 import 'font-awesome/css/font-awesome.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import BlogList from './components/Blog/BlogList';
+import BlogList from './components/Blog/Index';
 import Home from './components/Layout/Home';
-import BlogDetails from './components/Blog/BlogDetails';
+import BlogDetails from './components/Blog/Detail';
 import IndexMember from './components/members/IndexMember';
 import Login from './components/members/Login';
 import Register from './components/members/Register';
 import Account from "./components/members/Account";
+import Myproduct from './components/Product/MyProduct';
+import AddProduct from './components/Product/AddProduct';
+import UpdateProduct from './components/Product/UpdateProduct';
+import ProductDetail from './components/Product/ProductDetail';
+import Cart from './components/Product/Cart';
 
 
 
@@ -30,6 +35,17 @@ root.render(
             <Route path='/login' element = {<Login/>} ></Route>
             <Route path='/register' element ={<Register/>} ></Route>
             <Route path="/account" element={<Account />} />
+            <Route path="/account/my_product" element={<Myproduct />} />
+            <Route path="/account/add_product" element={<AddProduct />} />
+            <Route path="/account/update_product/:id" element={<UpdateProduct />} />
+            <Route path="/product_details/:id" element={<ProductDetail />} />
+            <Route path="/cart" element={<Cart />} />
+
+
+            
+
+            
+
 
           </Routes>
           {/* Routers là nội dung được truyền vào app */}

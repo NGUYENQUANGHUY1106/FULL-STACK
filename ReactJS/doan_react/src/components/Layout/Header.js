@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../UserContext";
 
 function Header() {
   const user = JSON.parse(localStorage.getItem("user") || null);
+  const totalCart = useContext(UserContext)
+  console.log(totalCart);
+  
   const navigate = useNavigate();
   function Logout()
 {
@@ -82,8 +86,11 @@ function checkAccount() {
             </div>
 
             <div className="user-item">
-              <span className="icon">🛒</span>
-              <span>Cart</span>
+             <div style={{display :' flex', alignItems :'center'}}>
+               <span className="icon">🛒</span>
+             </div>
+              <Link style={{textDecoration :'none', color : 'GrayText'}} to='/cart'>Cart</Link>
+               <p style={{fontSize : '15px', background :'red', padding : '2px 4px',   color: 'white', borderRadius : '100%', marginTop : '-25px'}}>{totalCart}</p>
             </div>
 
             {user && user.id ? (
@@ -114,11 +121,11 @@ function checkAccount() {
       <div className="header-bottom">
         <div className="container header-bottom-content">
           <div className="menu">
-            <div className="menu-item active">Home</div>
+            <Link  style={{textDecoration : 'none'}} to='/' className="menu-item active">Home</Link>
 
             <div className="menu-item">Shop</div>
 
-            <div className="menu-item">Products</div>
+            <Link style={{textDecoration : 'none'}} to='/account/my_product' className="menu-item">Products</Link>
 
             <div className="menu-item">
               <Link

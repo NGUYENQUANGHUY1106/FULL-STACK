@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function BlogList() {
+function Index() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -19,10 +19,11 @@ function BlogList() {
 
   function renderData() {
     if (data.length > 0) {
-      return Object.keys(data).map((key, index) => {
+      return Object.keys(data).map((key) => {
         return (
           <div className="blog-item" key={data[key].id}>
             <h2 className="blog-title">{data[key].title}</h2>
+
             <div className="blog-info">
               <span>
                 <i className="fa fa-user"></i>
@@ -54,6 +55,8 @@ function BlogList() {
         );
       });
     }
+
+    return null;
   }
 
   return (
@@ -63,4 +66,4 @@ function BlogList() {
   );
 }
 
-export default BlogList;
+export default Index;

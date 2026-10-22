@@ -16,7 +16,7 @@ function MenuAcc() {
                     <span className="account-menu-plus">+</span>
                 </Link>
 
-                <Link to="/my-product" className="account-menu-item">
+                <Link to="/account/my_product" className="account-menu-item">
                     <span>MY PRODUCT</span>
                     <span className="account-menu-plus">+</span>
                 </Link>

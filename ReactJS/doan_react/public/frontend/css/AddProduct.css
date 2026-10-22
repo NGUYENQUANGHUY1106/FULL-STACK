@@ -1,0 +1,152 @@
+/* Container */
+.create-product {
+  width: 100%;
+  padding: 0;
+  background: #fff;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Title */
+.create-product-title {
+  font-size: 14px;
+  font-weight: 400;
+  color: #999;
+  margin: 0 0 18px;
+}
+
+/* Form */
+.create-product-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Inputs */
+.create-product-input,
+.create-product-select,
+.create-product-textarea {
+  width: 100%;
+  background: #f0f0eb;
+  border: 1px solid transparent;
+  border-radius: 0;
+  padding: 0 9px;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  color: #777;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.create-product-input,
+.create-product-select {
+  height: 28px;
+}
+
+.create-product-input::placeholder,
+.create-product-textarea::placeholder {
+  color: #aaa;
+}
+
+/* Select */
+.create-product-select {
+  cursor: pointer;
+}
+
+/* Focus */
+.create-product-input:focus,
+.create-product-select:focus,
+.create-product-textarea:focus {
+  border-color: #ff9800;
+}
+
+/* Sale */
+.create-product-sale {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.create-product-sale-input {
+  width: 110px;
+  height: 28px;
+  padding: 0 8px;
+  border: none;
+  outline: none;
+  background: #f0f0eb;
+  font-size: 11px;
+  color: #777;
+  box-sizing: border-box;
+}
+
+.create-product-sale span {
+  font-size: 11px;
+  color: #777;
+}
+
+/* File Upload */
+.create-product-file {
+  width: 100%;
+  height: 27px;
+  background: #f0f0eb;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  box-sizing: border-box;
+}
+
+.create-product-file input {
+  width: 100%;
+  font-size: 11px;
+  color: #999;
+}
+
+/* Textarea */
+.create-product-textarea {
+  height: 100px;
+  padding: 8px 9px;
+  resize: vertical;
+}
+
+/* Footer */
+.create-product-footer {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 1px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Button */
+.create-product-btn {
+  background: #f99b4a;
+  color: white;
+  border: none;
+  padding: 6px 18px;
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.create-product-btn:hover {
+  background: #ff8800;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .create-product {
+    padding: 10px;
+  }
+
+  .create-product-title {
+    font-size: 14px;
+  }
+
+  .create-product-sale-input {
+    width: 100px;
+  }
+
+  .create-product-textarea {
+    height: 120px;
+  }
+}

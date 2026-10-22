@@ -1,0 +1,162 @@
+.my-product {
+  width: 100%;
+  padding: 15px;
+  background: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.my-product-title {
+  font-size: 22px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Table */
+
+.my-product-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #eaeaea;
+}
+
+.my-product-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+}
+
+.my-product-table thead {
+  background-color: #ff9800;
+  color: white;
+}
+
+.my-product-table th {
+  padding: 13px 10px;
+  font-weight: bold;
+}
+
+.my-product-table td {
+  padding: 5px 10px;
+  height: 45px;
+  border-bottom: 1px solid #f2f2f2;
+  color: #777;
+}
+
+.my-product-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.my-product-table tbody tr:hover {
+  background: #fafafa;
+}
+
+/* ID */
+
+.my-product-table td:first-child {
+  color: #3498db;
+  width: 8%;
+}
+
+/* Name */
+
+.my-product-table td:nth-child(2) {
+  width: 35%;
+}
+
+.my-product-table a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.my-product-table a:hover {
+  text-decoration: underline;
+}
+
+/* Image */
+
+.my-product-table td:nth-child(3) {
+  width: 18%;
+}
+
+.my-product-table img {
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Price */
+
+.my-product-table td:nth-child(4) {
+  width: 24%;
+  font-size: 13px;
+}
+
+/* Actions */
+
+.my-product-action-title {
+  text-align: center;
+}
+
+.my-product-table td:nth-child(5),
+.my-product-table td:nth-child(6) {
+  text-align: center;
+  width: 7.5%;
+}
+
+.my-product-edit,
+.my-product-delete {
+  background: none;
+  border: none;
+  color: #3498db;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.my-product-edit:hover {
+  color: #1565c0;
+}
+
+.my-product-delete:hover {
+  color: #e53935;
+}
+
+/* Add New */
+
+.my-product-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.my-product-add {
+  background: #ff9800;
+  border: none;
+  padding: 7px 14px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.my-product-add:hover {
+  background: #f57c00;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .my-product {
+    padding: 10px;
+  }
+
+  .my-product-title {
+    font-size: 18px;
+  }
+
+  .my-product-table {
+    min-width: 550px;
+  }
+}
