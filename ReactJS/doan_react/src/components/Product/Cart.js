@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import API from "../../Config/Api";
-
+import { UserContext } from "../../UserContext";
 function Cart() {
   const [data, setData] = useState([]);
   const [cart, setCart] = useState(() => {
   return JSON.parse(localStorage.getItem("cart") || "{}");
 });
+const { setTotalCart } = useContext(UserContext);
   console.log(cart);
 
 
@@ -24,6 +25,13 @@ function Cart() {
 
   setCart(newCart);
   localStorage.setItem("cart", JSON.stringify(newCart));
+    let total = 0;
+
+  Object.keys(newCart).forEach((key) => {
+    total += Number(newCart[key]);
+  });
+
+  setTotalCart(total);
 }
 
 function totalCart() {
@@ -50,6 +58,14 @@ function removeCart(id)
    }
    setCart(newCart)
    localStorage.setItem("cart", JSON.stringify(newCart));
+
+     let total = 0;
+
+  Object.keys(newCart).forEach((key) => {
+    total += Number(newCart[key]);
+  });
+
+  setTotalCart(total);
   //  xóa cart có id trong giỏ hàng 
 
    const newData = { ...data };

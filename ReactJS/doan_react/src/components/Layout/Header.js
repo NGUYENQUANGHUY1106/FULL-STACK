@@ -5,7 +5,7 @@ import { UserContext } from "../../UserContext";
 
 function Header() {
   const user = JSON.parse(localStorage.getItem("user") || null);
-  const totalCart = useContext(UserContext)
+  const { totalCart, totalWishList } = useContext(UserContext);
   console.log(totalCart);
   
   const navigate = useNavigate();
@@ -77,7 +77,9 @@ function checkAccount() {
 
             <div className="user-item">
               <span className="icon">♥</span>
-              <span>Wishlist</span>
+              <Link style={{textDecoration : 'none', color : 'GrayText'}} to='/product_wishlist'>Wishlist</Link>
+              <p style={{fontSize : '15px', background :'red', padding : '2px 4px',   color: 'white', borderRadius : '100%', marginTop : '-25px'}}>{totalWishList}</p>
+
             </div>
 
             <div className="user-item">

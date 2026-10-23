@@ -17,6 +17,7 @@ import AddProduct from './components/Product/AddProduct';
 import UpdateProduct from './components/Product/UpdateProduct';
 import ProductDetail from './components/Product/ProductDetail';
 import Cart from './components/Product/Cart';
+import ProductWishlist from './components/Product/ProductWishlist';
 
 
 
@@ -40,6 +41,8 @@ root.render(
             <Route path="/account/update_product/:id" element={<UpdateProduct />} />
             <Route path="/product_details/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/product_wishlist" element={<ProductWishlist />} />
+
 
 
             

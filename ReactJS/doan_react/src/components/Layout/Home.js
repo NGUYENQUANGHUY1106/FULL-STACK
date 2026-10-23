@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import API from "../../Config/Api";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../UserContext";
 function Home() {
   const [data, setData] = useState({});
   const token = localStorage.getItem("token");
+  const { setTotalCart, setTotalWishList } = useContext(UserContext);
   useEffect(() => {
     API.get("user/my-product", {
       headers: {
@@ -21,7 +23,7 @@ function Home() {
         console.log(error);
         
     })
-  });
+  }, [token]);
 
   function handleAddToCart(product) {
   const cart = JSON.parse(
@@ -37,7 +39,33 @@ function Home() {
   localStorage.setItem("cart", JSON.stringify(cart));
 
   console.log(cart);
+    let total = 0;
+
+  Object.keys(cart).forEach((key) => {
+    total += Number(cart[key]);
+  });
+
+  setTotalCart(total);
 }
+
+  function handleWishlist(product)
+  {
+      console.log(product);
+      const wishList = JSON.parse(localStorage.getItem('wishList') || "{}")
+
+      if(wishList[product.id])
+      {
+        wishList[product.id] += 1 ;
+      }
+      else
+      {
+        wishList[product.id] = 1;
+      }
+      localStorage.setItem("wishList", JSON.stringify(wishList));
+      setTotalWishList(Object.keys(wishList).length);
+      console.log(wishList);
+      
+  }
   return (
     <div className="featured-items">
       <div className="featured-title">
@@ -100,8 +128,8 @@ function Home() {
             ✚ Product detail
           </Link>
 
-          <button type="button">
-            ✚ Add to compare
+          <button onClick={() => handleWishlist(product)} type="button">
+            ✚ Add to wishlist
           </button>
         </div>
       </div>

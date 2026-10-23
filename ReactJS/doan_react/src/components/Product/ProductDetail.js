@@ -3,7 +3,7 @@ import API from "../../Config/Api";
 import { useParams } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Cart from "./Cart";
+
 function ProductDetail() {
   const { id } = useParams();
   console.log(id);
@@ -12,6 +12,22 @@ function ProductDetail() {
   const [file, setfile] = useState([]);
   const [category, setCategory] = useState([]);
   const [brand, setBrand] = useState([]);
+
+    function handleAddToCart(product) {
+  const cart = JSON.parse(
+    localStorage.getItem("cart") || "{}"
+  );
+
+  if (cart[product.id]) {
+    cart[product.id] += 1;
+  } else {
+    cart[product.id] = 1;
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  console.log(cart);
+}
 
   useEffect(() => {
     API.get(`user/product/${id}`, {
@@ -134,7 +150,7 @@ function ProductDetail() {
           <div className="product-price-cart">
             <h4 className="product-details-price">$ {data.price}</h4>
             <button
-              onClick={() => Cart(data)}
+              onClick={() => handleAddToCart(data)}
               className="product-add-cart"
             >
               🛒 Add to cart
