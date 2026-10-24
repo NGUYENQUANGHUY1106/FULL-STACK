@@ -5,7 +5,9 @@ import Footer from './components/Layout/Footer';
 import { useLocation } from 'react-router-dom';
 import MenuAcc from './components/Layout/MenuAcc';
 import {UserContext} from './UserContext'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import { selectCartItems } from "./components/Redux/cartSlice";
+import { useSelector } from "react-redux";
 
 function getStoredObject(key) {
   try {
@@ -16,18 +18,14 @@ function getStoredObject(key) {
 }
 
 function App(props) {
-const [totalCart, setTotalCart] = useState(() => {
-  const cart = getStoredObject("cart");
 
-  let total = 0;
 
-  Object.keys(cart).forEach((key) => {
-    total += Number(cart[key]);
-  });
-
-  return total;
-  //  lúc này totalCart = total 
-});
+const cart = useSelector(selectCartItems);
+// lấy giỏ hàng từ Redux từ slice 
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+  // lưu vào localstorage
 
 const [totalWishList, setTotalWishList] = useState(() => {
   const wishList = getStoredObject("wishList");
@@ -37,8 +35,8 @@ const [totalWishList, setTotalWishList] = useState(() => {
   
   let params1 = useLocation();
   return (
-    <UserContext.Provider value={{totalCart,
-        setTotalCart,
+    <UserContext.Provider value={{
+        
         totalWishList,
         setTotalWishList,}}>
     <div className="App">

@@ -18,12 +18,15 @@ import UpdateProduct from './components/Product/UpdateProduct';
 import ProductDetail from './components/Product/ProductDetail';
 import Cart from './components/Product/Cart';
 import ProductWishlist from './components/Product/ProductWishlist';
+import { store } from './components/Redux/store';
+import {Provider} from "react-redux"
+import Test from './components/Redux/Test';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <>
+  <Provider  store ={store}>
       <BrowserRouter>
         <App >
 
@@ -42,6 +45,9 @@ root.render(
             <Route path="/product_details/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/product_wishlist" element={<ProductWishlist />} />
+            <Route path="/test" element={<Test  />} />
+
+            
 
 
 
@@ -59,7 +65,7 @@ root.render(
       </BrowserRouter>
 
 
-  </>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

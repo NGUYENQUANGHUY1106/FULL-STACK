@@ -2,13 +2,18 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../UserContext";
+import { useSelector } from "react-redux";
+import { selectTotalCart } from "../Redux/cartSlice";
 
 function Header() {
   const user = JSON.parse(localStorage.getItem("user") || null);
-  const { totalCart, totalWishList } = useContext(UserContext);
-  console.log(totalCart);
+
   
   const navigate = useNavigate();
+const { totalWishList } = useContext(UserContext);
+
+const totalCartRedux = useSelector(selectTotalCart);
+// lấy dữ liệu từ store ra 
   function Logout()
 {
     localStorage.removeItem('user')
@@ -85,6 +90,8 @@ function checkAccount() {
             <div className="user-item">
               <span className="icon">✓</span>
               <span>Checkout</span>
+               <p style={{fontSize : '15px', background :'red', padding : '2px 4px',   color: 'white', borderRadius : '100%', marginTop : '-25px'}}>{totalCartRedux}</p>
+
             </div>
 
             <div className="user-item">
@@ -92,7 +99,7 @@ function checkAccount() {
                <span className="icon">🛒</span>
              </div>
               <Link style={{textDecoration :'none', color : 'GrayText'}} to='/cart'>Cart</Link>
-               <p style={{fontSize : '15px', background :'red', padding : '2px 4px',   color: 'white', borderRadius : '100%', marginTop : '-25px'}}>{totalCart}</p>
+               <p style={{fontSize : '15px', background :'red', padding : '2px 4px',   color: 'white', borderRadius : '100%', marginTop : '-25px'}}>{totalCartRedux}</p>
             </div>
 
             {user && user.id ? (

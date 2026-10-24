@@ -1,102 +1,122 @@
 import { useState, useEffect, useContext } from "react";
 import API from "../../Config/Api";
-import { UserContext } from "../../UserContext";
+import { useSelector, useDispatch } from "react-redux";
+
+import {
+  selectCartItems,
+  changeQuantity,
+  removeFromCart,
+} from "../Redux/cartSlice";
 function Cart() {
   const [data, setData] = useState([]);
-  const [cart, setCart] = useState(() => {
-  return JSON.parse(localStorage.getItem("cart") || "{}");
-});
-const { setTotalCart } = useContext(UserContext);
+
+  const cart = useSelector(selectCartItems);
+  const dispatch = useDispatch();
+  // const [cart, setCart] = useState(() => {
+  //   return JSON.parse(localStorage.getItem("cart") || "{}");
+  // });
   console.log(cart);
 
+  //  function updateQuantity(value, id) {
+  //   const newCart = { ...cart };
 
- function updateQuantity(value, id) {
-  const newCart = { ...cart };
+  //   if (newCart[id]) {
+  //     newCart[id] = newCart[id] + value;
+  //   } else {
+  //     newCart[id] = 1;
+  //   }
 
-  if (newCart[id]) {
-    newCart[id] = newCart[id] + value;
-  } else {
-    newCart[id] = 1;
+  //   if (newCart[id] < 1) {
+  //     newCart[id] = 1;
+  //   }
+
+  //   setCart(newCart);
+  //   localStorage.setItem("cart", JSON.stringify(newCart));
+  //     let total = 0;
+
+  //   Object.keys(newCart).forEach((key) => {
+  //     total += Number(newCart[key]);
+  //   });
+
+  //   setTotalCart(total);
+  // }
+
+  function updateQuantity(value, id) {
+    dispatch(
+      changeQuantity({
+        id: id,
+        value: value,
+      }),
+    );
   }
 
-  if (newCart[id] < 1) {
-    newCart[id] = 1;
-  }
-
-  setCart(newCart);
-  localStorage.setItem("cart", JSON.stringify(newCart));
+  function totalPrice() {
     let total = 0;
 
-  Object.keys(newCart).forEach((key) => {
-    total += Number(newCart[key]);
-  });
+    Object.keys(data).forEach((key) => {
+      const id = data[key].id;
+      const price = Number(data[key].price);
+      const quantity = cart[id] || 0;
 
-  setTotalCart(total);
-}
+      total = total + price * quantity;
+    });
 
-function totalCart() {
-  let total = 0;
+    return total;
+  }
 
-  Object.keys(data).forEach((key) => {
-    const id = data[key].id;
-    const price = Number(data[key].price);
-    const quantity = cart[id] || 0;
+  // function removeCart(id)
+  // {
+  //    const newCart = {...cart}
 
-    total = total + price * quantity;
-  });
+  //    if(cart[id])
+  //    {
+  //      delete newCart[id]
+  //    }
+  //    setCart(newCart)
+  //    localStorage.setItem("cart", JSON.stringify(newCart));
 
-  return total;
-}
+  //      let total = 0;
 
-function removeCart(id)
-{
-   const newCart = {...cart}
+  //   Object.keys(newCart).forEach((key) => {
+  //     total += Number(newCart[key]);
+  //   });
 
-   if(cart[id])
-   {
-     delete newCart[id]
-   }
-   setCart(newCart)
-   localStorage.setItem("cart", JSON.stringify(newCart));
+  //   // setTotalCart(total);
+  //   //  xóa cart có id trong giỏ hàng
 
-     let total = 0;
+  //    const newData = { ...data };
+  //   //  data là dữ liệu khi API trả về
+  //   // còn cart là dữ liệu khi người dùng nhấn thêm dỏ hàng và lưu ở local
+  //      Object.keys(newData).forEach((key) => {
+  //     if (Number(newData[key].id) === Number(id)) {
+  //       delete newData[key];
+  //     }
 
-  Object.keys(newCart).forEach((key) => {
-    total += Number(newCart[key]);
-  });
-
-  setTotalCart(total);
-  //  xóa cart có id trong giỏ hàng 
-
-   const newData = { ...data };
-  //  data là dữ liệu khi API trả về
-  // còn cart là dữ liệu khi người dùng nhấn thêm dỏ hàng và lưu ở local
-     Object.keys(newData).forEach((key) => {
-    if (Number(newData[key].id) === Number(id)) {
-      delete newData[key];
-    }
-
-    setData(newData)
-  });
-}
+  //     setData(newData)
+  //   });
+  // }
   // console.log(value);
-  
-  // console.log(totalPrice);
-  
 
+  // console.log(totalPrice);
+
+  function removeCart(id) {
+    dispatch(removeFromCart(id));
+  }
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "{}");
+    // Nếu giỏ hàng không có sản phẩm
+    if (Object.keys(cart).length === 0) {
+      setData([]);
+      return;
+    }
 
     API.post("product/cart", cart)
       .then((response) => {
         setData(response.data.data);
-        // Sau khi kiểm tra cấu trúc response
-        // mới setData vào danh sách sản phẩm
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [cart]);
 
   console.log(data);
 
@@ -114,56 +134,80 @@ function removeCart(id)
         </thead>
 
         <tbody>
-          {
-          
-          Object.keys(data).map((key, index) => {
-                const listImage = JSON.parse(data[key].image || "[]");
-                console.log(listImage);
-                
-                console.log(data[key].id_user);
-                
+          {Object.keys(data).map((key, index) => {
+            const listImage = JSON.parse(data[key].image || "[]");
+            console.log(listImage);
+
+            console.log(data[key].id_user);
+
             return (
               <tr>
                 <td className="cart-product">
-                   <img
-            src={
-              `http://localhost/laravel8/laravel8/public/upload/product/` +
-              `${data[key].id_user}/` +
-              `${listImage[0]}`
-            }
-            alt={data.name}
-          />
+                  <img
+                    src={
+                      `http://localhost/laravel8/laravel8/public/upload/product/` +
+                      `${data[key].id_user}/` +
+                      `${listImage[0]}`
+                    }
+                    alt={data.name}
+                  />
                   <div className="cart-product-info">
                     <p>{data[key].name}</p>
                   </div>
                 </td>
 
-                <td  className="cart-price">$ {data[key].price}</td>
+                <td className="cart-price">$ {data[key].price}</td>
 
                 <td>
                   <div className="cart-quantity">
-                    <button onClick={() =>updateQuantity(1 , data[key].id)}  type="button">+</button>
-                    <input type="text" value={cart[data[key].id] || 0}  />
-                    <button onClick={() =>updateQuantity(-1 ,data[key].id)} type="button">-</button>
+<button
+  onClick={() => updateQuantity(1, data[key].id)}
+  type="button"
+>
+  +
+</button>
+<input
+  type="text"
+  value={cart[data[key].id] || 0}
+  readOnly
+/>  <button
+  onClick={() => updateQuantity(-1, data[key].id)}
+  type="button"
+>
+  -
+</button>
                   </div>
                 </td>
 
-                <td className="cart-total">{(cart[data[key].id] || 0) * data[key].price}</td>
+               <td className="cart-total">
+  {(cart[data[key].id] || 0) * data[key].price}
+</td>
 
                 <td>
-                  <button onClick={() => removeCart(data[key].id)} className="cart-remove" type="button">
-                    ×
-                  </button>
+                  <button
+  onClick={() => removeCart(data[key].id)}
+  className="cart-remove"
+  type="button"
+>
+  ×
+</button>
                 </td>
               </tr>
             );
           })}
         </tbody>
       </table>
-          <div style={{display : 'flex', gap : ' 20px', justifyContent :'space-evenly', fontSize: '30px'}}>
-            <p>Tổng Tiền :</p>
-            <p>$ {totalCart()}</p>
-          </div>
+      <div
+        style={{
+          display: "flex",
+          gap: " 20px",
+          justifyContent: "space-evenly",
+          fontSize: "30px",
+        }}
+      >
+        <p>Tổng Tiền :</p>
+        <p>$ {totalPrice()}</p>
+      </div>
     </div>
   );
 }
